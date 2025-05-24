@@ -1,14 +1,14 @@
 
-/* Remove previous @font-face for Clash Display or Inter if they exist */
+/* Remove previous @font-face for Switzer or Inter if they exist */
 @font-face {
-  font-family: 'Switzer';
-  src: url('/fonts/Switzer-Variable.woff2') format('woff2-variations');
-  font-weight: 100 900; /* Adjust if your variable font supports a different range */
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Variable.woff2') format('woff2-variations');
+  font-weight: 200 700; /* Adjust if your variable font supports a different range, typically Clash Display is 200-700 */
   font-display: swap;
   font-style: normal;
 }
 
-/* Remove any @import for Google Fonts like Inter or Poppins */
+/* Remove any @import for Google Fonts like Inter or Poppins or Switzer */
 
 @tailwind base;
 @tailwind components;
@@ -209,7 +209,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: theme('fontFamily.sans'); /* This will correctly pick up 'Switzer' from Tailwind config */
+    font-family: theme('fontFamily.sans'); /* This will correctly pick up 'Clash Display' from Tailwind config */
   }
   /* Add opacity 0 for elements that will be animated in */
   .animate-fadeInUp {
@@ -217,3 +217,9 @@
   }
 }
 
+/* Additional styling for marquee */
+@layer utilities {
+  .paused {
+    animation-play-state: paused;
+  }
+}

@@ -11,7 +11,7 @@ export default {
   theme: {
   	extend: {
       fontFamily: {
-        sans: ['Switzer', 'sans-serif'], // Set Switzer as the primary sans-serif font
+        sans: ['Clash Display', 'sans-serif'], // Set Clash Display as the primary sans-serif font
       },
   		colors: {
   			background: 'hsl(var(--background))',
@@ -24,8 +24,8 @@ export default {
   				DEFAULT: 'hsl(var(--popover))',
   				foreground: 'hsl(var(--popover-foreground))'
   			},
-  			primary: { // Now a 3-color gradient
-  				DEFAULT: 'hsl(var(--pg-from))', // Start color for solid fallbacks
+  			primary: { 
+  				DEFAULT: 'hsl(var(--pg-from))', 
   				foreground: 'hsl(var(--pg-foreground))'
   			},
   			secondary: {
@@ -36,8 +36,8 @@ export default {
   				DEFAULT: 'hsl(var(--muted))',
   				foreground: 'hsl(var(--muted-foreground))'
   			},
-  			accent: { // Now a 2-color gradient for accents
-  				DEFAULT: 'hsl(var(--ag-from))', // Start color for solid fallbacks
+  			accent: { 
+  				DEFAULT: 'hsl(var(--ag-from))', 
   				foreground: 'hsl(var(--ag-foreground))'
   			},
   			destructive: {
@@ -46,7 +46,7 @@ export default {
   			},
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
-  			ring: 'hsl(var(--ring))', // Based on Golden Mustard
+  			ring: 'hsl(var(--ring))', 
   			chart: {
   				'1': 'hsl(var(--chart-1))',
   				'2': 'hsl(var(--chart-2))',
@@ -93,7 +93,7 @@ export default {
         },
         'infinite-scroll': {
           from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-100%)' }, // For single ul with duplicated content to achieve seamless loop
+          to: { transform: 'translateX(-100%)' }, 
         },
   		},
   		animation: {
