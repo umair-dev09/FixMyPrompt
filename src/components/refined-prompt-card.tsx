@@ -60,7 +60,7 @@ export function RefinedPromptCard({ prompt, onUseThis }: RefinedPromptCardProps)
                 {prompt.prompt.substring(0, titleMaxLen)}...
                 <button
                   onClick={toggleTitleExpansion}
-                  className="text-xs text-primary hover:underline ml-1 focus:outline-none"
+                  className="text-xs text-accent hover:underline ml-1 focus:outline-none"
                   aria-label="Read more prompt title"
                 >
                   Read more
@@ -73,7 +73,7 @@ export function RefinedPromptCard({ prompt, onUseThis }: RefinedPromptCardProps)
                 {prompt.prompt}
                 <button
                   onClick={toggleTitleExpansion}
-                  className="text-xs text-primary hover:underline ml-1 focus:outline-none"
+                  className="text-xs text-accent hover:underline ml-1 focus:outline-none"
                   aria-label="Read less prompt title"
                 >
                   Read less
@@ -85,7 +85,7 @@ export function RefinedPromptCard({ prompt, onUseThis }: RefinedPromptCardProps)
       </CardHeader>
       <CardContent className="flex-grow pt-0">
         <CardDescription className="text-sm line-clamp-3 text-muted-foreground/90">
-          {description}
+          {prompt.originalPrompt ? `Original: ${prompt.originalPrompt}` : description}
         </CardDescription>
       </CardContent>
       <CardFooter>

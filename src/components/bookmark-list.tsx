@@ -54,7 +54,7 @@ export function BookmarkList() {
                               {prompt.prompt.substring(0, promptTitleMaxLen)}...
                               <button
                                 onClick={(e) => toggleExpansion(prompt.id, 'title', e)}
-                                className="text-xs text-primary hover:underline ml-1 focus:outline-none"
+                                className="text-xs text-accent hover:underline ml-1 focus:outline-none"
                                 aria-label="Read more bookmarked prompt title"
                               >
                                 Read more
@@ -67,7 +67,7 @@ export function BookmarkList() {
                               {prompt.prompt}
                               <button
                                 onClick={(e) => toggleExpansion(prompt.id, 'title', e)}
-                                className="text-xs text-primary hover:underline ml-1 focus:outline-none"
+                                className="text-xs text-accent hover:underline ml-1 focus:outline-none"
                                 aria-label="Read less bookmarked prompt title"
                               >
                                 Read less
@@ -94,7 +94,7 @@ export function BookmarkList() {
                           {prompt.originalPrompt.substring(0, originalPromptMaxLen)}...
                           <button
                             onClick={(e) => toggleExpansion(prompt.id, 'description', e)}
-                            className="text-xs text-primary hover:underline ml-1 focus:outline-none"
+                            className="text-xs text-accent hover:underline ml-1 focus:outline-none"
                             aria-label="Read more original prompt"
                           >
                             Read more
@@ -107,7 +107,7 @@ export function BookmarkList() {
                           {prompt.originalPrompt}
                           <button
                             onClick={(e) => toggleExpansion(prompt.id, 'description', e)}
-                            className="text-xs text-primary hover:underline ml-1 focus:outline-none"
+                            className="text-xs text-accent hover:underline ml-1 focus:outline-none"
                             aria-label="Read less original prompt"
                           >
                             Read less
