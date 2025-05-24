@@ -1,7 +1,7 @@
 
 'use client';
 
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
 import { useBookmarks } from '@/contexts/bookmark-context';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -81,10 +81,10 @@ export function BookmarkList({ onRefineThis }: BookmarkListProps) {
                           : prompt.prompt}
                       </CardTitle>
                     </div>
-                    <Button 
-                      variant="ghost" 
+                    <Button
+                      variant="ghost"
                       className="h-9 px-3"
-                      onClick={() => removeBookmark(prompt.id)} 
+                      onClick={() => removeBookmark(prompt.id)}
                       aria-label="Remove bookmark"
                     >
                       <Trash2 className="h-4 w-4 text-destructive" />
@@ -127,8 +127,6 @@ export function BookmarkList({ onRefineThis }: BookmarkListProps) {
                     <Button
                       onClick={() => {
                         onRefineThis(prompt.prompt);
-                        // Consider if closing the sheet is desired here and how to implement it.
-                        // For now, focuses on setting input and scrolling.
                       }}
                       variant="outline"
                       className="w-full"
