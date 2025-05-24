@@ -47,6 +47,11 @@ const aiPlatforms: AiPlatform[] = [
     icon: MessageSquareText
   },
   {
+    name: 'Perplexity',
+    url: (prompt) => `https://www.perplexity.ai/search?q=${encodeURIComponent(prompt)}`,
+    icon: Search
+  },
+  {
     name: 'Gemini',
     url: (prompt) => `https://gemini.google.com/app?prompt=${encodeURIComponent(prompt)}`,
     icon: Brain
@@ -55,11 +60,6 @@ const aiPlatforms: AiPlatform[] = [
     name: 'Claude',
     url: (prompt) => `https://claude.ai/new?prompt=${encodeURIComponent(prompt)}`,
     icon: Bot
-  },
-  {
-    name: 'Perplexity',
-    url: (prompt) => `https://www.perplexity.ai/search?q=${encodeURIComponent(prompt)}`,
-    icon: Search
   },
   {
     name: 'Grok (on X)',
@@ -89,13 +89,52 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
     }
   };
 
+  const handleShare = async () => {
+    const shareData = {
+      title: `FixMyPrompt: ${prompt.tag}`,
+      text: prompt.prompt,
+      url: window.location.href, // Or a more specific URL if you have one for individual prompts
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        toast({ title: 'Shared!', description: 'Prompt shared successfully.' });
+      } catch (error) {
+        console.error('Share API error:', error);
+        if (error instanceof Error && error.name === 'NotAllowedError') {
+          toast({
+            title: 'Sharing Failed',
+            description: 'Permission to share was denied. Prompt copied to clipboard instead!',
+            variant: 'destructive',
+          });
+          await handleCopy(); // Fallback to copy
+        } else if (error instanceof Error && error.name === 'AbortError') {
+          // User cancelled the share dialog - no toast needed or a very subtle one
+        } else {
+          toast({
+            title: 'Sharing Failed',
+            description: 'Could not share prompt. Copied to clipboard as a fallback.',
+            variant: 'destructive',
+          });
+          await handleCopy(); // Fallback to copy
+        }
+      }
+    } else {
+      // Fallback for browsers that don't support navigator.share
+      await handleCopy();
+      toast({
+        title: 'Copied to Clipboard',
+        description: "Your browser doesn't support direct sharing. The prompt has been copied to your clipboard.",
+      });
+    }
+  };
+
   const handleBookmarkToggle = () => {
     if (bookmarked) {
       removeBookmark(prompt.id);
-      toast({ title: "Bookmark Removed", description: "Prompt removed from your bookmarks." });
     } else {
       addBookmark(prompt);
-      toast({ title: "Bookmarked!", description: "Prompt added to your bookmarks." });
     }
   };
   
@@ -126,7 +165,13 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 {aiPlatforms.map((platform) => (
-                  <DropdownMenuItem key={platform.name} onClick={() => window.open(platform.url(prompt.prompt), '_blank')}>
+                  <DropdownMenuItem
+                    key={platform.name}
+                    onClick={async () => {
+                      await handleCopy(); // Copy first
+                      window.open(platform.url(prompt.prompt), '_blank'); // Then open
+                    }}
+                  >
                     {platform.icon && <platform.icon className="mr-2 h-4 w-4" />}
                     {platform.name}
                   </DropdownMenuItem>
