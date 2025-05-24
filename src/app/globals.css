@@ -14,25 +14,28 @@
     --popover-foreground-light: var(--foreground-light);
 
     /* Primary Gradient: Deep Purple -> Soft Pink -> Warm Orange */
-    --pg-from-l: 320 53% 30%;   /* Deep Purple (lighter for gradient start) */
-    --pg-via-l: 330 55% 60%;    /* Soft Pink (adjusted for gradient) */
+    --pg-from-l: 320 53% 30%;   /* Deep Purple (adjusted for gradient start) */
+    --pg-via-l: 330 55% 67%;    /* Soft Pink (adjusted for gradient) */
     --pg-to-l: 32 61% 52%;      /* Warm Orange */
     --pg-foreground-l: 0 0% 100%; /* White text on primary gradient */
 
-    --secondary-light: 170 20% 94%; /* Very light Muted Teal */
-    --secondary-foreground-light: 170 16% 40%; /* Muted Teal (darker for text) */
-    --muted-light: 170 20% 90%; /* Light Muted Teal */
-    --muted-foreground-light: 170 16% 50%; /* Muted Teal (medium for text) */
+    /* Secondary Theme (Mustard-Based) - REVISED */
+    --secondary-light: 47 60% 94%; /* Very Light Golden Mustard */
+    --secondary-foreground-light: 47 40% 30%; /* Dark Golden Mustard for text */
+    
+    /* Muted Theme (Desaturated Purple/Pink-Based) - REVISED */
+    --muted-light: 320 30% 97%; /* Very light, subtly tinted purple/pink */
+    --muted-foreground-light: 320 15% 50%; /* Mid-tone desaturated purple/pink for text */
 
     /* Accent Gradient: Golden Mustard -> Moss Green */
     --ag-from-l: 47 48% 54%;    /* Golden Mustard */
-    --ag-to-l: 87 37% 45%;      /* Moss Green (slightly lighter) */
+    --ag-to-l: 87 37% 41%;      /* Moss Green */
     --ag-foreground-l: 0 0% 100%; /* White text on accent gradient */
     
     --destructive-light: 0 80% 60%; /* Standard Red */
     --destructive-foreground-light: 0 0% 100%;
-    --border-light: 170 15% 85%; /* Light Muted Teal based border */
-    --input-light: 170 20% 97%; /* Very light Muted Teal based input background */
+    --border-light: 320 15% 88%; /* Lighter, desaturated purple based border */
+    --input-light: 0 0% 97%; /* Very light neutral for input background */
     --ring-light: 47 48% 54%; /* Golden Mustard for focus */
 
     /* Sidebar - Light Theme */
@@ -42,7 +45,7 @@
     --sidebar-primary-foreground-light: var(--pg-foreground-l);
     --sidebar-accent-light: var(--ag-from-l);
     --sidebar-accent-foreground-light: var(--ag-foreground-l);
-    --sidebar-border-light: 170 15% 80%;
+    --sidebar-border-light: 320 10% 85%;
     --sidebar-ring-light: var(--ring-light);
 
     /* Chart Colors - Light Theme */
@@ -114,10 +117,13 @@
     --pg-to-d: 32 65% 60%;       /* Warm Orange (brighter) */
     --pg-foreground-d: 0 0% 100%;  /* White text */
 
-    --secondary-dark: 170 16% 25%; /* Dark Muted Teal */
-    --secondary-foreground-dark: 170 20% 75%; /* Lighter Muted Teal for text */
-    --muted-dark: 170 16% 18%; /* Very dark Muted Teal */
-    --muted-foreground-dark: 170 20% 60%; /* Medium Muted Teal for text */
+    /* Secondary Theme (Mustard-Based) - REVISED */
+    --secondary-dark: 47 40% 18%; /* Dark Golden Mustard */
+    --secondary-foreground-dark: 47 50% 75%; /* Lighter Golden Mustard for text */
+    
+    /* Muted Theme (Desaturated Purple/Pink-Based) - REVISED */
+    --muted-dark: 320 10% 20%; /* Dark, desaturated purple base */
+    --muted-foreground-dark: 320 10% 70%; /* Light, desaturated purple/pink for text */
 
     /* Accent Gradient: Golden Mustard -> Moss Green (brighter for dark mode) */
     --ag-from-d: 47 55% 60%;     /* Golden Mustard (brighter) */
@@ -126,8 +132,8 @@
     
     --destructive-dark: 0 75% 65%; /* Standard Red (brighter) */
     --destructive-foreground-dark: 0 0% 100%;
-    --border-dark: 170 10% 30%; /* Dark Muted Teal based border */
-    --input-dark: 320 10% 18%; /* Dark Deep Purple based input background */
+    --border-dark: 320 10% 25%; /* Darker, desaturated purple based border */
+    --input-dark: 320 10% 16%; /* Dark Deep Purple based input background */
     --ring-dark: 47 55% 60%; /* Golden Mustard (brighter for focus) */
 
     /* Sidebar - Dark Theme */
@@ -137,7 +143,7 @@
     --sidebar-primary-foreground-dark: var(--pg-foreground-d);
     --sidebar-accent-dark: var(--ag-from-d);
     --sidebar-accent-foreground-dark: var(--ag-foreground-d);
-    --sidebar-border-dark: 170 10% 25%;
+    --sidebar-border-dark: 320 8% 22%;
     --sidebar-ring-dark: var(--ring-dark);
 
     /* Chart Colors - Dark Theme */
