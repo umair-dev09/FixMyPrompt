@@ -132,8 +132,10 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
       <main className="flex-grow container mx-auto px-4 py-8 sm:py-12">
         <section className="max-w-3xl mx-auto text-center pt-20 sm:pt-28 lg:pt-32 mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-12 sm:mb-16 tracking-tighter text-center">
-             <WandSparkles className="inline-block align-baseline w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-[hsl(var(--pg-from))] mr-2" />
-            Unlock AI's Full Potential
+            <WandSparkles className="inline-block align-baseline w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-[hsl(var(--pg-from))] mr-2" />
+            <span className="bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">
+              Unlock AI's Full Potential
+            </span>
           </h1>
           <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
             Transform your simple ideas into powerful, precise prompts. Get multiple AI-optimized variations in seconds.
@@ -181,7 +183,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
 
         {!isLoading && !error && refinedPrompts && refinedPrompts.length > 0 && (
           <section className="mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.2s' }}>
-            <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center tracking-tight">Your Refined Prompts:</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center tracking-tight text-[hsl(var(--pg-from))]">Your Refined Prompts:</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {refinedPrompts.map((prompt) => (
                 <RefinedPromptCard key={prompt.id} prompt={prompt} onUseThis={handleUseThisPrompt} />
