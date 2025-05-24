@@ -1,7 +1,14 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+/* Remove previous @font-face for Clash Display or Inter if they exist */
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/Switzer-Variable.woff2') format('woff2-variations');
+  font-weight: 100 900; /* Adjust if your variable font supports a different range */
+  font-display: swap;
+  font-style: normal;
+}
 
-/* Remove previous @font-face for Clash Display if they exist */
+/* Remove any @import for Google Fonts like Inter or Poppins */
 
 @tailwind base;
 @tailwind components;
@@ -202,10 +209,11 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: theme('fontFamily.sans'); /* This will correctly pick up 'Inter' from Tailwind config */
+    font-family: theme('fontFamily.sans'); /* This will correctly pick up 'Switzer' from Tailwind config */
   }
   /* Add opacity 0 for elements that will be animated in */
   .animate-fadeInUp {
     opacity: 0;
   }
 }
+

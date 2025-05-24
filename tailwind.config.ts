@@ -11,7 +11,7 @@ export default {
   theme: {
   	extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'], // Set Inter as the primary sans-serif font
+        sans: ['Switzer', 'sans-serif'], // Set Switzer as the primary sans-serif font
       },
   		colors: {
   			background: 'hsl(var(--background))',
@@ -93,14 +93,14 @@ export default {
         },
         'infinite-scroll': {
           from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-100%)' },
+          to: { transform: 'translateX(-100%)' }, // For single ul with duplicated content to achieve seamless loop
         },
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
         'fadeInUp': 'fadeInUp 0.5s ease-out forwards',
-        'infinite-scroll': 'infinite-scroll 40s linear infinite', // Adjusted duration
+        'infinite-scroll': 'infinite-scroll 40s linear infinite',
   		}
   	}
   },
