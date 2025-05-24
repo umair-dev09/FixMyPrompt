@@ -148,7 +148,7 @@ export function IntroSection() {
   return (
     <div className="space-y-12 sm:space-y-16 my-8 sm:my-12">
       <section className="text-center animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.1s' }}>
-        <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight text-[hsl(var(--pg-from))]">What is FixMyPrompt?</h2>
+        <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">What is FixMyPrompt?</h2>
         <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
           FixMyPrompt helps you transform your simple ideas into powerful, refined prompts.
           Get multiple variations tailored for different needs, ensuring you get the best results
@@ -157,7 +157,7 @@ export function IntroSection() {
       </section>
 
       <section className="animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.2s' }}>
-        <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center tracking-tight text-[hsl(var(--pg-from))]">Example Transformations</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">Example Transformations</h2>
         {currentExamples.length > 0 ? (
             <div key={animationKey} className="grid md:grid-cols-2 gap-6 sm:gap-8 animate-fadeInUp" style={{ animationDuration: '0.3s' }}>
             {currentExamples.map((example, index) => (
@@ -182,7 +182,7 @@ export function IntroSection() {
       </section>
 
       <section className="text-center animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.3s' }}>
-        <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 tracking-tight text-[hsl(var(--pg-from))]">Works with popular AI models</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">Works with popular AI models</h2>
         <div 
           className="w-full inline-flex flex-nowrap overflow-hidden py-4 [mask-image:_linear-gradient(to_right,transparent_0,_black_30px,_black_calc(100%-30px),transparent_100%)] group"
         >
@@ -307,3 +307,5 @@ export function IntroSection() {
     </div>
   );
 }
+
+    
