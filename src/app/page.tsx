@@ -138,7 +138,7 @@ export default function HomePage() {
         
         {isLoading && (
           <div className="text-center py-8 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
-            <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto" />
+            <Loader2 className="h-12 w-12 animate-spin text-accent mx-auto" />
             <p className="mt-4 text-muted-foreground">Brewing refined prompts...</p>
           </div>
         )}
