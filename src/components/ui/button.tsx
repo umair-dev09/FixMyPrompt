@@ -15,7 +15,7 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90 transform hover:scale-[1.03] active:scale-[0.97]",
         outline:
-          "border border-input bg-background hover:bg-gradient-to-r hover:from-[hsl(var(--ag-from))] hover:to-[hsl(var(--ag-to))] hover:text-accent-foreground hover:border-transparent active:bg-gradient-to-r active:from-[hsl(var(--ag-from))] active:to-[hsl(var(--ag-to))] active:opacity-90 active:border-transparent transform hover:scale-[1.03] active:scale-[0.97]",
+          "border border-border bg-background hover:bg-gradient-to-r hover:from-[hsl(var(--ag-from))] hover:to-[hsl(var(--ag-to))] hover:text-accent-foreground hover:border-transparent active:bg-gradient-to-r active:from-[hsl(var(--ag-from))] active:to-[hsl(var(--ag-to))] active:opacity-90 active:border-transparent transform hover:scale-[1.03] active:scale-[0.97]",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80 transform hover:scale-[1.03] active:scale-[0.97]",
         ghost: "hover:bg-gradient-to-r hover:from-[hsl(var(--ag-from))] hover:to-[hsl(var(--ag-to))] hover:text-accent-foreground active:bg-gradient-to-r active:from-[hsl(var(--ag-from))] active:to-[hsl(var(--ag-to))] active:opacity-90 transform hover:scale-[1.03] active:scale-[0.97]",
