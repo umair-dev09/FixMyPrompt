@@ -106,14 +106,9 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8 sm:py-12">
         <section className="max-w-3xl mx-auto text-center pt-20 sm:pt-28 lg:pt-32 mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-12 sm:mb-16 tracking-tighter flex flex-wrap justify-center items-baseline gap-x-1 sm:gap-x-2 lg:gap-x-3">
-            <span className="inline-flex items-baseline">
-              <WandSparkles className="w-10 h-10 sm:w-16 sm:h-16 lg:w-20 lg:h-20 text-[hsl(var(--primary-gradient-from))] mr-2" />
-              Unlock
-            </span>
-            <span>
-              AI's Full Potential
-            </span>
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-12 sm:mb-16 tracking-tighter text-center">
+            <WandSparkles className="inline-block align-baseline w-10 h-10 sm:w-16 sm:h-16 lg:w-20 lg:h-20 text-[hsl(var(--primary-gradient-from))] mr-2" />
+            Unlock AI's Full Potential
           </h1>
           <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
             Transform your simple ideas into powerful, precise prompts. Get multiple AI-optimized variations in seconds.
