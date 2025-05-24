@@ -46,10 +46,10 @@ const allExamplePrompts: ExamplePrompt[] = [
     ]
   },
   {
-      original: "generate a startup idea for a mobile app",
+      original: "help me write a birthday wish for my best friend",
       refined: [
-          { tag: "Niche", prompt: "Brainstorm a mobile app concept targeting a niche community, like urban gardeners or board game enthusiasts, solving a specific problem they face." },
-          { tag: "Social Impact", prompt: "Propose a mobile app startup idea focused on social good, such as connecting volunteers with local charities or promoting mental wellness through gamified challenges." },
+          { tag: "Heartfelt", prompt: "Craft a warm and heartfelt birthday message for my best friend, mentioning our long friendship and a funny memory we share." },
+          { tag: "Short & Sweet", prompt: "Write a concise and cheerful birthday wish for my best friend, perfect for a text message." },
       ]
   },
   {
@@ -67,10 +67,10 @@ const allExamplePrompts: ExamplePrompt[] = [
     ]
   },
   {
-    original: "plan a 3-day trip to Paris",
+    original: "plan a 7-day family trip to Kerala",
     refined: [
-        { tag: "Budget", prompt: "Outline a 3-day Paris itinerary for budget travelers, focusing on free attractions, affordable food options, and public transport." },
-        { tag: "Luxury", prompt: "Design an exclusive 3-day Parisian experience including Michelin-star dining, private museum tours, and luxury accommodation." },
+        { tag: "Relaxing", prompt: "Create a relaxed 7-day family itinerary for Kerala, focusing on backwaters, beaches, and cultural experiences suitable for all ages." },
+        { tag: "Adventure", prompt: "Outline an adventurous 7-day family trip to Kerala, including trekking in Munnar, wildlife safaris, and water sports." },
     ]
   },
   {

@@ -37,9 +37,9 @@ const placeholderExamples = [
   "e.g., write a short story about a curious cat...",
   "e.g., explain quantum physics to a five-year-old...",
   "e.g., draft a marketing email for a new SaaS product...",
-  "e.g., generate a Python script to scrape website data...",
+  "e.g., suggest healthy dinner recipes for the week...", // Changed
   "e.g., create a catchy slogan for an eco-friendly brand...",
-  "e.g., suggest three creative blog post ideas about sustainable travel...",
+  "e.g., write a short story about Diwali...", // Changed
   "e.g., describe a futuristic city powered by renewable energy...",
 ];
 
@@ -214,3 +214,4 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
     </div>
   );
 }
+
