@@ -1,3 +1,4 @@
+
 "use client"
 
 // Inspired by react-hot-toast library
@@ -175,14 +176,20 @@ function useToast() {
   const [state, setState] = React.useState<State>(memoryState)
 
   React.useEffect(() => {
-    listeners.push(setState)
+    // Capture the current setState function for use in the cleanup.
+    // This is important because setState's identity is stable,
+    // but if we were to inline setState in the cleanup function,
+    // it might capture a stale closure in some very edge scenarios
+    // (though less likely with useState's setState).
+    const currentSetState = setState;
+    listeners.push(currentSetState)
     return () => {
-      const index = listeners.indexOf(setState)
+      const index = listeners.indexOf(currentSetState)
       if (index > -1) {
         listeners.splice(index, 1)
       }
     }
-  }, [state])
+  }, []) // Empty dependency array: run only on mount and unmount.
 
   return {
     ...state,

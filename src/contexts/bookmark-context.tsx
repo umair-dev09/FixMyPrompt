@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { RefinedPromptClient } from '@/types';
@@ -43,21 +44,17 @@ export function BookmarkProvider({ children }: PropsWithChildren) {
   }, [bookmarks, isLoaded]);
 
   const addBookmark = useCallback((prompt: RefinedPromptClient) => {
-    setBookmarks((prevBookmarks) => {
-      if (prevBookmarks.find(bp => bp.id === prompt.id)) {
-        toast({ title: "Already Bookmarked", description: "This prompt is already in your bookmarks." });
-        return prevBookmarks;
-      }
+    if (bookmarks.find(bp => bp.id === prompt.id)) {
+      toast({ title: "Already Bookmarked", description: "This prompt is already in your bookmarks." });
+    } else {
+      setBookmarks((prevBookmarks) => [...prevBookmarks, prompt]);
       toast({ title: "Bookmarked!", description: "Prompt added to your bookmarks." });
-      return [...prevBookmarks, prompt];
-    });
-  }, [toast]);
+    }
+  }, [bookmarks, toast]);
 
   const removeBookmark = useCallback((promptId: string) => {
-    setBookmarks((prevBookmarks) => {
-      toast({ title: "Bookmark Removed", description: "Prompt removed from your bookmarks." });
-      return prevBookmarks.filter((p) => p.id !== promptId);
-    });
+    setBookmarks((prevBookmarks) => prevBookmarks.filter((p) => p.id !== promptId));
+    toast({ title: "Bookmark Removed", description: "Prompt removed from your bookmarks." });
   }, [toast]);
 
   const isBookmarked = useCallback((promptId: string) => {
