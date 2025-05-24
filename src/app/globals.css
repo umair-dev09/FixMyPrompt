@@ -1,4 +1,28 @@
 
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Variable.woff2') format('woff2-variations');
+  /* If you are not using a variable font, you would define individual weights like so:
+  src: url('/fonts/Satoshi-Regular.woff2') format('woff2');
+  font-weight: 400; // Or normal
+  font-style: normal;
+  */
+  font-weight: 300 900; /* Adjust range based on your variable font */
+  font-display: swap;
+  font-style: normal;
+}
+
+/* Example for italic variable font if you have one */
+/*
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-VariableItalic.woff2') format('woff2-variations');
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: italic;
+}
+*/
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -203,7 +227,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    /* Font is set by layout.tsx using Geist Sans */
+    font-family: 'Satoshi', theme('fontFamily.sans');
   }
   /* Add opacity 0 for elements that will be animated in */
   .animate-fadeInUp {
@@ -213,3 +237,4 @@
     
 
     
+

@@ -9,6 +9,10 @@ export default {
   ],
   theme: {
   	extend: {
+      fontFamily: {
+        sans: ['Satoshi', 'sans-serif'], // Add Satoshi as the primary sans-serif font
+        // mono: ['var(--font-geist-mono)', 'monospace'], // Keep or remove mono if not used
+      },
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
