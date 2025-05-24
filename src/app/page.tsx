@@ -130,7 +130,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
       <main className="flex-grow container mx-auto px-4 py-8 sm:py-12">
         <section className="max-w-3xl mx-auto text-center pt-20 sm:pt-28 lg:pt-32 mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-12 sm:mb-16 tracking-tighter text-center">
-            <WandSparkles className="inline-block align-baseline w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-[hsl(var(--primary-gradient-from))] mr-2" />
+            <WandSparkles className="inline-block align-baseline w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-[hsl(var(--pg-from))] mr-2" />
             Unlock AI's Full Potential
           </h1>
           <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
@@ -151,7 +151,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
              <Button 
               type="submit" 
               disabled={isLoading || !userInput.trim()} 
-              className="w-full sm:w-auto text-base py-3 px-6 rounded-lg bg-gradient-to-r from-[hsl(var(--accent-gradient-from))] to-[hsl(var(--accent-gradient-to))] hover:brightness-110 active:brightness-95 text-accent-foreground"
+              className="w-full sm:w-auto text-base py-3 px-6 rounded-lg bg-gradient-to-r from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] hover:brightness-110 active:brightness-95 text-accent-foreground"
               size="lg"
             >
               {isLoading ? (
@@ -166,7 +166,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
         
         {isLoading && (
           <div className="text-center py-8 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.2s' }}>
-            <Loader2 className="h-12 w-12 animate-spin text-[hsl(var(--accent-gradient-from))] mx-auto" />
+            <Loader2 className="h-12 w-12 animate-spin text-[hsl(var(--ag-from))] mx-auto" />
             <p className="mt-4 text-muted-foreground">Brewing refined prompts...</p>
           </div>
         )}
