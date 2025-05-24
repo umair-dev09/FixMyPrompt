@@ -41,26 +41,74 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
   const { addBookmark, removeBookmark, isBookmarked } = useBookmarks();
   const bookmarked = isBookmarked(prompt.id);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(prompt.prompt);
-    toast({ title: 'Copied!', description: 'Prompt copied to clipboard.' });
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(prompt.prompt);
+      toast({ title: 'Copied!', description: 'Prompt copied to clipboard.' });
+    } catch (error) {
+      console.error('Failed to copy prompt:', error);
+      toast({ title: 'Copy Failed', description: 'Could not copy prompt to clipboard.', variant: 'destructive' });
+    }
   };
 
   const handleShare = async () => {
+    const shareData = {
+      title: `FixMyPrompt: ${prompt.tag}`,
+      text: prompt.prompt,
+      // Consider adding a URL if applicable: url: window.location.href,
+    };
+
     if (navigator.share) {
       try {
-        await navigator.share({
-          title: `Refined Prompt: ${prompt.tag}`,
-          text: prompt.prompt,
-        });
+        await navigator.share(shareData);
         toast({ title: 'Shared!', description: 'Prompt shared successfully.' });
       } catch (error) {
-        toast({ title: 'Share failed', description: 'Could not share the prompt.', variant: 'destructive' });
+        console.error('Share API error:', error);
+        if (error instanceof DOMException && error.name === 'AbortError') {
+          // User cancelled the share operation
+          toast({ title: 'Share Canceled', description: 'You canceled the share dialog.' });
+        } else {
+          // Other share errors
+          toast({
+            title: 'Share Error',
+            description: 'Could not complete the share action. Attempting to copy to clipboard instead.',
+            variant: 'default', 
+          });
+          // Fallback to clipboard
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            try {
+              await navigator.clipboard.writeText(prompt.prompt);
+              toast({ title: 'Copied to Clipboard', description: 'The prompt has been copied as native sharing failed.' });
+            } catch (copyError) {
+              console.error('Fallback clipboard copy error:', copyError);
+              toast({ title: 'Copy Failed', description: 'Could not copy the prompt to clipboard. Please copy it manually.', variant: 'destructive' });
+            }
+          } else {
+            toast({ title: 'Copy Not Supported', description: 'Clipboard access is not available. Please copy the prompt manually.', variant: 'destructive' });
+          }
+        }
       }
     } else {
-      // Fallback for browsers that don't support Web Share API
-      navigator.clipboard.writeText(prompt.prompt);
-      toast({ title: 'Link Copied!', description: 'Prompt copied. You can share it manually.' });
+      // Web Share API not supported, try to copy to clipboard
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(prompt.prompt);
+          toast({
+            title: 'Share Not Supported',
+            description: 'Native sharing isn\'t available on your browser/device. Prompt copied to clipboard!',
+          });
+        } catch (copyError) {
+          console.error('Clipboard copy error:', copyError);
+          toast({ title: 'Copy Failed', description: 'Could not copy prompt to clipboard. Please copy it manually.', variant: 'destructive' });
+        }
+      } else {
+        // Clipboard API also not available
+        toast({
+          title: 'Action Not Supported',
+          description: 'Sharing and clipboard copy are not available on your browser. Please copy the prompt manually.',
+          variant: 'destructive',
+        });
+      }
     }
   };
 
