@@ -92,8 +92,10 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
   const handleBookmarkToggle = () => {
     if (bookmarked) {
       removeBookmark(prompt.id);
+      toast({ title: "Bookmark Removed", description: "Prompt removed from your bookmarks." });
     } else {
       addBookmark(prompt);
+      toast({ title: "Bookmarked!", description: "Prompt added to your bookmarks." });
     }
   };
   
@@ -101,7 +103,7 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
   return (
     <>
       <Dialog open={isOpen} onOpenChange={onOpenChange}>
-        <DialogContent className="sm:max-w-[600px] bg-card/70 dark:bg-card/60 backdrop-blur-xl shadow-2xl border border-border/20 supports-[backdrop-filter]:bg-card/70">
+        <DialogContent className="sm:max-w-[600px] bg-card/80 border-border/40 dark:bg-card/70 dark:border-border/20 backdrop-blur-xl shadow-2xl supports-[backdrop-filter]:bg-card/80 dark:supports-[backdrop-filter]:bg-card/70">
           <DialogHeader>
             <DialogTitle className="flex items-center">
               Refined Prompt: <span className="ml-2 px-2 py-0.5 bg-secondary text-secondary-foreground rounded-sm text-sm font-medium">{prompt.tag}</span>
@@ -144,7 +146,7 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
             <Button
               onClick={handleBookmarkToggle}
               variant={bookmarked ? "default" : "outline"}
-              className="min-w-36" // Ensure consistent width for text change
+              className="min-w-36" 
             >
               <Bookmark className={`mr-2 h-4 w-4 ${bookmarked ? 'fill-current' : ''}`} />
               {bookmarked ? 'Bookmarked' : 'Bookmark'}
@@ -162,3 +164,4 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
     </>
   );
 }
+
