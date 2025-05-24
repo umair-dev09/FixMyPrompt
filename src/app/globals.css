@@ -6,48 +6,48 @@
 @layer base {
   :root {
     /* Neutrals - Light Theme */
-    --background-light: 0 0% 98%; /* Very light gray, almost white */
-    --foreground-light: 220 15% 15%; /* Dark gray for text */
+    --background-light: 210 20% 98%; /* Very light cool gray */
+    --foreground-light: 220 15% 20%; /* Dark desaturated blue for text */
     --card-light: 0 0% 100%;
-    --card-foreground-light: 220 15% 15%;
+    --card-foreground-light: 220 15% 20%;
     --popover-light: 0 0% 100%;
-    --popover-foreground-light: 220 15% 15%;
-    --secondary-light: 0 0% 94%;
-    --secondary-foreground-light: 220 10% 30%;
-    --muted-light: 0 0% 90%;
-    --muted-foreground-light: 220 10% 45%;
-    --border-light: 0 0% 88%;
-    --input-light: 0 0% 92%;
+    --popover-foreground-light: 220 15% 20%;
+    --secondary-light: 210 20% 94%; /* Light cool gray */
+    --secondary-foreground-light: 220 10% 35%; /* Medium-dark desaturated blue */
+    --muted-light: 210 20% 90%; /* Slightly darker cool gray */
+    --muted-foreground-light: 220 10% 50%; /* Muted desaturated blue */
+    --border-light: 210 15% 88%; /* Soft cool gray border */
+    --input-light: 210 15% 92%; /* Very light cool gray input background */
 
-    /* Primary Gradient (PG) - Light Theme */
-    --pg-from-l: 260 65% 50%;    /* Indigo */
-    --pg-via-l: 285 60% 55%;     /* Violet-Magenta */
-    --pg-to-l: 310 65% 60%;      /* Magenta-Pink */
+    /* Primary Gradient (PG) - Light Theme: Deep Blue -> Medium Teal -> Greener Teal/Cyan */
+    --pg-from-l: 220 70% 55%;    /* Deep Blue */
+    --pg-via-l: 195 65% 50%;     /* Medium Teal */
+    --pg-to-l: 170 75% 45%;      /* Greener Teal/Cyan */
     --pg-foreground-l: 0 0% 100%; /* White text on primary gradient */
 
-    /* Accent Gradient (AG) - Light Theme */
-    --ag-from-l: 310 65% 60%;    /* Magenta-Pink (connects to PG) */
-    --ag-to-l: 330 70% 65%;      /* Warmer Rose */
+    /* Accent Gradient (AG) - Light Theme: Medium Teal -> Lighter Teal/Greenish */
+    --ag-from-l: 195 65% 50%;    /* Medium Teal (connects to PG) */
+    --ag-to-l: 170 70% 50%;      /* Lighter Teal/Greenish */
     --ag-foreground-l: 0 0% 100%; /* White text on accent gradient */
     
-    --ring-light: 310 65% 60%; /* Magenta-Pink from accent gradient for focus */
+    --ring-light: 195 65% 50%; /* Medium Teal from accent gradient for focus */
 
     /* Destructive - Light Theme */
-    --destructive-light: 0 80% 60%;
+    --destructive-light: 0 70% 55%; /* A clearer red */
     --destructive-foreground-light: 0 0% 100%;
 
     /* Sidebar - Light Theme */
-    --sidebar-background-light: 0 0% 96%;
-    --sidebar-foreground-light: 220 15% 15%;
-    --sidebar-border-light: 0 0% 85%;
-    --sidebar-ring-light: 310 65% 60%; /* Accent for sidebar focus */
+    --sidebar-background-light: 210 20% 96%; /* Slightly off-white cool gray */
+    --sidebar-foreground-light: 220 15% 20%;
+    --sidebar-border-light: 210 15% 85%;
+    --sidebar-ring-light: 195 65% 50%; /* Accent for sidebar focus */
 
-    /* Chart Colors - Light Theme (Derived from new palette) */
-    --chart-1-light: 260 65% 55%; /* Indigo-ish */
-    --chart-2-light: 310 65% 62%; /* Magenta-Pink-ish */
-    --chart-3-light: 330 70% 68%; /* Rose-ish */
-    --chart-4-light: 285 60% 60%; /* Violet-ish */
-    --chart-5-light: 25 80% 60%;  /* Muted Orange/Peach for contrast if needed */
+    /* Chart Colors - Light Theme (Derived from new blue/teal/green palette) */
+    --chart-1-light: 220 70% 60%; /* Deep Blue-ish */
+    --chart-2-light: 195 65% 55%; /* Medium Teal-ish */
+    --chart-3-light: 170 75% 50%; /* Greener Teal-ish */
+    --chart-4-light: 200 70% 58%; /* Mid Blue-Teal */
+    --chart-5-light: 150 60% 50%;  /* A complementary Green */
 
 
     /* Apply Light Theme by default */
@@ -82,7 +82,6 @@
 
     --sidebar-background: var(--sidebar-background-light);
     --sidebar-foreground: var(--sidebar-foreground-light);
-    /* Sidebar primary/accent can use the main gradients or derived solid colors */
     --sidebar-primary: var(--pg-from-l); 
     --sidebar-primary-foreground: var(--pg-foreground-l);
     --sidebar-accent: var(--ag-from-l);
@@ -99,48 +98,48 @@
 
   .dark {
     /* Neutrals - Dark Theme */
-    --background-dark: 220 20% 12%; /* Very dark desaturated blue */
-    --foreground-dark: 220 15% 92%; /* Light gray for text */
-    --card-dark: 225 15% 17%; /* Slightly lighter dark for cards */
-    --card-foreground-dark: 220 15% 92%;
-    --popover-dark: 225 15% 17%;
-    --popover-foreground-dark: 220 15% 92%;
-    --secondary-dark: 220 15% 20%;
-    --secondary-foreground-dark: 220 10% 75%;
-    --muted-dark: 220 15% 15%;
-    --muted-foreground-dark: 220 10% 60%;
-    --border-dark: 220 15% 25%;
-    --input-dark: 220 15% 22%;
+    --background-dark: 220 25% 10%; /* Very dark desaturated blue */
+    --foreground-dark: 210 20% 95%; /* Light cool gray for text */
+    --card-dark: 220 20% 15%; /* Slightly lighter dark cool blue for cards */
+    --card-foreground-dark: 210 20% 95%;
+    --popover-dark: 220 20% 15%;
+    --popover-foreground-dark: 210 20% 95%;
+    --secondary-dark: 220 20% 20%; /* Dark cool gray */
+    --secondary-foreground-dark: 210 15% 80%; /* Lighter cool gray */
+    --muted-dark: 220 20% 12%; /* Even darker cool blue/gray */
+    --muted-foreground-dark: 210 15% 65%; /* Muted light cool gray */
+    --border-dark: 220 15% 25%; /* Soft dark cool gray border */
+    --input-dark: 220 15% 18%; /* Dark cool gray input background */
 
-    /* Primary Gradient (PG) - Dark Theme */
-    --pg-from-d: 260 75% 60%;    /* Brighter Indigo */
-    --pg-via-d: 285 70% 65%;     /* Brighter Violet-Magenta */
-    --pg-to-d: 310 75% 70%;      /* Brighter Magenta-Pink */
+    /* Primary Gradient (PG) - Dark Theme: Brighter Deep Blue -> Brighter Medium Teal -> Brighter Greener Teal/Cyan */
+    --pg-from-d: 220 80% 65%;    /* Brighter Deep Blue */
+    --pg-via-d: 195 75% 60%;     /* Brighter Medium Teal */
+    --pg-to-d: 170 85% 55%;      /* Brighter Greener Teal/Cyan */
     --pg-foreground-d: 0 0% 100%; 
 
-    /* Accent Gradient (AG) - Dark Theme */
-    --ag-from-d: 310 75% 70%;    /* Brighter Magenta-Pink */
-    --ag-to-d: 330 80% 75%;      /* Brighter Warmer Rose */
+    /* Accent Gradient (AG) - Dark Theme: Brighter Medium Teal -> Brighter Lighter Teal/Greenish */
+    --ag-from-d: 195 75% 60%;    /* Brighter Medium Teal */
+    --ag-to-d: 170 80% 60%;      /* Brighter Lighter Teal/Greenish */
     --ag-foreground-d: 0 0% 100%;
     
-    --ring-dark: 310 75% 70%; /* Brighter Magenta-Pink from accent for focus */
+    --ring-dark: 195 75% 60%; /* Brighter Medium Teal from accent for focus */
 
     /* Destructive - Dark Theme */
-    --destructive-dark: 0 75% 65%;
+    --destructive-dark: 0 75% 60%; /* A clearer, brighter red */
     --destructive-foreground-dark: 0 0% 100%;
 
     /* Sidebar - Dark Theme */
-    --sidebar-background-dark: 225 15% 16%;
-    --sidebar-foreground-dark: 220 15% 92%;
+    --sidebar-background-dark: 220 20% 14%; /* Dark cool blue for sidebar */
+    --sidebar-foreground-dark: 210 20% 95%;
     --sidebar-border-dark: 220 15% 30%;
-    --sidebar-ring-dark: 310 75% 70%;
+    --sidebar-ring-dark: 195 75% 60%;
 
     /* Chart Colors - Dark Theme */
-    --chart-1-dark: 260 75% 65%;
-    --chart-2-dark: 310 75% 72%;
-    --chart-3-dark: 330 80% 78%;
-    --chart-4-dark: 285 70% 70%;
-    --chart-5-dark: 25 90% 70%;
+    --chart-1-dark: 220 80% 70%;
+    --chart-2-dark: 195 75% 65%;
+    --chart-3-dark: 170 85% 60%;
+    --chart-4-dark: 200 80% 68%;
+    --chart-5-dark: 150 70% 60%;
 
     --background: var(--background-dark);
     --foreground: var(--foreground-dark);
@@ -199,3 +198,5 @@
     opacity: 0;
   }
 }
+
+    
