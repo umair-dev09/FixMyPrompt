@@ -4,7 +4,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Loader2, Wand2 } from 'lucide-react';
+import { Loader2, WandSparkles } from 'lucide-react'; // Changed Wand2 to WandSparkles
 import { refinePrompt, type RefinePromptInput, type RefinePromptOutput } from '@/ai/flows/refine-prompt';
 import type { RefinedPromptClient } from '@/types';
 import { RefinedPromptCard } from '@/components/refined-prompt-card';
@@ -101,12 +101,12 @@ export default function HomePage() {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8 sm:py-12">
-        <section className="max-w-3xl mx-auto text-center mb-12 sm:mb-16 pt-12 sm:pt-16 lg:pt-20 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-8 tracking-tighter flex items-center justify-center">
-            <Wand2 className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 mr-2 sm:mr-3 lg:mr-4 text-[hsl(var(--primary-gradient-from))]" />
+        <section className="max-w-3xl mx-auto text-center mb-12 sm:mb-16 pt-16 sm:pt-20 lg:pt-24 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-10 tracking-tighter flex items-baseline justify-center"> {/* Changed items-center to items-baseline */}
+            <WandSparkles className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 mr-3 sm:mr-4 lg:mr-5 text-[hsl(var(--primary-gradient-from))]" /> {/* Changed Wand2 to WandSparkles and adjusted margin */}
             Unlock AI's Full Potential
           </h1>
-          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
             Transform your simple ideas into powerful, precise prompts. Get multiple AI-optimized variations in seconds.
           </p>
         </section>
@@ -130,7 +130,7 @@ export default function HomePage() {
               {isLoading ? (
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />
               ) : (
-                <Wand2 className="mr-2 h-5 w-5" />
+                <WandSparkles className="mr-2 h-5 w-5" /> // Changed Wand2 to WandSparkles
               )}
               Refine Prompt
             </Button>
