@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Target, Zap, Lightbulb, SlidersHorizontal, TrendingUp } from 'lucide-react';
+import { Target, Zap, Lightbulb, SlidersHorizontal, TrendingUp, Cpu } from 'lucide-react';
 
 interface RefinedExample {
   tag: string;
@@ -96,6 +96,9 @@ const llmLogos = [
   { name: "Hugging Face", src: "https://placehold.co/120x48.png", alt: "Hugging Face Logo", hint: "AI community" },
   { name: "Meta Llama", src: "https://placehold.co/120x48.png", alt: "Meta Llama Logo", hint: "Meta AI" },
   { name: "Grok", src: "https://placehold.co/120x48.png", alt: "Grok Logo", hint: "X AI" },
+  // Add more as needed
+  { name: "Stability AI", src: "https://placehold.co/120x48.png", alt: "Stability AI Logo", hint: "AI image" },
+  { name: "Inflection AI", src: "https://placehold.co/120x48.png", alt: "Inflection AI Logo", hint: "personal AI" },
 ];
 
 
@@ -283,6 +286,21 @@ export function IntroSection() {
             </CardHeader>
             <CardContent className="p-0 text-sm text-muted-foreground/90">
               Get the most out of your AI tools. Effective prompting ensures you leverage their full potential, turning simple requests into powerful solutions.
+            </CardContent>
+          </Card>
+
+          {/* Card 6: Unlock Complex Tasks */}
+          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
+            <CardHeader className="p-0 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
+                  <Cpu className="h-6 w-6" />
+                </div>
+                <CardTitle className="text-xl sm:text-2xl font-semibold">Unlock Complex Tasks</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-0 text-sm text-muted-foreground/90">
+              Well-structured prompts can guide AI to perform more complex reasoning, break down problems, and deliver comprehensive outputs.
             </CardContent>
           </Card>
         </div>
