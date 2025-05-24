@@ -8,7 +8,11 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { BookmarkList } from '@/components/bookmark-list';
 
-export function Header() {
+interface HeaderProps {
+  onRefinePromptFromBookmark?: (promptText: string) => void;
+}
+
+export function Header({ onRefinePromptFromBookmark }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/20 bg-gradient-to-r from-[hsl(var(--sidebar-background))] via-[hsla(var(--sidebar-background),0.9)] to-[hsla(var(--sidebar-background),0.8)] dark:from-[hsl(var(--sidebar-background))] dark:via-[hsla(var(--sidebar-background),0.9)] dark:to-[hsla(var(--sidebar-background),0.8)] bg-opacity-60 dark:bg-opacity-50 backdrop-blur-lg supports-[backdrop-filter]:bg-opacity-60">
       <div className="container mx-auto flex h-16 items-center px-4 sm:px-6 lg:px-8">
@@ -27,7 +31,7 @@ export function Header() {
               <SheetHeader className="p-6 pb-0">
                 <SheetTitle>Bookmarked Prompts</SheetTitle>
               </SheetHeader>
-              <BookmarkList />
+              <BookmarkList onRefineThis={onRefinePromptFromBookmark} />
             </SheetContent>
           </Sheet>
           <ThemeToggle />

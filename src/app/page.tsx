@@ -221,7 +221,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <Header onRefinePromptFromBookmark={handleSetInputForRefinement} />
       <main className="flex-grow container mx-auto px-4 py-8 sm:py-12">
         <section className="max-w-3xl mx-auto text-center pt-20 sm:pt-28 lg:pt-32 mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-12 sm:mb-16 tracking-tighter text-center flex-wrap justify-center">

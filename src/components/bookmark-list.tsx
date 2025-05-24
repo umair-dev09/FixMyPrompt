@@ -1,7 +1,7 @@
 
 'use client';
 
-import React, { useState } from 'react'; // Ensured useState is imported
+import React, { useState } from 'react'; 
 import { useBookmarks } from '@/contexts/bookmark-context';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -11,7 +11,11 @@ import { Card, CardHeader, CardFooter, CardTitle, CardDescription } from './ui/c
 import { Badge } from './ui/badge';
 import { Trash2 } from 'lucide-react';
 
-export function BookmarkList() {
+interface BookmarkListProps {
+  onRefineThis?: (promptText: string) => void;
+}
+
+export function BookmarkList({ onRefineThis }: BookmarkListProps) {
   const { bookmarks, removeBookmark } = useBookmarks();
   const [selectedPrompt, setSelectedPrompt] = useState<RefinedPromptClient | null>(null);
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
@@ -117,8 +121,22 @@ export function BookmarkList() {
                       : prompt.originalPrompt}
                   </CardDescription>
                 </CardHeader>
-                <CardFooter>
+                <CardFooter className="flex flex-col gap-2 pt-4">
                   <Button onClick={() => setSelectedPrompt(prompt)} className="w-full">Use This Prompt</Button>
+                  {onRefineThis && (
+                    <Button
+                      onClick={() => {
+                        onRefineThis(prompt.prompt);
+                        // Consider if closing the sheet is desired here and how to implement it.
+                        // For now, focuses on setting input and scrolling.
+                      }}
+                      variant="outline"
+                      className="w-full"
+                      size="lg"
+                    >
+                      Refine this prompt
+                    </Button>
+                  )}
                 </CardFooter>
               </Card>
             );
