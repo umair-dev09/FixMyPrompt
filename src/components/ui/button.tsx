@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
@@ -10,15 +11,15 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-gradient-to-r from-[hsl(var(--primary-gradient-from))] via-[hsl(var(--primary-gradient-via))] to-[hsl(var(--primary-gradient-to))] text-primary-foreground shadow-sm hover:brightness-110 active:brightness-95 transform hover:scale-[1.03] active:scale-[0.97]",
+          "bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-primary-foreground shadow-sm hover:brightness-110 active:brightness-95 transform hover:scale-[1.03] active:scale-[0.97]",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90 transform hover:scale-[1.03] active:scale-[0.97]",
         outline:
-          "border border-input bg-background hover:bg-gradient-to-r hover:from-[hsl(var(--accent-gradient-from))] hover:to-[hsl(var(--accent-gradient-to))] hover:text-accent-foreground hover:border-transparent active:bg-gradient-to-r active:from-[hsl(var(--accent-gradient-from))] active:to-[hsl(var(--accent-gradient-to))] active:opacity-90 active:border-transparent transform hover:scale-[1.03] active:scale-[0.97]",
+          "border border-input bg-background hover:bg-gradient-to-r hover:from-[hsl(var(--ag-from))] hover:to-[hsl(var(--ag-to))] hover:text-accent-foreground hover:border-transparent active:bg-gradient-to-r active:from-[hsl(var(--ag-from))] active:to-[hsl(var(--ag-to))] active:opacity-90 active:border-transparent transform hover:scale-[1.03] active:scale-[0.97]",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80 transform hover:scale-[1.03] active:scale-[0.97]",
-        ghost: "hover:bg-gradient-to-r hover:from-[hsl(var(--accent-gradient-from))] hover:to-[hsl(var(--accent-gradient-to))] hover:text-accent-foreground active:bg-gradient-to-r active:from-[hsl(var(--accent-gradient-from))] active:to-[hsl(var(--accent-gradient-to))] active:opacity-90 transform hover:scale-[1.03] active:scale-[0.97]",
-        link: "text-[hsl(var(--primary-gradient-from))] underline-offset-4 hover:underline hover:brightness-110",
+        ghost: "hover:bg-gradient-to-r hover:from-[hsl(var(--ag-from))] hover:to-[hsl(var(--ag-to))] hover:text-accent-foreground active:bg-gradient-to-r active:from-[hsl(var(--ag-from))] active:to-[hsl(var(--ag-to))] active:opacity-90 transform hover:scale-[1.03] active:scale-[0.97]",
+        link: "text-[hsl(var(--pg-from))] underline-offset-4 hover:underline hover:brightness-110",
       },
       size: {
         default: "h-10 px-4 py-2",
