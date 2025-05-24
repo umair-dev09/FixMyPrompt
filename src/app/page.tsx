@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useCallback, useEffect } from 'react';
@@ -117,7 +118,7 @@ export default function HomePage() {
               onChange={handleInputChange}
               placeholder="e.g., write a short story about a curious cat..."
               rows={5}
-              className="text-base p-4 shadow-lg focus:ring-2 focus:ring-primary rounded-lg"
+              className="text-base p-4 shadow-lg focus:ring-2 focus:ring-ring rounded-lg"
               aria-label="Enter your prompt"
             />
              <Button 
@@ -125,6 +126,7 @@ export default function HomePage() {
               disabled={isLoading || !userInput.trim()} 
               className="w-full sm:w-auto text-base py-3 px-6 rounded-lg"
               size="lg"
+              variant="default" 
             >
               {isLoading ? (
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />

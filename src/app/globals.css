@@ -16,7 +16,7 @@
 
     --primary: 253 90% 60%; /* Vibrant purple for light mode */
     --primary-foreground: 0 0% 100%; /* White */
-    --primary-gradient-end: 260 95% 62%; /* Slightly different hue/lightness for gradient */
+    --primary-gradient-end: 260 95% 62%; /* Slightly different hue/lightness for purple gradient */
 
     --secondary: 0 0% 94%; /* Light gray for secondary backgrounds */
     --secondary-foreground: 220 10% 30%; /* Darker gray text */
@@ -24,39 +24,39 @@
     --muted: 0 0% 90%; /* Slightly darker light gray for muted backgrounds */
     --muted-foreground: 220 10% 45%; /* Medium gray text */
 
-    --accent: 330 85% 60%; /* Vibrant Pink for light mode - start of gradient */
+    --accent: 180 85% 45%; /* Vibrant Teal for light mode - start of gradient */
     --accent-foreground: 0 0% 100%; /* White */
-    --accent-gradient-end: 335 90% 62%; /* Vibrant Pink for light mode - end of gradient */
+    --accent-gradient-end: 185 90% 47%; /* Vibrant Teal for light mode - end of gradient */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 90%; /* Light gray borders */
     --input: 0 0% 90%; /* Input background */
-    --ring: 330 85% 60%; /* Accent Pink for focus rings in light mode */
+    --ring: 180 85% 45%; /* Accent Teal for focus rings in light mode */
 
     --radius: 0.5rem;
 
     /* Sidebar Colors - Light Theme */
     --sidebar-background: 0 0% 96%;
     --sidebar-foreground: 220 10% 10%;
-    --sidebar-primary: 253 90% 60%;
+    --sidebar-primary: 253 90% 60%; /* Purple */
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 330 85% 60%; /* Updated accent */
+    --sidebar-accent: 180 85% 45%; /* Teal */
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 0 0% 88%;
-    --sidebar-ring: 330 85% 55%; /* Accent Pink for sidebar focus rings */
+    --sidebar-ring: 180 85% 40%; /* Teal for sidebar focus rings */
 
     /* Chart Colors - Light Theme */
-    --chart-1: 253 90% 65%; /* Primary */
-    --chart-2: 330 85% 62%; /* New Accent (Pink) */
+    --chart-1: 253 90% 65%; /* Primary Purple */
+    --chart-2: 180 85% 47%; /* Accent Teal */
     --chart-3: 30 90% 60%;  /* Orange/Yellow */
     --chart-4: 300 70% 60%; /* Magenta */
     --chart-5: 120 50% 50%; /* Green */
   }
 
   .dark {
-    --background: 220 13% 6%; /* Very dark, almost black */
+    --background: 220 13% 6%; /* Very dark, almost black desaturated blue */
     --foreground: 0 0% 91%; /* Light gray for text */
 
     --card: 225 9% 11%; /* Slightly lighter dark for cards */
@@ -67,7 +67,7 @@
 
     --primary: 253 100% 68%; /* Vibrant purple from cursor.com */
     --primary-foreground: 0 0% 100%; /* White */
-    --primary-gradient-end: 260 100% 70%;
+    --primary-gradient-end: 260 100% 70%; /* Slightly different hue/lightness for purple gradient */
 
     --secondary: 220 10% 15%; /* A bit lighter than card for secondary bg elements */
     --secondary-foreground: 0 0% 75%; /* Slightly dimmer text */
@@ -75,30 +75,30 @@
     --muted: 220 10% 10%; /* Darker muted background elements */
     --muted-foreground: 0 0% 60%; /* Muted text, like placeholder */
 
-    --accent: 330 90% 65%; /* Vibrant Pink for dark mode - start of gradient */
+    --accent: 180 90% 50%; /* Vibrant Teal for dark mode - start of gradient */
     --accent-foreground: 0 0% 100%; /* White */
-    --accent-gradient-end: 335 95% 67%; /* Vibrant Pink for dark mode - end of gradient */
+    --accent-gradient-end: 185 95% 52%; /* Vibrant Teal for dark mode - end of gradient */
 
     --destructive: 0 70% 55%; /* A noticeable red */
     --destructive-foreground: 0 0% 98%;
 
     --border: 220 10% 20%; /* Subtle borders */
     --input: 220 10% 20%; /* Input background, matching border */
-    --ring: 330 90% 65%; /* Accent Pink for focus rings in dark mode */
+    --ring: 180 90% 50%; /* Accent Teal for focus rings in dark mode */
 
     /* Sidebar Colors - Dark Theme */
     --sidebar-background: 225 9% 11%;
     --sidebar-foreground: 0 0% 91%;
-    --sidebar-primary: 253 100% 68%;
+    --sidebar-primary: 253 100% 68%; /* Purple */
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 330 90% 65%; /* Updated accent */
+    --sidebar-accent: 180 90% 50%; /* Teal */
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 220 10% 25%;
-    --sidebar-ring: 330 90% 60%; /* Accent Pink for sidebar focus rings */
+    --sidebar-ring: 180 90% 45%; /* Teal for sidebar focus rings */
 
     /* Chart Colors - Dark Theme */
-    --chart-1: 253 100% 75%; /* Lighter Primary */
-    --chart-2: 330 90% 67%;  /* New Accent (Pink) */
+    --chart-1: 253 100% 75%; /* Lighter Primary Purple */
+    --chart-2: 180 90% 52%;  /* Accent Teal */
     --chart-3: 30 100% 65%;  /* Orange/Yellow */
     --chart-4: 300 80% 70%;  /* Pink/Magenta */
     --chart-5: 120 60% 60%;  /* Green */
