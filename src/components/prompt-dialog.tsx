@@ -64,28 +64,38 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
         toast({ title: 'Shared!', description: 'Prompt shared successfully.' });
       } catch (error) {
         console.error('Share API error:', error);
-        if (error instanceof DOMException && error.name === 'AbortError') {
-          // User cancelled the share operation
-          toast({ title: 'Share Canceled', description: 'You canceled the share dialog.' });
-        } else {
-          // Other share errors
-          toast({
-            title: 'Share Error',
-            description: 'Could not complete the share action. Attempting to copy to clipboard instead.',
-            variant: 'default', 
-          });
-          // Fallback to clipboard
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            try {
-              await navigator.clipboard.writeText(prompt.prompt);
-              toast({ title: 'Copied to Clipboard', description: 'The prompt has been copied as native sharing failed.' });
-            } catch (copyError) {
-              console.error('Fallback clipboard copy error:', copyError);
-              toast({ title: 'Copy Failed', description: 'Could not copy the prompt to clipboard. Please copy it manually.', variant: 'destructive' });
-            }
-          } else {
-            toast({ title: 'Copy Not Supported', description: 'Clipboard access is not available. Please copy the prompt manually.', variant: 'destructive' });
+        
+        let toastTitle = 'Share Error';
+        let toastDescription = 'Could not complete the share action. Attempting to copy to clipboard instead.';
+
+        if (error instanceof DOMException) {
+          if (error.name === 'AbortError') {
+            // User cancelled the share operation
+            toast({ title: 'Share Canceled', description: 'You canceled the share dialog.' });
+            return; // Don't proceed to copy if user explicitly canceled
+          } else if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
+            toastTitle = 'Share Permission Denied';
+            toastDescription = 'Native sharing was not allowed by your browser or settings. The prompt will be copied to your clipboard.';
           }
+        }
+        
+        toast({
+          title: toastTitle,
+          description: toastDescription,
+          variant: 'default',
+        });
+
+        // Fallback to clipboard
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          try {
+            await navigator.clipboard.writeText(prompt.prompt);
+            toast({ title: 'Copied to Clipboard', description: 'Prompt copied as sharing was not available/allowed.' });
+          } catch (copyError) {
+            console.error('Fallback clipboard copy error:', copyError);
+            toast({ title: 'Copy Failed', description: 'Could not copy prompt. Please copy it manually.', variant: 'destructive' });
+          }
+        } else {
+          toast({ title: 'Copy Not Supported', description: 'Clipboard access is not available. Please copy the prompt manually.', variant: 'destructive' });
         }
       }
     } else {
