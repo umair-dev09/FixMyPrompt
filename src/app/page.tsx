@@ -1,10 +1,10 @@
 
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Loader2, WandSparkles } from 'lucide-react';
+import { Loader2, WandSparkles, Mic, MicOff } from 'lucide-react';
 import { refinePrompt, type RefinePromptInput, type RefinePromptOutput } from '@/ai/flows/refine-prompt';
 import type { RefinedPromptClient } from '@/types';
 import { RefinedPromptCard } from '@/components/refined-prompt-card';
@@ -54,19 +54,42 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
   const [currentPlaceholder, setCurrentPlaceholder] = React.useState(placeholderExamples[0]);
   const placeholderIndexRef = React.useRef(0);
 
+  // Dictation state
+  const [isDictating, setIsDictating] = useState(false);
+  const [isSpeechApiAvailable, setIsSpeechApiAvailable] = useState(false);
+  const recognitionRef = useRef<SpeechRecognition | null>(null);
+
+
   React.useEffect(() => {
     const intervalId = setInterval(() => {
       placeholderIndexRef.current = (placeholderIndexRef.current + 1) % placeholderExamples.length;
       setCurrentPlaceholder(placeholderExamples[placeholderIndexRef.current]);
-    }, 4000); // Change placeholder every 4 seconds
+    }, 4000); 
 
-    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+    // Speech Recognition API setup
+    const SpeechRecognitionAPI = window.SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (SpeechRecognitionAPI) {
+      setIsSpeechApiAvailable(true);
+      recognitionRef.current = new SpeechRecognitionAPI();
+      recognitionRef.current.continuous = false; // Process single utterances
+      recognitionRef.current.interimResults = false; // Only final results
+      // recognitionRef.current.lang = 'en-US'; // Optional: set language
+    } else {
+      setIsSpeechApiAvailable(false);
+    }
+
+    return () => {
+      clearInterval(intervalId); // Cleanup interval on component unmount
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+    };
   }, []);
 
 
   const handleRefinePrompt = React.useCallback(async (promptText: string) => {
     if (!promptText.trim()) {
-      setRefinedPrompts(null); // Clear results if input is empty
+      setRefinedPrompts(null); 
       return;
     }
     setIsLoading(true);
@@ -108,7 +131,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
     if (newText.trim().length > 20) { 
         debouncedRefinePrompt(newText);
     } else if (!newText.trim()) {
-        setRefinedPrompts(null); // Clear results if input becomes empty
+        setRefinedPrompts(null); 
         setError(null);
     }
   };
@@ -124,16 +147,84 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
     setSelectedPromptForModal(prompt);
   };
 
+  const handleToggleDictation = () => {
+    if (!recognitionRef.current) {
+      toast({
+        title: 'Dictation Not Supported',
+        description: 'Your browser does not support speech recognition.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    const recognition = recognitionRef.current;
+
+    if (isDictating) {
+      recognition.stop();
+      setIsDictating(false);
+    } else {
+      recognition.onstart = () => {
+        setIsDictating(true);
+      };
+
+      recognition.onresult = (event: SpeechRecognitionEvent) => {
+        // For continuous=false, the result is typically in the first item of the last result.
+        const transcript = event.results[event.results.length - 1][0].transcript.trim();
+        if (transcript) {
+          setUserInput((prevInput) =>
+            // Add a space if prevInput is not empty and doesn't already end with a space
+            prevInput + (prevInput.endsWith(' ') || prevInput === '' ? '' : ' ') + transcript
+          );
+        }
+      };
+
+      recognition.onerror = (event: SpeechRecognitionEvent & { error: string }) => {
+        setIsDictating(false);
+        let errorMsg = 'An error occurred during dictation.';
+        if (event.error === 'no-speech') {
+          errorMsg = 'No speech was detected. Please try again.';
+        } else if (event.error === 'audio-capture') {
+          errorMsg = 'Microphone problem. Please ensure it is connected and enabled.';
+        } else if (event.error === 'not-allowed') {
+          errorMsg = 'Permission to use microphone was denied. Please enable it in your browser settings.';
+        } else if (event.error === 'network') {
+            errorMsg = 'A network error occurred. Please check your connection.';
+        }
+        toast({
+          title: 'Dictation Error',
+          description: errorMsg,
+          variant: 'destructive',
+        });
+      };
+
+      recognition.onend = () => {
+        setIsDictating(false);
+      };
+
+      try {
+        recognition.start();
+      } catch (e) {
+          setIsDictating(false);
+          toast({
+              title: 'Dictation Error',
+              description: 'Could not start dictation. Please check microphone permissions.',
+              variant: 'destructive',
+          });
+      }
+    }
+  };
+
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8 sm:py-12">
         <section className="max-w-3xl mx-auto text-center pt-20 sm:pt-28 lg:pt-32 mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-12 sm:mb-16 tracking-tighter text-center flex-wrap justify-center">
-          <WandSparkles className="inline-block align-baseline w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-[hsl(var(--pg-from))] mr-2" />
-          <span className="bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">
+            <WandSparkles className="inline-block align-baseline w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-[hsl(var(--pg-from))] mr-2" />
+            <span className="bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">
             Unlock AI's Full Potential
-          </span>
+            </span>
         </h1>
           <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
             Transform your simple ideas into powerful, precise prompts. Get multiple AI-optimized variations in seconds.
@@ -150,19 +241,33 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
               className="text-base p-4 shadow-lg rounded-lg"
               aria-label="Enter your prompt"
             />
-             <Button 
-              type="submit" 
-              disabled={isLoading || !userInput.trim()} 
-              className="w-full sm:w-auto text-base py-3 px-6 rounded-lg bg-gradient-to-r from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] hover:brightness-110 active:brightness-95 text-accent-foreground"
-              size="lg"
-            >
-              {isLoading ? (
-                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              ) : (
-                <WandSparkles className="mr-2 h-5 w-5" />
-              )}
-              Refine Prompt
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
+              <Button 
+                type="submit" 
+                disabled={isLoading || !userInput.trim()} 
+                className="flex-grow sm:flex-grow-0 text-base py-3 px-6 rounded-lg bg-gradient-to-r from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] hover:brightness-110 active:brightness-95 text-accent-foreground"
+                size="lg"
+              >
+                {isLoading ? (
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                ) : (
+                  <WandSparkles className="mr-2 h-5 w-5" />
+                )}
+                Refine Prompt
+              </Button>
+              <Button
+                type="button"
+                onClick={handleToggleDictation}
+                disabled={!isSpeechApiAvailable}
+                variant={isDictating ? "secondary" : "outline"}
+                size="lg"
+                className="px-4" // Adjust padding for icon button
+                aria-label={isDictating ? "Stop dictation" : "Start dictation"}
+              >
+                {isDictating ? <MicOff className="h-5 w-5" /> : <Mic className="h-5 w-5" />}
+                <span className="ml-2 sm:hidden lg:inline">{isDictating ? 'Stop' : 'Dictate'}</span>
+              </Button>
+            </div>
           </form>
         </section>
         
@@ -211,4 +316,14 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
       </footer>
     </div>
   );
+}
+declare global {
+  interface Window {
+    SpeechRecognition: typeof SpeechRecognition;
+    webkitSpeechRecognition: typeof SpeechRecognition;
+  }
+  interface SpeechRecognitionEvent extends Event {
+    readonly resultIndex: number;
+    readonly results: SpeechRecognitionResultList;
+  }
 }
