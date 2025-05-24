@@ -90,6 +90,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
   const handleRefinePrompt = React.useCallback(async (promptText: string) => {
     if (!promptText.trim()) {
       setRefinedPrompts(null);
+      setError(null);
       return;
     }
     setIsLoading(true);
@@ -98,15 +99,17 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
       const inputData: RefinePromptInput = { prompt: promptText };
       const result: RefinePromptOutput = await refinePrompt(inputData);
 
-      if (result && result.refinedPrompts) {
+      if (result && result.refinedPrompts && Array.isArray(result.refinedPrompts) && result.refinedPrompts.length > 0) {
          const promptsWithIds = result.refinedPrompts.map(p => ({
           ...p,
           id: crypto.randomUUID(),
           originalPrompt: promptText,
         }));
         setRefinedPrompts(promptsWithIds);
+        setError(null); // Clear previous errors on success
       } else {
-        throw new Error("Invalid response structure from AI.");
+        setRefinedPrompts(null); // Clear previous results if response is invalid
+        throw new Error("No refined prompts were generated or the response structure was invalid.");
       }
     } catch (err) {
       console.error("Error refining prompt:", err);
@@ -117,7 +120,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
         description: errorMessage,
         variant: "destructive",
       });
-      setRefinedPrompts(null);
+      setRefinedPrompts(null); // Ensure prompts are cleared on any error
     } finally {
       setIsLoading(false);
     }
@@ -142,6 +145,16 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
       handleRefinePrompt(userInput);
     }
   }
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault(); // Prevent newline in textarea
+      if (userInput.trim()) {
+        handleSubmit(); // Trigger form submission / prompt refinement
+      }
+    }
+    // Shift + Enter will behave as default (insert newline)
+  };
 
   const handleUseThisPrompt = (prompt: RefinedPromptClient) => {
     setSelectedPromptForModal(prompt);
@@ -241,6 +254,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
               ref={textareaRef}
               value={userInput}
               onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
               placeholder={currentPlaceholder}
               rows={5}
               className="text-base p-4 shadow-lg rounded-lg"
@@ -250,7 +264,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
               <Button
                 type="submit"
                 disabled={isLoading || !userInput.trim()}
-                className="flex-grow sm:flex-grow-0 text-base py-3 px-6 rounded-lg bg-gradient-to-r from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground"
+                className="flex-grow sm:flex-grow-0 text-base py-3 px-6 rounded-lg"
                 size="lg"
               >
                 {isLoading ? (
@@ -360,3 +374,5 @@ declare global {
     readonly results: SpeechRecognitionResultList;
   }
 }
+
+    
