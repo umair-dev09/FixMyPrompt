@@ -1,7 +1,7 @@
 
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -111,7 +111,7 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
           <div className="py-4">
             <Textarea value={prompt.prompt} readOnly rows={8} className="text-sm bg-muted/50" />
           </div>
-          <DialogFooter className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <DialogFooter className="grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:justify-between sm:items-center sm:space-x-2">
             <Button onClick={handleCopy} variant="outline">
               <Copy className="mr-2 h-4 w-4" /> Copy
             </Button>
