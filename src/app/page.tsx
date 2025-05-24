@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Loader2, WandSparkles, Mic, MicOff } from 'lucide-react';
+import { Loader2, WandSparkles, Mic, MicOff, Instagram, Facebook, Twitter } from 'lucide-react';
 import { refinePrompt, type RefinePromptInput, type RefinePromptOutput } from '@/ai/flows/refine-prompt';
 import type { RefinedPromptClient } from '@/types';
 import { RefinedPromptCard } from '@/components/refined-prompt-card';
@@ -321,8 +321,31 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
           />
         )}
       </main>
-      <footer className="py-6 sm:py-8 text-center text-sm text-muted-foreground border-t border-border/50 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.3s' }}>
-        © {new Date().getFullYear()} FixMyPrompt. Unleash your creativity.
+      <footer className="py-6 sm:py-8 border-t border-border/50 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.3s' }}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-sm text-muted-foreground">
+          <div className="flex space-x-4 mb-4 sm:mb-0">
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[hsl(var(--ag-from))] transition-colors">
+              <Instagram className="h-5 w-5" />
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[hsl(var(--ag-from))] transition-colors">
+              <Facebook className="h-5 w-5" />
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="hover:text-[hsl(var(--ag-from))] transition-colors">
+              <Twitter className="h-5 w-5" />
+            </a>
+          </div>
+          <div className="text-center sm:text-left mb-4 sm:mb-0 order-first sm:order-none">
+             © {new Date().getFullYear()} FixMyPrompt. Unleash your creativity.
+          </div>
+          <div>
+            <a 
+              href="mailto:shaikhumair5002@gmail.com?subject=Inquiry%20about%20FixMyPrompt&body=Hey%2C%20I%20want%20to%20talk%20about%20FixMyPrompt."
+              className="hover:text-[hsl(var(--ag-from))] transition-colors font-medium"
+            >
+              Contact Us
+            </a>
+          </div>
+        </div>
       </footer>
     </div>
   );
@@ -337,4 +360,3 @@ declare global {
     readonly results: SpeechRecognitionResultList;
   }
 }
-
