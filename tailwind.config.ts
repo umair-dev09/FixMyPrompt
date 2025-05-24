@@ -101,8 +101,18 @@ export default {
   			'accordion-up': 'accordion-up 0.2s ease-out',
         'fadeInUp': 'fadeInUp 0.5s ease-out forwards',
         'infinite-scroll': 'infinite-scroll 40s linear infinite',
-  		}
+  		},
+      animationDelay: { // Adding animationDelay utilities
+        '0': '0s',
+        '100': '0.1s',
+        '200': '0.2s',
+        '300': '0.3s',
+        '400': '0.4s',
+        '500': '0.5s',
+      }
   	}
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
+    

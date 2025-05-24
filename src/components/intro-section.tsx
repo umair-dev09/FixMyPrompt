@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Target, Zap, Lightbulb, SlidersHorizontal, TrendingUp, Cpu } from 'lucide-react';
+import { Target, Zap, Lightbulb, SlidersHorizontal, TrendingUp, Cpu, ToyBrick, Palette, Workflow, Sparkles, BarChartBig, UserRoundCog } from 'lucide-react';
 
 interface RefinedExample {
   tag: string;
@@ -86,18 +86,18 @@ const EXAMPLES_TO_SHOW = 2;
 const ROTATION_INTERVAL = 7000; // 7 seconds
 
 const llmLogos = [
-  { name: "OpenAI GPT", src: "https://placehold.co/120x48.png", alt: "OpenAI Logo", hint: "AI language" },
-  { name: "Google Gemini", src: "https://placehold.co/120x48.png", alt: "Gemini Logo", hint: "Google AI" },
-  { name: "Anthropic Claude", src: "https://placehold.co/120x48.png", alt: "Claude Logo", hint: "Anthropic AI" },
-  { name: "Mistral AI", src: "https://placehold.co/120x48.png", alt: "Mistral AI Logo", hint: "Mistral language" },
-  { name: "Cohere", src: "https://placehold.co/120x48.png", alt: "Cohere Logo", hint: "Cohere enterprise" },
-  { name: "Perplexity AI", src: "https://placehold.co/120x48.png", alt: "Perplexity AI Logo", hint: "AI search" },
-  { name: "AI21 Labs", src: "https://placehold.co/120x48.png", alt: "AI21 Labs Logo", hint: "AI writing" },
-  { name: "Hugging Face", src: "https://placehold.co/120x48.png", alt: "Hugging Face Logo", hint: "AI community" },
-  { name: "Meta Llama", src: "https://placehold.co/120x48.png", alt: "Meta Llama Logo", hint: "Meta AI" },
-  { name: "Grok", src: "https://placehold.co/120x48.png", alt: "Grok Logo", hint: "X AI" },
-  { name: "Stability AI", src: "https://placehold.co/120x48.png", alt: "Stability AI Logo", hint: "AI image" },
-  { name: "Inflection AI", src: "https://placehold.co/120x48.png", alt: "Inflection AI Logo", hint: "personal AI" },
+  { name: "OpenAI GPT", src: "https://placehold.co/130x50.png", alt: "OpenAI Logo", hint: "AI language" },
+  { name: "Google Gemini", src: "https://placehold.co/130x50.png", alt: "Gemini Logo", hint: "Google AI" },
+  { name: "Anthropic Claude", src: "https://placehold.co/130x50.png", alt: "Claude Logo", hint: "Anthropic AI" },
+  { name: "Mistral AI", src: "https://placehold.co/130x50.png", alt: "Mistral AI Logo", hint: "Mistral language" },
+  { name: "Cohere", src: "https://placehold.co/130x50.png", alt: "Cohere Logo", hint: "Cohere enterprise" },
+  { name: "Perplexity AI", src: "https://placehold.co/130x50.png", alt: "Perplexity AI Logo", hint: "AI search" },
+  { name: "AI21 Labs", src: "https://placehold.co/130x50.png", alt: "AI21 Labs Logo", hint: "AI writing" },
+  { name: "Hugging Face", src: "https://placehold.co/130x50.png", alt: "Hugging Face Logo", hint: "AI community" },
+  { name: "Meta Llama", src: "https://placehold.co/130x50.png", alt: "Meta Llama Logo", hint: "Meta AI" },
+  { name: "Grok", src: "https://placehold.co/130x50.png", alt: "Grok Logo", hint: "X AI" },
+  { name: "Stability AI", src: "https://placehold.co/130x50.png", alt: "Stability AI Logo", hint: "AI image" },
+  { name: "Inflection AI", src: "https://placehold.co/130x50.png", alt: "Inflection AI Logo", hint: "personal AI" },
 ];
 
 
@@ -192,8 +192,8 @@ export function IntroSection() {
                 <Image 
                   src={logo.src} 
                   alt={logo.alt} 
-                  width={120} 
-                  height={48} 
+                  width={130} 
+                  height={50} 
                   className="rounded-md opacity-80 group-hover:opacity-100 transition-opacity duration-300 hover:!opacity-100 hover:scale-110"
                   data-ai-hint={logo.hint}
                 />
@@ -203,7 +203,6 @@ export function IntroSection() {
         </div>
       </section>
 
-      {/* New Section: Why Prompts Matter */}
       <section className="text-center py-12 sm:py-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.4s' }}>
         <h2 className="text-3xl sm:text-4xl font-bold mb-10 sm:mb-12 tracking-tight">
           Why a <span className="bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">Perfect Prompt</span> Matters
@@ -213,7 +212,6 @@ export function IntroSection() {
           Here’s why mastering your prompts unlocks true AI power:
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
-          {/* Card 1: Precision */}
           <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
             <CardHeader className="p-0 mb-4">
               <div className="flex items-center gap-3">
@@ -227,8 +225,6 @@ export function IntroSection() {
               Vague prompts lead to vague answers. A precise prompt tells the AI exactly what you need, delivering focused and accurate results.
             </CardContent>
           </Card>
-
-          {/* Card 2: Efficiency */}
           <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
             <CardHeader className="p-0 mb-4">
               <div className="flex items-center gap-3">
@@ -242,8 +238,6 @@ export function IntroSection() {
               Stop wasting time on trial-and-error. A well-crafted prompt gets you closer to your desired output on the first try.
             </CardContent>
           </Card>
-
-          {/* Card 3: Creativity */}
           <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
             <CardHeader className="p-0 mb-4">
               <div className="flex items-center gap-3">
@@ -257,8 +251,6 @@ export function IntroSection() {
               Think of prompts as your creative brief for the AI. The better the brief, the more imaginative the AI's response can be.
             </CardContent>
           </Card>
-
-          {/* Card 4: Control */}
           <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
             <CardHeader className="p-0 mb-4">
               <div className="flex items-center gap-3">
@@ -272,8 +264,6 @@ export function IntroSection() {
               Prompts are your steering wheel for AI. Master them, and you dictate the style, tone, format, and depth of the AI's output.
             </CardContent>
           </Card>
-          
-          {/* Card 5: Maximize Value */}
           <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
             <CardHeader className="p-0 mb-4">
               <div className="flex items-center gap-3">
@@ -287,8 +277,6 @@ export function IntroSection() {
               Get the most out of your AI tools. Effective prompting ensures you leverage their full potential, turning simple requests into powerful solutions.
             </CardContent>
           </Card>
-
-          {/* Card 6: Unlock Complex Tasks */}
           <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
             <CardHeader className="p-0 mb-4">
               <div className="flex items-center gap-3">
@@ -304,10 +292,109 @@ export function IntroSection() {
           </Card>
         </div>
       </section>
+
+      {/* New SEO-focused Section */}
+      <section className="text-center py-12 sm:py-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.5s' }}>
+        <h2 className="text-3xl sm:text-4xl font-bold mb-10 sm:mb-12 tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">
+          Supercharge Your AI: Advanced Prompting Techniques
+        </h2>
+        <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto mb-10 sm:mb-16">
+          Go beyond basic queries. Effective prompt engineering unlocks sophisticated AI capabilities, helping you achieve unparalleled results and efficiency.
+        </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
+          {/* Card 1: Tailor for Specific AI Models */}
+          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
+            <CardHeader className="p-0 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
+                  <ToyBrick className="h-6 w-6" />
+                </div>
+                <CardTitle className="text-xl sm:text-2xl font-semibold">Tailor for Specific AI Models</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-0 text-sm text-muted-foreground/90">
+              Unlock the unique strengths of models like GPT-4, Gemini, or Claude by crafting prompts that leverage their specific architectures. Get nuanced outputs by fine-tuning requests for any LLM.
+            </CardContent>
+          </Card>
+
+          {/* Card 2: Master Tone & Style Consistency */}
+          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
+            <CardHeader className="p-0 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
+                  <Palette className="h-6 w-6" />
+                </div>
+                <CardTitle className="text-xl sm:text-2xl font-semibold">Master Tone & Style</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-0 text-sm text-muted-foreground/90">
+              Command the AI's voice for formal reports, creative narratives, or brand-aligned comms. Define tone, style, and personality for perfectly tailored AI-generated content.
+            </CardContent>
+          </Card>
+
+          {/* Card 3: Automate Complex Workflows */}
+          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
+            <CardHeader className="p-0 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
+                  <Workflow className="h-6 w-6" />
+                </div>
+                <CardTitle className="text-xl sm:text-2xl font-semibold">Automate Complex Workflows</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-0 text-sm text-muted-foreground/90">
+              Instruct AI to perform multi-step tasks, from summarizing documents and extracting key data to generating code, streamlining your productivity on complex projects.
+            </CardContent>
+          </Card>
+
+          {/* Card 4: Amplify Creative Brainstorming */}
+          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
+            <CardHeader className="p-0 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
+                  <Sparkles className="h-6 w-6" />
+                </div>
+                <CardTitle className="text-xl sm:text-2xl font-semibold">Amplify Creative Ideation</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-0 text-sm text-muted-foreground/90">
+              Turn AI into your ultimate ideation partner. Generate diverse concepts for marketing, content creation, or problem-solving, and break through creative barriers.
+            </CardContent>
+          </Card>
+
+          {/* Card 5: Drive Data Analysis & Insights */}
+          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
+            <CardHeader className="p-0 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
+                  <BarChartBig className="h-6 w-6" />
+                </div>
+                <CardTitle className="text-xl sm:text-2xl font-semibold">Drive Data Analysis</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-0 text-sm text-muted-foreground/90">
+              Guide AI to analyze datasets, identify emerging trends, and generate clear summaries from complex information, transforming raw data into actionable intelligence.
+            </CardContent>
+          </Card>
+
+          {/* Card 6: Create Personalized Experiences */}
+          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
+            <CardHeader className="p-0 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
+                  <UserRoundCog className="h-6 w-6" />
+                </div>
+                <CardTitle className="text-xl sm:text-2xl font-semibold">Craft Personalized Interactions</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-0 text-sm text-muted-foreground/90">
+              Develop prompts that enable AI to understand user context and preferences, delivering personalized responses, recommendations, and support for enhanced engagement.
+            </CardContent>
+          </Card>
+        </div>
+      </section>
     </div>
   );
 }
-
-    
 
     
