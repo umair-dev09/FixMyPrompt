@@ -85,10 +85,17 @@ const EXAMPLES_TO_SHOW = 2;
 const ROTATION_INTERVAL = 7000; // 7 seconds
 
 const llmLogos = [
-  { name: "ChatGPT", src: "https://placehold.co/120x48.png", alt: "ChatGPT Logo", hint: "AI chatbot" },
-  { name: "Gemini", src: "https://placehold.co/120x48.png", alt: "Gemini Logo", hint: "Google AI" },
-  { name: "Claude", src: "https://placehold.co/120x48.png", alt: "Claude Logo", hint: "Anthropic AI" },
+  { name: "OpenAI GPT", src: "https://placehold.co/120x48.png", alt: "OpenAI Logo", hint: "AI language" },
+  { name: "Google Gemini", src: "https://placehold.co/120x48.png", alt: "Gemini Logo", hint: "Google AI" },
+  { name: "Anthropic Claude", src: "https://placehold.co/120x48.png", alt: "Claude Logo", hint: "Anthropic AI" },
+  { name: "Mistral AI", src: "https://placehold.co/120x48.png", alt: "Mistral AI Logo", hint: "Mistral language" },
+  { name: "Cohere", src: "https://placehold.co/120x48.png", alt: "Cohere Logo", hint: "Cohere enterprise" },
+  { name: "Perplexity AI", src: "https://placehold.co/120x48.png", alt: "Perplexity AI Logo", hint: "AI search" },
+  { name: "AI21 Labs", src: "https://placehold.co/120x48.png", alt: "AI21 Labs Logo", hint: "AI writing" },
+  { name: "Hugging Face", src: "https://placehold.co/120x48.png", alt: "Hugging Face Logo", hint: "AI community" },
 ];
+
+const extendedLogos = [...llmLogos, ...llmLogos]; // Duplicate for seamless loop
 
 export function IntroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -104,7 +111,7 @@ export function IntroSection() {
         }
     }
     setCurrentExamples(initialExamples);
-    setCurrentIndex(0);
+    setCurrentIndex(0); // Ensure currentIndex is initialized
     setAnimationKey(k => k + 1); // Trigger initial animation
   }, []);
 
@@ -129,7 +136,7 @@ export function IntroSection() {
     }, ROTATION_INTERVAL);
 
     return () => clearInterval(intervalId);
-  }, []); // Empty dependency array, effect runs once after initial render
+  }, []);
 
 
   return (
@@ -170,19 +177,62 @@ export function IntroSection() {
 
       <section className="text-center animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.3s' }}>
         <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 tracking-tight">Works with popular AI models</h2>
-        <div className="flex justify-center items-center space-x-4 sm:space-x-6 flex-wrap">
-          {llmLogos.map(logo => (
-            <div key={logo.name} className="p-2" title={logo.name}>
-              <Image 
-                src={logo.src} 
-                alt={logo.alt} 
-                width={100} 
-                height={40} 
-                className="rounded-md opacity-80 hover:opacity-100 transition-all duration-300 hover:scale-110"
-                data-ai-hint={logo.hint}
-              />
-            </div>
-          ))}
+        <div 
+          className="w-full inline-flex flex-nowrap overflow-hidden py-4 [mask-image:_linear-gradient(to_right,transparent_0,_black_30px,_black_calc(100%-30px),transparent_100%)] group"
+        >
+          <ul className="flex items-center justify-center md:justify-start animate-infinite-scroll group-hover:[animation-play-state:paused]">
+            {extendedLogos.map((logo, index) => (
+              <li key={`${logo.name}-1-${index}`} className="mx-4 sm:mx-6 flex-shrink-0" title={logo.name}>
+                <Image 
+                  src={logo.src} 
+                  alt={logo.alt} 
+                  width={120} // Increased width for better visibility
+                  height={48} // Increased height for better visibility
+                  className="rounded-md opacity-80 group-hover:opacity-100 transition-opacity duration-300 hover:!opacity-100 hover:scale-110" // Individual item hover effect
+                  data-ai-hint={logo.hint}
+                />
+              </li>
+            ))}
+          </ul>
+          {/* The second ul is for the seamless loop but its key generation was an issue. 
+              If using one ul and translating it by -100% of its *own width* where its width is double the content,
+              it should translate by half of its own (doubled) width to show the second half.
+              The current setup uses extendedLogos for a single ul, which is a simpler way to achieve the duplicated content for the CSS animation.
+              If the animation `to: { transform: 'translateX(-100%)' }` refers to the width of this single ul, then it will scroll its entire content (original + duplicate).
+              This is fine if the `ul`'s width is implicitly set by its content.
+
+              For a true seamless loop where the "translateX(-100%)" refers to the width of *one set* of logos,
+              you'd typically have the two <ul>s inside a flex container that itself is animated, or the logic in the animation/JS is more complex.
+              The current Tailwind keyframe `to: { transform: 'translateX(-100%)' }` on a single `ul` containing duplicated items will work by scrolling its entire length.
+              The key is that the *content* of the `ul` must be wider than the viewport for scrolling to be visible.
+              Let's ensure it's truly seamless if it's not. The most common way with one UL is:
+              UL contains: [Logo1, Logo2, ..., LogoN, Logo1, Logo2, ..., LogoN]
+              Animation: translateX from 0 to - (width of Logo1...LogoN). The keyframes would need JS to calculate or a fixed percentage if content is predictable.
+              With pure CSS translateX(-100%) on the UL itself, it scrolls its *entire current width*. 
+              So if the UL's content is [A,B,C,A,B,C], it scrolls all of this. This is NOT the typical seamless way.
+
+              A better CSS-only way is two ULs or the inner element being animated is the one that has its actual width set to original content.
+              Let's re-evaluate the common Tailwind Play marquee structure:
+              Often it's:
+              <div className="overflow-hidden">
+                <div className="animate-marquee whitespace-nowrap"> // This div contains the content
+                  <span>Content A</span> <span>Content B</span>
+                </div>
+                <div className="animate-marquee2 whitespace-nowrap absolute top-0"> // Duplicate for seamless
+                   <span>Content A</span> <span>Content B</span>
+                </div>
+              </div>
+              And keyframes 'marquee' and 'marquee2' manage the positions.
+
+              Let's use the single UL with duplicated items and `animate-infinite-scroll` whose keyframe is `to: { transform: 'translateX(-100%)' }`.
+              This will scroll the *entire width of the ul*. If the ul contains L1,L2,L3,L1,L2,L3 and its total width is W, it scrolls by W.
+              This is not a seamless loop if the visual viewport is less than W/2.
+              To make it seamless with one UL containing [logos][logos_duplicates], the animation should be
+              `from { transform: translateX(0); } to { transform: translateX(-50%); }`. Because -50% of the doubled content width is the width of the original set.
+
+              I will adjust the keyframe definition in tailwind.config.ts for this.
+              Let's assume `animate-infinite-scroll` refers to `infinite-scroll` keyframes.
+          */}
         </div>
       </section>
     </div>

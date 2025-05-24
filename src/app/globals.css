@@ -18,10 +18,10 @@
     --popover-foreground-light: var(--foreground-light);
 
     /* Primary Gradient: Deep Purple -> Soft Pink -> Warm Orange */
-    --pg-from-l: 320 53% 30%;   /* Deep Purple (adjusted for gradient start) */
-    --pg-via-l: 330 55% 67%;    /* Soft Pink (adjusted for gradient) */
-    --pg-to-l: 32 61% 52%;      /* Warm Orange */
-    --pg-foreground-l: 0 0% 100%; /* White text on primary gradient */
+    --pg-from: 320 53% 30%;   /* Deep Purple (adjusted for gradient start) */
+    --pg-via: 330 55% 67%;    /* Soft Pink (adjusted for gradient) */
+    --pg-to: 32 61% 52%;      /* Warm Orange */
+    --pg-foreground: 0 0% 100%; /* White text on primary gradient */
 
     /* Secondary Theme (Golden Mustard-Based) */
     --secondary-light: 47 60% 94%; /* Very Light Golden Mustard */
@@ -32,10 +32,9 @@
     --muted-foreground-light: 320 15% 50%; /* Mid-tone desaturated purple/pink for text */
 
     /* Accent Gradient: Golden Mustard -> Moss Green */
-    --ag-from-l: 47 48% 54%;    /* Golden Mustard */
-    --ag-to-l: 87 37% 41%;      /* Moss Green */
-    --accent-gradient-end-l: 87 40% 45%; /* Slightly varied Moss Green for gradient */
-    --ag-foreground-l: 0 0% 100%; /* White text on accent gradient */
+    --ag-from: 47 48% 54%;    /* Golden Mustard */
+    --ag-to: 87 37% 41%;      /* Moss Green */
+    --ag-foreground: 0 0% 100%; /* White text on accent gradient */
     
     --destructive-light: 0 80% 60%; /* Standard Red */
     --destructive-foreground-light: 0 0% 100%;
@@ -46,10 +45,10 @@
     /* Sidebar - Light Theme */
     --sidebar-background-light: 0 0% 97%;
     --sidebar-foreground-light: var(--foreground-light);
-    --sidebar-primary-light: var(--pg-from-l); 
-    --sidebar-primary-foreground-light: var(--pg-foreground-l);
-    --sidebar-accent-light: var(--ag-from-l);
-    --sidebar-accent-foreground-light: var(--ag-foreground-l);
+    --sidebar-primary-light: var(--pg-from); 
+    --sidebar-primary-foreground-light: var(--pg-foreground);
+    --sidebar-accent-light: var(--ag-from);
+    --sidebar-accent-foreground-light: var(--ag-foreground);
     --sidebar-border-light: 320 10% 85%;
     --sidebar-ring-light: var(--ring-light);
 
@@ -69,21 +68,19 @@
     --popover: var(--popover-light);
     --popover-foreground: var(--popover-foreground-light);
     
-    --primary-gradient-from: var(--pg-from-l);
-    --primary-gradient-via: var(--pg-via-l);
-    --primary-gradient-to: var(--pg-to-l);
-    --primary-foreground: var(--pg-foreground-l);
+    /* --primary-gradient-from -> --pg-from for brevity */
+    /* --primary-gradient-via -> --pg-via */
+    /* --primary-gradient-to -> --pg-to */
+    /* --primary-foreground -> --pg-foreground */
 
     --secondary: var(--secondary-light);
     --secondary-foreground: var(--secondary-foreground-light);
     --muted: var(--muted-light);
     --muted-foreground: var(--muted-foreground-light);
 
-    --accent: var(--ag-from-l); /* Solid accent color for fallback or specific uses */
-    --accent-gradient-from: var(--ag-from-l);
-    --accent-gradient-to: var(--ag-to-l);
-    --accent-gradient-end: var(--accent-gradient-end-l);
-    --accent-foreground: var(--ag-foreground-l);
+    /* --accent-gradient-from -> --ag-from */
+    /* --accent-gradient-to -> --ag-to */
+    /* --accent-foreground -> --ag-foreground */
     
     --destructive: var(--destructive-light);
     --destructive-foreground: var(--destructive-foreground-light);
@@ -119,10 +116,10 @@
     --popover-foreground-dark: var(--foreground-dark);
 
     /* Primary Gradient: Deep Purple -> Soft Pink -> Warm Orange (brighter for dark mode) */
-    --pg-from-d: 320 53% 35%;    /* Deep Purple (brighter) */
-    --pg-via-d: 330 60% 70%;     /* Soft Pink (brighter) */
-    --pg-to-d: 32 65% 60%;       /* Warm Orange (brighter) */
-    --pg-foreground-d: 0 0% 100%;  /* White text */
+    --pg-from: 320 53% 35%;    /* Deep Purple (brighter) */
+    --pg-via: 330 60% 70%;     /* Soft Pink (brighter) */
+    --pg-to: 32 65% 60%;       /* Warm Orange (brighter) */
+    --pg-foreground: 0 0% 100%;  /* White text */
 
     /* Secondary Theme (Golden Mustard-Based) */
     --secondary-dark: 47 40% 18%; /* Dark Golden Mustard */
@@ -133,10 +130,9 @@
     --muted-foreground-dark: 320 10% 70%; /* Light, desaturated purple/pink for text */
 
     /* Accent Gradient: Golden Mustard -> Moss Green (brighter for dark mode) */
-    --ag-from-d: 47 55% 60%;     /* Golden Mustard (brighter) */
-    --ag-to-d: 87 45% 50%;       /* Moss Green (brighter) */
-    --accent-gradient-end-d: 87 48% 55%; /* Slightly varied Moss Green for gradient */
-    --ag-foreground-d: 320 15% 10%; /* Dark text on accent gradient */
+    --ag-from: 47 55% 60%;     /* Golden Mustard (brighter) */
+    --ag-to: 87 45% 50%;       /* Moss Green (brighter) */
+    --ag-foreground: 320 15% 10%; /* Dark text on accent gradient */
     
     --destructive-dark: 0 75% 65%; /* Standard Red (brighter) */
     --destructive-foreground-dark: 0 0% 100%;
@@ -147,10 +143,10 @@
     /* Sidebar - Dark Theme */
     --sidebar-background-dark: 320 10% 12%;
     --sidebar-foreground-dark: var(--foreground-dark);
-    --sidebar-primary-dark: var(--pg-from-d);
-    --sidebar-primary-foreground-dark: var(--pg-foreground-d);
-    --sidebar-accent-dark: var(--ag-from-d);
-    --sidebar-accent-foreground-dark: var(--ag-foreground-d);
+    --sidebar-primary-dark: var(--pg-from);
+    --sidebar-primary-foreground-dark: var(--pg-foreground);
+    --sidebar-accent-dark: var(--ag-from);
+    --sidebar-accent-foreground-dark: var(--ag-foreground);
     --sidebar-border-dark: 320 8% 22%;
     --sidebar-ring-dark: var(--ring-dark);
 
@@ -168,21 +164,14 @@
     --popover: var(--popover-dark);
     --popover-foreground: var(--popover-foreground-dark);
 
-    --primary-gradient-from: var(--pg-from-d);
-    --primary-gradient-via: var(--pg-via-d);
-    --primary-gradient-to: var(--pg-to-d);
-    --primary-foreground: var(--pg-foreground-d);
-
+    /* Primary variables are now just --pg-from, --pg-via, --pg-to, --pg-foreground */
+    /* Secondary variables */
     --secondary: var(--secondary-dark);
     --secondary-foreground: var(--secondary-foreground-dark);
     --muted: var(--muted-dark);
     --muted-foreground: var(--muted-foreground-dark);
 
-    --accent: var(--ag-from-d); /* Solid accent color for fallback or specific uses */
-    --accent-gradient-from: var(--ag-from-d);
-    --accent-gradient-to: var(--ag-to-d);
-    --accent-gradient-end: var(--accent-gradient-end-d);
-    --accent-foreground: var(--ag-foreground-d);
+    /* Accent variables are now just --ag-from, --ag-to, --ag-foreground */
     
     --destructive: var(--destructive-dark);
     --destructive-foreground: var(--destructive-foreground-dark);
@@ -220,12 +209,3 @@
     opacity: 0;
   }
 }
-    
-
-    
-
-
-
-
-
-

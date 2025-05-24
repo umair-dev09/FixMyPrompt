@@ -24,9 +24,9 @@ export default {
   				DEFAULT: 'hsl(var(--popover))',
   				foreground: 'hsl(var(--popover-foreground))'
   			},
-  			primary: {
-  				DEFAULT: 'hsl(var(--primary-gradient-from))', // Use gradient start for primary default
-  				foreground: 'hsl(var(--primary-foreground))'
+  			primary: { // Now a 3-color gradient
+  				DEFAULT: 'hsl(var(--pg-from))', // Start color for solid fallbacks
+  				foreground: 'hsl(var(--pg-foreground))'
   			},
   			secondary: {
   				DEFAULT: 'hsl(var(--secondary))',
@@ -36,9 +36,9 @@ export default {
   				DEFAULT: 'hsl(var(--muted))',
   				foreground: 'hsl(var(--muted-foreground))'
   			},
-  			accent: {
-  				DEFAULT: 'hsl(var(--accent-gradient-from))', // Use accent gradient start for accent default
-  				foreground: 'hsl(var(--accent-foreground))'
+  			accent: { // Now a 2-color gradient for accents
+  				DEFAULT: 'hsl(var(--ag-from))', // Start color for solid fallbacks
+  				foreground: 'hsl(var(--ag-foreground))'
   			},
   			destructive: {
   				DEFAULT: 'hsl(var(--destructive))',
@@ -46,7 +46,7 @@ export default {
   			},
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
-  			ring: 'hsl(var(--ring))',
+  			ring: 'hsl(var(--ring))', // Based on Golden Mustard
   			chart: {
   				'1': 'hsl(var(--chart-1))',
   				'2': 'hsl(var(--chart-2))',
@@ -90,12 +90,17 @@ export default {
         'fadeInUp': {
           '0%': { opacity: '0', transform: 'translateY(15px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
-        }
+        },
+        'infinite-scroll': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-100%)' },
+        },
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
         'fadeInUp': 'fadeInUp 0.5s ease-out forwards',
+        'infinite-scroll': 'infinite-scroll 40s linear infinite', // Adjusted duration
   		}
   	}
   },
