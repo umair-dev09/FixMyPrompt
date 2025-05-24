@@ -87,10 +87,10 @@ const EXAMPLES_TO_SHOW = 2;
 const ROTATION_INTERVAL = 7000; // 7 seconds
 
 const llmLogos = [
-  { name: "OpenAI GPT", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "OpenAI Logo", hint: "AI language" },
-  { name: "Google Gemini", srcLight: "/logos/gemini.svg", srcDark: "https://placehold.co/130x50.png", alt: "Gemini Logo", hint: "Google AI" },
+  { name: "OpenAI GPT", srcLight: "/logos/chatgpt-light.webp", srcDark: "/logos/chatgpt-dark.webp", alt: "OpenAI Logo", hint: "AI language" },
+  { name: "Google Gemini", srcLight: "/logos/gemini-light.webp", srcDark: "/logos/gemini-dark.webp", alt: "Gemini Logo", hint: "Google AI" },
   { name: "Anthropic Claude", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Claude Logo", hint: "Anthropic AI" },
-  { name: "Mistral AI", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Mistral AI Logo", hint: "Mistral language" },
+  { name: "MidJourney", srcLight: "/logos/midjourney-light.webp", srcDark: "/logos/midjourney-dark.webp", alt: "Mistral AI Logo", hint: "Mistral language" },
   { name: "Cohere", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Cohere Logo", hint: "Cohere enterprise" },
   { name: "Perplexity AI", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Perplexity AI Logo", hint: "AI search" },
   { name: "AI21 Labs", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "AI21 Labs Logo", hint: "AI writing" },
@@ -199,8 +199,8 @@ export function IntroSection() {
                 <Image
                   src={mounted && theme === 'dark' ? logo.srcDark : logo.srcLight}
                   alt={logo.alt}
-                  width={130}
-                  height={50}
+                  width={100} // Enforce consistent width
+                  height={40} // Enforce consistent height
                   className="rounded-md opacity-80 group-hover:opacity-100 transition-opacity duration-300 hover:!opacity-100 hover:scale-110"
                   data-ai-hint={logo.hint}
                 />
