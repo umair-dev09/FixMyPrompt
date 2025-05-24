@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Target, Zap, Lightbulb, SlidersHorizontal, TrendingUp } from 'lucide-react';
 
 interface RefinedExample {
   tag: string;
@@ -93,7 +94,10 @@ const llmLogos = [
   { name: "Perplexity AI", src: "https://placehold.co/120x48.png", alt: "Perplexity AI Logo", hint: "AI search" },
   { name: "AI21 Labs", src: "https://placehold.co/120x48.png", alt: "AI21 Labs Logo", hint: "AI writing" },
   { name: "Hugging Face", src: "https://placehold.co/120x48.png", alt: "Hugging Face Logo", hint: "AI community" },
+  { name: "Meta Llama", src: "https://placehold.co/120x48.png", alt: "Meta Llama Logo", hint: "Meta AI" },
+  { name: "Grok", src: "https://placehold.co/120x48.png", alt: "Grok Logo", hint: "X AI" },
 ];
+
 
 const extendedLogos = [...llmLogos, ...llmLogos]; // Duplicate for seamless loop
 
@@ -186,55 +190,104 @@ export function IntroSection() {
                 <Image 
                   src={logo.src} 
                   alt={logo.alt} 
-                  width={120} // Increased width for better visibility
-                  height={48} // Increased height for better visibility
-                  className="rounded-md opacity-80 group-hover:opacity-100 transition-opacity duration-300 hover:!opacity-100 hover:scale-110" // Individual item hover effect
+                  width={120} 
+                  height={48} 
+                  className="rounded-md opacity-80 group-hover:opacity-100 transition-opacity duration-300 hover:!opacity-100 hover:scale-110"
                   data-ai-hint={logo.hint}
                 />
               </li>
             ))}
           </ul>
-          {/* The second ul is for the seamless loop but its key generation was an issue. 
-              If using one ul and translating it by -100% of its *own width* where its width is double the content,
-              it should translate by half of its own (doubled) width to show the second half.
-              The current setup uses extendedLogos for a single ul, which is a simpler way to achieve the duplicated content for the CSS animation.
-              If the animation `to: { transform: 'translateX(-100%)' }` refers to the width of this single ul, then it will scroll its entire content (original + duplicate).
-              This is fine if the `ul`'s width is implicitly set by its content.
+        </div>
+      </section>
 
-              For a true seamless loop where the "translateX(-100%)" refers to the width of *one set* of logos,
-              you'd typically have the two <ul>s inside a flex container that itself is animated, or the logic in the animation/JS is more complex.
-              The current Tailwind keyframe `to: { transform: 'translateX(-100%)' }` on a single `ul` containing duplicated items will work by scrolling its entire length.
-              The key is that the *content* of the `ul` must be wider than the viewport for scrolling to be visible.
-              Let's ensure it's truly seamless if it's not. The most common way with one UL is:
-              UL contains: [Logo1, Logo2, ..., LogoN, Logo1, Logo2, ..., LogoN]
-              Animation: translateX from 0 to - (width of Logo1...LogoN). The keyframes would need JS to calculate or a fixed percentage if content is predictable.
-              With pure CSS translateX(-100%) on the UL itself, it scrolls its *entire current width*. 
-              So if the UL's content is [A,B,C,A,B,C], it scrolls all of this. This is NOT the typical seamless way.
-
-              A better CSS-only way is two ULs or the inner element being animated is the one that has its actual width set to original content.
-              Let's re-evaluate the common Tailwind Play marquee structure:
-              Often it's:
-              <div className="overflow-hidden">
-                <div className="animate-marquee whitespace-nowrap"> // This div contains the content
-                  <span>Content A</span> <span>Content B</span>
+      {/* New Section: Why Prompts Matter */}
+      <section className="text-center py-12 sm:py-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.4s' }}>
+        <h2 className="text-3xl sm:text-4xl font-bold mb-10 sm:mb-12 tracking-tight">
+          Why a <span className="bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">Perfect Prompt</span> Matters
+        </h2>
+        <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto mb-10 sm:mb-16">
+          In the world of AI, your prompt is everything. It's the bridge between your idea and the AI's output.
+          Here’s why mastering your prompts unlocks true AI power:
+        </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
+          {/* Card 1: Precision */}
+          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
+            <CardHeader className="p-0 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
+                  <Target className="h-6 w-6" />
                 </div>
-                <div className="animate-marquee2 whitespace-nowrap absolute top-0"> // Duplicate for seamless
-                   <span>Content A</span> <span>Content B</span>
-                </div>
+                <CardTitle className="text-xl sm:text-2xl font-semibold">Unlock Precision</CardTitle>
               </div>
-              And keyframes 'marquee' and 'marquee2' manage the positions.
+            </CardHeader>
+            <CardContent className="p-0 text-sm text-muted-foreground/90">
+              Vague prompts lead to vague answers. A precise prompt tells the AI exactly what you need, delivering focused and accurate results.
+            </CardContent>
+          </Card>
 
-              Let's use the single UL with duplicated items and `animate-infinite-scroll` whose keyframe is `to: { transform: 'translateX(-100%)' }`.
-              This will scroll the *entire width of the ul*. If the ul contains L1,L2,L3,L1,L2,L3 and its total width is W, it scrolls by W.
-              This is not a seamless loop if the visual viewport is less than W/2.
-              To make it seamless with one UL containing [logos][logos_duplicates], the animation should be
-              `from { transform: translateX(0); } to { transform: translateX(-50%); }`. Because -50% of the doubled content width is the width of the original set.
+          {/* Card 2: Efficiency */}
+          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
+            <CardHeader className="p-0 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
+                  <Zap className="h-6 w-6" />
+                </div>
+                <CardTitle className="text-xl sm:text-2xl font-semibold">Boost Efficiency</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-0 text-sm text-muted-foreground/90">
+              Stop wasting time on trial-and-error. A well-crafted prompt gets you closer to your desired output on the first try.
+            </CardContent>
+          </Card>
 
-              I will adjust the keyframe definition in tailwind.config.ts for this.
-              Let's assume `animate-infinite-scroll` refers to `infinite-scroll` keyframes.
-          */}
+          {/* Card 3: Creativity */}
+          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
+            <CardHeader className="p-0 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
+                  <Lightbulb className="h-6 w-6" />
+                </div>
+                <CardTitle className="text-xl sm:text-2xl font-semibold">Ignite Creativity</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-0 text-sm text-muted-foreground/90">
+              Think of prompts as your creative brief for the AI. The better the brief, the more imaginative the AI's response can be.
+            </CardContent>
+          </Card>
+
+          {/* Card 4: Control */}
+          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
+            <CardHeader className="p-0 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
+                  <SlidersHorizontal className="h-6 w-6" />
+                </div>
+                <CardTitle className="text-xl sm:text-2xl font-semibold">Gain Control</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-0 text-sm text-muted-foreground/90">
+              Prompts are your steering wheel for AI. Master them, and you dictate the style, tone, format, and depth of the AI's output.
+            </CardContent>
+          </Card>
+          
+          {/* Card 5: Maximize Value */}
+          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
+            <CardHeader className="p-0 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
+                  <TrendingUp className="h-6 w-6" />
+                </div>
+                <CardTitle className="text-xl sm:text-2xl font-semibold">Maximize Value</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-0 text-sm text-muted-foreground/90">
+              Get the most out of your AI tools. Effective prompting ensures you leverage their full potential, turning simple requests into powerful solutions.
+            </CardContent>
+          </Card>
         </div>
       </section>
     </div>
   );
 }
+
