@@ -11,7 +11,7 @@ export default {
   theme: {
   	extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'], // Set Inter as the primary sans-serif font
+        sans: ['Poppins', 'sans-serif'], // Set Poppins as the primary sans-serif font
       },
   		colors: {
   			background: 'hsl(var(--background))',
