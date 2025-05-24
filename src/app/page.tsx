@@ -28,8 +28,12 @@ const debounce = <F extends (...args: any[]) => any>(func: F, waitFor: number) =
   return debounced as (...args: Parameters<F>) => ReturnType<F>;
 };
 
+interface HomePageProps {
+  params?: { [key: string]: string | string[] | undefined };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
 
-export default function HomePage() {
+export default function HomePage({ params, searchParams }: HomePageProps) {
   const [userInput, setUserInput] = useState('');
   const [refinedPrompts, setRefinedPrompts] = useState<RefinedPromptClient[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -101,7 +105,7 @@ export default function HomePage() {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8 sm:py-12">
-        <section className="max-w-3xl mx-auto text-center mb-12 sm:mb-16 pt-16 sm:pt-20 lg:pt-24 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
+      <section className="max-w-3xl mx-auto text-center mb-12 sm:mb-16 pt-16 sm:pt-20 lg:pt-24 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-10 tracking-tighter flex items-baseline justify-center">
             <span className="inline-flex items-baseline">
               <WandSparkles className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-[hsl(var(--primary-gradient-from))] mr-2" />
