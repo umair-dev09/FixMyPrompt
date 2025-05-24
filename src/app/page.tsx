@@ -103,8 +103,11 @@ export default function HomePage() {
       <main className="flex-grow container mx-auto px-4 py-8 sm:py-12">
         <section className="max-w-3xl mx-auto text-center mb-12 sm:mb-16 pt-16 sm:pt-20 lg:pt-24 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-10 tracking-tighter flex items-baseline justify-center">
-            <WandSparkles className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-[hsl(var(--primary-gradient-from))]" />
-            Unlock AI's Full Potential
+            <span className="inline-flex items-baseline">
+              <WandSparkles className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-[hsl(var(--primary-gradient-from))] mr-2" />
+              Unlock
+            </span>
+            {' '}AI's Full Potential
           </h1>
           <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
             Transform your simple ideas into powerful, precise prompts. Get multiple AI-optimized variations in seconds.
@@ -124,8 +127,7 @@ export default function HomePage() {
              <Button 
               type="submit" 
               disabled={isLoading || !userInput.trim()} 
-              className="w-full sm:w-auto text-base py-3 px-6 rounded-lg"
-              variant="default" 
+              className="w-full sm:w-auto text-base py-3 px-6 rounded-lg bg-gradient-to-r from-[hsl(var(--accent-gradient-from))] to-[hsl(var(--accent-gradient-to))] hover:brightness-110 active:brightness-95 text-accent-foreground"
               size="lg"
             >
               {isLoading ? (
