@@ -17,11 +17,11 @@ import {
   Share2,
   Bookmark,
   ExternalLink,
-  MessageSquareText, // For ChatGPT
-  Brain,             // For Gemini
-  Bot,               // For Claude
-  Search,            // For Perplexity
-  Twitter,           // For Grok (X)
+  MessageSquareText,
+  Brain,
+  Bot,
+  Search,
+  X, // Changed from Twitter
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useBookmarks } from '@/contexts/bookmark-context';
@@ -64,7 +64,7 @@ const aiPlatforms: AiPlatform[] = [
   {
     name: 'Grok (on X)',
     url: (prompt) => `https://x.com/search?q=${encodeURIComponent(prompt)}&src=typed_query`,
-    icon: Twitter
+    icon: X // Changed from Twitter
   },
 ];
 
@@ -89,16 +89,52 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
     }
   };
 
+  const handleShare = async () => {
+    const shareData = {
+      title: `FixMyPrompt: ${prompt.tag} Prompt`,
+      text: prompt.prompt,
+      url: window.location.href, // Or a more specific URL if available
+    };
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        toast({ title: 'Shared!', description: 'Prompt shared successfully.' });
+      } catch (error) {
+        console.error('Share API error:', error);
+        if (error instanceof Error && error.name === 'NotAllowedError') {
+          toast({
+            title: 'Share Canceled or Denied',
+            description: 'Could not share. Prompt copied to clipboard instead.',
+            variant: 'default',
+          });
+          await handleCopy();
+        } else if (error instanceof Error && error.name === 'AbortError') {
+           // User cancelled the share operation, do nothing or show a mild toast
+          toast({ title: 'Share Canceled', description: 'You canceled the share operation.', variant: 'default' });
+        } else {
+          toast({
+            title: 'Share Failed',
+            description: 'Could not share. Prompt copied to clipboard instead.',
+            variant: 'destructive',
+          });
+          await handleCopy();
+        }
+      }
+    } else {
+      // Fallback for browsers that don't support navigator.share
+      await handleCopy(); // handleCopy already shows a toast
+      toast({ title: 'Share via Clipboard', description: 'Native share not supported. Prompt copied to clipboard.' });
+    }
+  };
+
   const handleBookmarkToggle = () => {
     if (bookmarked) {
       removeBookmark(prompt.id);
-      toast({ title: "Bookmark Removed", description: "Prompt removed from your bookmarks." });
     } else {
       addBookmark(prompt);
-      toast({ title: "Bookmarked!", description: "Prompt added to your bookmarks." });
     }
   };
-  
+
 
   return (
     <>
@@ -129,8 +165,8 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
                   <DropdownMenuItem
                     key={platform.name}
                     onClick={async () => {
-                      await handleCopy(); // Copy first
-                      window.open(platform.url(prompt.prompt), '_blank'); // Then open
+                      await handleCopy();
+                      window.open(platform.url(prompt.prompt), '_blank');
                     }}
                   >
                     {platform.icon && <platform.icon className="mr-2 h-4 w-4" />}
@@ -146,7 +182,7 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
             <Button
               onClick={handleBookmarkToggle}
               variant={bookmarked ? "default" : "outline"}
-              className="min-w-36" 
+              className="min-w-36"
             >
               <Bookmark className={`mr-2 h-4 w-4 ${bookmarked ? 'fill-current' : ''}`} />
               {bookmarked ? 'Bookmarked' : 'Bookmark'}
@@ -164,4 +200,3 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
     </>
   );
 }
-

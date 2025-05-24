@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Loader2, WandSparkles, Mic, MicOff, Instagram, Facebook, Twitter } from 'lucide-react';
+import { Loader2, WandSparkles, Mic, MicOff, Instagram, Facebook, X } from 'lucide-react';
 import { refinePrompt, type RefinePromptInput, type RefinePromptOutput } from '@/ai/flows/refine-prompt';
 import type { RefinedPromptClient } from '@/types';
 import { RefinedPromptCard } from '@/components/refined-prompt-card';
@@ -65,21 +65,21 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
     const intervalId = setInterval(() => {
       placeholderIndexRef.current = (placeholderIndexRef.current + 1) % placeholderExamples.length;
       setCurrentPlaceholder(placeholderExamples[placeholderIndexRef.current]);
-    }, 4000); 
+    }, 4000);
 
     // Speech Recognition API setup
     const SpeechRecognitionAPI = window.SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (SpeechRecognitionAPI) {
       setIsSpeechApiAvailable(true);
       recognitionRef.current = new SpeechRecognitionAPI();
-      recognitionRef.current.continuous = false; 
-      recognitionRef.current.interimResults = false; 
+      recognitionRef.current.continuous = false;
+      recognitionRef.current.interimResults = false;
     } else {
       setIsSpeechApiAvailable(false);
     }
 
     return () => {
-      clearInterval(intervalId); 
+      clearInterval(intervalId);
       if (recognitionRef.current) {
         recognitionRef.current.stop();
       }
@@ -89,7 +89,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
 
   const handleRefinePrompt = React.useCallback(async (promptText: string) => {
     if (!promptText.trim()) {
-      setRefinedPrompts(null); 
+      setRefinedPrompts(null);
       return;
     }
     setIsLoading(true);
@@ -97,7 +97,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
     try {
       const inputData: RefinePromptInput = { prompt: promptText };
       const result: RefinePromptOutput = await refinePrompt(inputData);
-      
+
       if (result && result.refinedPrompts) {
          const promptsWithIds = result.refinedPrompts.map(p => ({
           ...p,
@@ -122,16 +122,16 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
       setIsLoading(false);
     }
   }, [toast]);
-  
+
   const debouncedRefinePrompt = React.useCallback(debounce(handleRefinePrompt, 1500), [handleRefinePrompt]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newText = event.target.value;
     setUserInput(newText);
-    if (newText.trim().length > 20) { 
+    if (newText.trim().length > 20) {
         debouncedRefinePrompt(newText);
     } else if (!newText.trim()) {
-        setRefinedPrompts(null); 
+        setRefinedPrompts(null);
         setError(null);
     }
   };
@@ -247,10 +247,10 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
               aria-label="Enter your prompt"
             />
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
-              <Button 
-                type="submit" 
-                disabled={isLoading || !userInput.trim()} 
-                className="flex-grow sm:flex-grow-0 text-base py-3 px-6 rounded-lg bg-gradient-to-r from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] hover:brightness-110 active:brightness-95 text-accent-foreground"
+              <Button
+                type="submit"
+                disabled={isLoading || !userInput.trim()}
+                className="flex-grow sm:flex-grow-0 text-base py-3 px-6 rounded-lg"
                 size="lg"
               >
                 {isLoading ? (
@@ -266,7 +266,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
                 disabled={!isSpeechApiAvailable}
                 variant={isDictating ? "secondary" : "outline"}
                 size="lg"
-                className="px-4" 
+                className="px-4"
                 aria-label={isDictating ? "Stop dictation" : "Start dictation"}
               >
                 {isDictating ? <MicOff className="h-5 w-5" /> : <Mic className="h-5 w-5" />}
@@ -275,7 +275,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
             </div>
           </form>
         </section>
-        
+
         {isLoading && (
           <div className="text-center py-8 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.2s' }}>
             <Loader2 className="h-12 w-12 animate-spin text-[hsl(var(--ag-from))] mx-auto" />
@@ -294,10 +294,10 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
             <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">Your Refined Prompts:</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {refinedPrompts.map((prompt) => (
-                <RefinedPromptCard 
-                  key={prompt.id} 
-                  prompt={prompt} 
-                  onUseThis={handleUseThisPrompt} 
+                <RefinedPromptCard
+                  key={prompt.id}
+                  prompt={prompt}
+                  onUseThis={handleUseThisPrompt}
                   onRefineThis={handleSetInputForRefinement}
                 />
               ))}
@@ -324,21 +324,21 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
       <footer className="py-6 sm:py-8 border-t border-border/50 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.3s' }}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-sm text-muted-foreground">
           <div className="flex space-x-4 mb-4 sm:mb-0">
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[hsl(var(--ag-from))] transition-colors">
+            <a href="https://instagram.com/your_handle_here" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[hsl(var(--ag-from))] transition-colors">
               <Instagram className="h-5 w-5" />
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[hsl(var(--ag-from))] transition-colors">
+            <a href="https://facebook.com/your_page_here" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[hsl(var(--ag-from))] transition-colors">
               <Facebook className="h-5 w-5" />
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="hover:text-[hsl(var(--ag-from))] transition-colors">
-              <Twitter className="h-5 w-5" />
+            <a href="https://x.com/your_handle_here" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)" className="hover:text-[hsl(var(--ag-from))] transition-colors">
+              <X className="h-5 w-5" />
             </a>
           </div>
           <div className="text-center sm:text-left mb-4 sm:mb-0 order-first sm:order-none">
              © {new Date().getFullYear()} FixMyPrompt. Unleash your creativity.
           </div>
           <div>
-            <a 
+            <a
               href="mailto:shaikhumair5002@gmail.com?subject=Inquiry%20about%20FixMyPrompt&body=Hey%2C%20I%20want%20to%20talk%20about%20FixMyPrompt."
               className="hover:text-[hsl(var(--ag-from))] transition-colors font-medium"
             >
