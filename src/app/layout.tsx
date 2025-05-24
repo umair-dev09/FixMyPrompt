@@ -1,10 +1,8 @@
+
 import type { Metadata } from 'next';
-// Removed Geist font imports
 import './globals.css';
 import { Providers } from './providers';
 import { Toaster } from '@/components/ui/toaster';
-
-// Removed Geist font setup
 
 export const metadata: Metadata = {
   title: 'FixMyPrompt',
@@ -18,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* Removed font variables from body className, it will now use Satoshi from globals.css and Tailwind config */}
+      {/* The body will now use Inter font via globals.css and Tailwind config */}
       <body className="antialiased">
         <Providers>
           {children}

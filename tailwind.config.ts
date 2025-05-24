@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -10,8 +11,7 @@ export default {
   theme: {
   	extend: {
       fontFamily: {
-        sans: ['Satoshi', 'sans-serif'], // Add Satoshi as the primary sans-serif font
-        // mono: ['var(--font-geist-mono)', 'monospace'], // Keep or remove mono if not used
+        sans: ['Inter', 'sans-serif'], // Set Inter as the primary sans-serif font
       },
   		colors: {
   			background: 'hsl(var(--background))',
