@@ -1,42 +1,7 @@
 
-@font-face {
-  font-family: 'Clash Display';
-  src: url('/fonts/ClashDisplay-Variable.woff2') format('woff2-variations');
-  font-weight: 200 700; /* Adjust range based on available variable font weights */
-  font-style: normal;
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-/* Example for individual weights if not using variable font:
-@font-face {
-  font-family: 'Clash Display';
-  src: url('/fonts/ClashDisplay-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Clash Display';
-  src: url('/fonts/ClashDisplay-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Clash Display';
-  src: url('/fonts/ClashDisplay-Semibold.woff2') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Clash Display';
-  src: url('/fonts/ClashDisplay-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-*/
+/* Remove previous @font-face for Clash Display if they exist */
 
 @tailwind base;
 @tailwind components;
@@ -248,7 +213,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: theme('fontFamily.sans');
+    font-family: theme('fontFamily.sans'); /* This will correctly pick up 'Inter' from Tailwind config */
   }
   /* Add opacity 0 for elements that will be animated in */
   .animate-fadeInUp {
@@ -258,6 +223,7 @@
     
 
     
+
 
 
 
