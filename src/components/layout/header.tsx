@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Bookmark, FilePen } from 'lucide-react'; // Changed BrainCircuit to FilePen
+import { Bookmark, WandSparkles } from 'lucide-react'; // Changed FilePen to WandSparkles
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
@@ -13,8 +13,8 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/20 bg-gradient-to-r from-[hsl(var(--sidebar-background))] via-[hsla(var(--sidebar-background),0.9)] to-[hsla(var(--sidebar-background),0.8)] dark:from-[hsl(var(--sidebar-background))] dark:via-[hsla(var(--sidebar-background),0.9)] dark:to-[hsla(var(--sidebar-background),0.8)] bg-opacity-60 dark:bg-opacity-50 backdrop-blur-lg supports-[backdrop-filter]:bg-opacity-60">
       <div className="container flex h-16 items-center">
         <Link href="/" className="flex items-center space-x-2 mr-auto">
-          <FilePen className="h-7 w-7 sm:h-8 sm:w-8 text-[hsl(var(--pg-from-l))]" /> {/* Using a color from primary gradient, icon changed */}
-          <span className="font-bold text-xl sm:text-2xl tracking-tight">FixMyPrompt</span> {/* Name Changed */}
+          <WandSparkles className="h-7 w-7 sm:h-8 sm:w-8 text-[hsl(var(--pg-from-l))]" /> {/* Icon changed */}
+          <span className="font-bold text-xl sm:text-2xl tracking-tight">FixMyPrompt</span>
         </Link>
         <nav className="flex items-center space-x-1 sm:space-x-2">
           <Sheet>
