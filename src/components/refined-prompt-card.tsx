@@ -1,6 +1,7 @@
 
 'use client';
 
+import React, { useState } from 'react'; // Added useState
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -38,12 +39,49 @@ const tagExplanations: { [key: string]: string } = {
 
 export function RefinedPromptCard({ prompt, onUseThis }: RefinedPromptCardProps) {
   const description = tagExplanations[prompt.tag] || `A prompt refined for a '${prompt.tag}' style.`;
+  const [isTitleExpanded, setIsTitleExpanded] = useState(false);
+
+  const titleMaxLen = 120;
+  const isTitleTruncated = prompt.prompt.length > titleMaxLen;
+
+  const toggleTitleExpansion = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent card click or other parent events
+    setIsTitleExpanded(!isTitleExpanded);
+  };
 
   return (
     <Card className="shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out flex flex-col h-full hover:scale-[1.03] rounded-xl bg-card/50 dark:bg-card/40 backdrop-blur-lg hover:bg-card/60 dark:hover:bg-card/50 border border-border/10 supports-[backdrop-filter]:bg-card/50">
       <CardHeader className="pb-3">
         <Badge variant="secondary" className="w-fit mb-2 text-xs">{prompt.tag}</Badge>
-        <CardTitle className="text-lg leading-snug font-semibold">{prompt.prompt.substring(0, 120)}{prompt.prompt.length > 120 ? "..." : ""}</CardTitle>
+        <CardTitle className="text-lg leading-snug font-semibold">
+          {isTitleTruncated && !isTitleExpanded
+            ? (
+              <>
+                {prompt.prompt.substring(0, titleMaxLen)}...
+                <button
+                  onClick={toggleTitleExpansion}
+                  className="text-xs text-primary hover:underline ml-1 focus:outline-none"
+                  aria-label="Read more prompt title"
+                >
+                  Read more
+                </button>
+              </>
+            )
+            : isTitleTruncated && isTitleExpanded
+            ? (
+              <>
+                {prompt.prompt}
+                <button
+                  onClick={toggleTitleExpansion}
+                  className="text-xs text-primary hover:underline ml-1 focus:outline-none"
+                  aria-label="Read less prompt title"
+                >
+                  Read less
+                </button>
+              </>
+            )
+            : prompt.prompt}
+        </CardTitle>
       </CardHeader>
       <CardContent className="flex-grow pt-0">
         <CardDescription className="text-sm line-clamp-3 text-muted-foreground/90">
