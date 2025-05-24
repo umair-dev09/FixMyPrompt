@@ -1,7 +1,7 @@
 
 'use client';
 
-import React, { useState, useCallback, useEffect } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Loader2, WandSparkles } from 'lucide-react';
@@ -34,14 +34,14 @@ interface HomePageProps {
 }
 
 export default function HomePage({ params, searchParams }: HomePageProps) {
-  const [userInput, setUserInput] = useState('');
-  const [refinedPrompts, setRefinedPrompts] = useState<RefinedPromptClient[] | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [selectedPromptForModal, setSelectedPromptForModal] = useState<RefinedPromptClient | null>(null);
+  const [userInput, setUserInput] = React.useState('');
+  const [refinedPrompts, setRefinedPrompts] = React.useState<RefinedPromptClient[] | null>(null);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
+  const [selectedPromptForModal, setSelectedPromptForModal] = React.useState<RefinedPromptClient | null>(null);
   const { toast } = useToast();
 
-  const handleRefinePrompt = useCallback(async (promptText: string) => {
+  const handleRefinePrompt = React.useCallback(async (promptText: string) => {
     if (!promptText.trim()) {
       setRefinedPrompts(null); // Clear results if input is empty
       return;
@@ -77,7 +77,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
     }
   }, [toast]);
   
-  const debouncedRefinePrompt = useCallback(debounce(handleRefinePrompt, 1000), [handleRefinePrompt]);
+  const debouncedRefinePrompt = React.useCallback(debounce(handleRefinePrompt, 1000), [handleRefinePrompt]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newText = event.target.value;
@@ -107,7 +107,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
       <main className="flex-grow container mx-auto px-4 py-8 sm:py-12">
         <section className="max-w-3xl mx-auto text-center pt-20 sm:pt-28 lg:pt-32 mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-12 sm:mb-16 tracking-tighter text-center">
-            <WandSparkles className="inline-block align-baseline w-10 h-10 sm:w-16 sm:h-16 lg:w-20 lg:h-20 text-[hsl(var(--primary-gradient-from))] mr-2" />
+            <WandSparkles className="inline-block align-baseline w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-[hsl(var(--primary-gradient-from))] mr-2" />
             Unlock AI's Full Potential
           </h1>
           <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
