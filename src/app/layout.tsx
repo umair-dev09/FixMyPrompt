@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: 'FixMyPrompt',
     images: [
       {
-        url: 'https://placehold.co/1200x630.png', // Replace with your actual OG image URL
+        url: `${siteUrl}/images/og-banner.png`,
         width: 1200,
         height: 630,
         alt: 'FixMyPrompt - AI Prompt Refinement Banner',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     description: 'Elevate your AI interactions with FixMyPrompt. Get optimized prompts in seconds.',
     // site: '@yourtwitterhandle', // Add your Twitter handle if you have one
     // creator: '@yourtwitterhandle',
-    images: ['https://placehold.co/1200x630.png'], // Replace with your actual Twitter card image URL
+    images: [`${siteUrl}/images/og-banner.png`],
   },
   // For more specific App Router metadata options:
   // https://nextjs.org/docs/app/api-reference/functions/generate-metadata
