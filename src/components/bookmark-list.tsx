@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { PromptDialog } from '@/components/prompt-dialog';
 import type { RefinedPromptClient } from '@/types';
-import { Card, CardHeader, CardFooter, CardTitle, CardDescription } from './ui/card'; // Removed CardContent as it wasn't used
+import { Card, CardHeader, CardFooter, CardTitle, CardDescription } from './ui/card';
 import { Badge } from './ui/badge';
 import { Trash2 } from 'lucide-react';
 
@@ -31,7 +31,12 @@ export function BookmarkList() {
                     <Badge variant="secondary" className="mb-2">{prompt.tag}</Badge>
                     <CardTitle className="text-lg">{prompt.prompt.substring(0, 100)}{prompt.prompt.length > 100 ? '...' : ''}</CardTitle>
                   </div>
-                  <Button variant="ghost" size="icon" onClick={() => removeBookmark(prompt.id)} aria-label="Remove bookmark">
+                  <Button 
+                    variant="ghost" 
+                    className="h-9 px-3" // Changed from size="icon"
+                    onClick={() => removeBookmark(prompt.id)} 
+                    aria-label="Remove bookmark"
+                  >
                     <Trash2 className="h-4 w-4 text-destructive" />
                   </Button>
                 </div>
