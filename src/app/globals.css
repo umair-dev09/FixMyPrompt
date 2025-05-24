@@ -1,5 +1,42 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Variable.woff2') format('woff2-variations');
+  font-weight: 200 700; /* Adjust range based on available variable font weights */
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Example for individual weights if not using variable font:
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+*/
 
 @tailwind base;
 @tailwind components;
@@ -21,17 +58,18 @@
     --pg-to-l: 32 61% 52%;      /* Warm Orange */
     --pg-foreground-l: 0 0% 100%; /* White text on primary gradient */
 
-    /* Secondary Theme (Mustard-Based) - REVISED */
+    /* Secondary Theme (Golden Mustard-Based) */
     --secondary-light: 47 60% 94%; /* Very Light Golden Mustard */
     --secondary-foreground-light: 47 40% 30%; /* Dark Golden Mustard for text */
     
-    /* Muted Theme (Desaturated Purple/Pink-Based) - REVISED */
+    /* Muted Theme (Desaturated Purple/Pink-Based) */
     --muted-light: 320 30% 97%; /* Very light, subtly tinted purple/pink */
     --muted-foreground-light: 320 15% 50%; /* Mid-tone desaturated purple/pink for text */
 
     /* Accent Gradient: Golden Mustard -> Moss Green */
     --ag-from-l: 47 48% 54%;    /* Golden Mustard */
     --ag-to-l: 87 37% 41%;      /* Moss Green */
+    --accent-gradient-end-l: 87 40% 45%; /* Slightly varied Moss Green for gradient */
     --ag-foreground-l: 0 0% 100%; /* White text on accent gradient */
     
     --destructive-light: 0 80% 60%; /* Standard Red */
@@ -76,8 +114,10 @@
     --muted: var(--muted-light);
     --muted-foreground: var(--muted-foreground-light);
 
+    --accent: var(--ag-from-l); /* Solid accent color for fallback or specific uses */
     --accent-gradient-from: var(--ag-from-l);
     --accent-gradient-to: var(--ag-to-l);
+    --accent-gradient-end: var(--accent-gradient-end-l);
     --accent-foreground: var(--ag-foreground-l);
     
     --destructive: var(--destructive-light);
@@ -119,17 +159,18 @@
     --pg-to-d: 32 65% 60%;       /* Warm Orange (brighter) */
     --pg-foreground-d: 0 0% 100%;  /* White text */
 
-    /* Secondary Theme (Mustard-Based) - REVISED */
+    /* Secondary Theme (Golden Mustard-Based) */
     --secondary-dark: 47 40% 18%; /* Dark Golden Mustard */
     --secondary-foreground-dark: 47 50% 75%; /* Lighter Golden Mustard for text */
     
-    /* Muted Theme (Desaturated Purple/Pink-Based) - REVISED */
+    /* Muted Theme (Desaturated Purple/Pink-Based) */
     --muted-dark: 320 10% 20%; /* Dark, desaturated purple base */
     --muted-foreground-dark: 320 10% 70%; /* Light, desaturated purple/pink for text */
 
     /* Accent Gradient: Golden Mustard -> Moss Green (brighter for dark mode) */
     --ag-from-d: 47 55% 60%;     /* Golden Mustard (brighter) */
     --ag-to-d: 87 45% 50%;       /* Moss Green (brighter) */
+    --accent-gradient-end-d: 87 48% 55%; /* Slightly varied Moss Green for gradient */
     --ag-foreground-d: 320 15% 10%; /* Dark text on accent gradient */
     
     --destructive-dark: 0 75% 65%; /* Standard Red (brighter) */
@@ -172,8 +213,10 @@
     --muted: var(--muted-dark);
     --muted-foreground: var(--muted-foreground-dark);
 
+    --accent: var(--ag-from-d); /* Solid accent color for fallback or specific uses */
     --accent-gradient-from: var(--ag-from-d);
     --accent-gradient-to: var(--ag-to-d);
+    --accent-gradient-end: var(--accent-gradient-end-d);
     --accent-foreground: var(--ag-foreground-d);
     
     --destructive: var(--destructive-dark);
@@ -215,6 +258,7 @@
     
 
     
+
 
 
 

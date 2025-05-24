@@ -11,7 +11,7 @@ export default {
   theme: {
   	extend: {
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'], // Set Poppins as the primary sans-serif font
+        sans: ['Clash Display', 'sans-serif'], // Set Clash Display as the primary sans-serif font
       },
   		colors: {
   			background: 'hsl(var(--background))',
@@ -25,7 +25,7 @@ export default {
   				foreground: 'hsl(var(--popover-foreground))'
   			},
   			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
+  				DEFAULT: 'hsl(var(--primary-gradient-from))', // Use gradient start for primary default
   				foreground: 'hsl(var(--primary-foreground))'
   			},
   			secondary: {
@@ -37,7 +37,7 @@ export default {
   				foreground: 'hsl(var(--muted-foreground))'
   			},
   			accent: {
-  				DEFAULT: 'hsl(var(--accent))',
+  				DEFAULT: 'hsl(var(--accent-gradient-from))', // Use accent gradient start for accent default
   				foreground: 'hsl(var(--accent-foreground))'
   			},
   			destructive: {
