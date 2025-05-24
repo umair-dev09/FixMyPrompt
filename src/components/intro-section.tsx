@@ -88,17 +88,14 @@ const ROTATION_INTERVAL = 7000; // 7 seconds
 
 const llmLogos = [
   { name: "OpenAI GPT", srcLight: "/logos/chatgpt-light.webp", srcDark: "/logos/chatgpt-dark.webp", alt: "OpenAI Logo", hint: "AI language" },
-  { name: "Google Gemini", srcLight: "/logos/gemini-light.webp", srcDark: "/logos/gemini-dark.webp", alt: "Gemini Logo", hint: "Google AI" },
-  { name: "Anthropic Claude", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Claude Logo", hint: "Anthropic AI" },
-  { name: "MidJourney", srcLight: "/logos/midjourney-light.webp", srcDark: "/logos/midjourney-dark.webp", alt: "Mistral AI Logo", hint: "Mistral language" },
-  { name: "Cohere", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Cohere Logo", hint: "Cohere enterprise" },
-  { name: "Perplexity AI", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Perplexity AI Logo", hint: "AI search" },
-  { name: "AI21 Labs", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "AI21 Labs Logo", hint: "AI writing" },
-  { name: "Hugging Face", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Hugging Face Logo", hint: "AI community" },
-  { name: "Meta Llama", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Meta Llama Logo", hint: "Meta AI" },
-  { name: "Grok", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Grok Logo", hint: "X AI" },
-  { name: "Stability AI", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Stability AI Logo", hint: "AI image" },
-  { name: "Inflection AI", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Inflection AI Logo", hint: "personal AI" },
+  { name: "Google Gemini", srcLight: "/logos/gemini-color.webp", srcDark: "/logos/gemini-color.webp", alt: "Gemini Logo", hint: "Google AI" },
+  { name: "Anthropic Claude", srcLight: "/logos/claude-color.webp", srcDark: "/logos/claude-color.webp", alt: "Claude Logo", hint: "Anthropic AI" },
+  { name: "MidJourney", srcLight: "/logos/midjourney-light.webp", srcDark: "/logos/midjourney-dark.webp", alt: "Midjourney AI Logo", hint: "Mistral language" },
+  { name: "Github Copilot", srcLight: "/logos/copilot-color.webp", srcDark: "/logos/copilot-color.webp", alt: "Copilot Logo", hint: "Cohere enterprise" },
+  { name: "Perplexity AI", srcLight: "/logos/perplexity-color.webp", srcDark: "/logos/perplexity-color.webp", alt: "Perplexity AI Logo", hint: "AI search" },
+  { name: "Meta AI", srcLight: "/logos/meta-color.webp", srcDark: "/logos/meta-color.webp", alt: "Meta Logo", hint: "AI writing" },
+  { name: "Grok AI", srcLight: "/logos/grok-light.webp", srcDark: "/logos/grok-dark.webp", alt: "Grok Logo", hint: "AI community" },
+  { name: "Cursor", srcLight: "/logos/cursor-light.webp", srcDark: "/logos/cursor-dark.webp", alt: "Cursor AI Logo", hint: "AI image" },
 ];
 
 
@@ -199,9 +196,9 @@ export function IntroSection() {
                 <Image
                   src={mounted && theme === 'dark' ? logo.srcDark : logo.srcLight}
                   alt={logo.alt}
-                  width={100} // Enforce consistent width
-                  height={40} // Enforce consistent height
-                  className="rounded-md opacity-80 group-hover:opacity-100 transition-opacity duration-300 hover:!opacity-100 hover:scale-110"
+                  width={65} // Enforce consistent width
+                  height={65} // Enforce consistent height
+                  className="rounded-md opacity-80 group-hover:opacity-100 transition-opacity duration-300 hover:!opacity-100 hover:scale-110 mx-5"
                   data-ai-hint={logo.hint}
                 />
               </li>
