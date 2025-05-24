@@ -24,16 +24,16 @@
     --muted: 0 0% 90%; /* Slightly darker light gray for muted backgrounds */
     --muted-foreground: 220 10% 45%; /* Medium gray text */
 
-    --accent: 330 85% 60%; /* Vibrant Pink for light mode */
+    --accent: 330 85% 60%; /* Vibrant Pink for light mode - start of gradient */
     --accent-foreground: 0 0% 100%; /* White */
-    --accent-gradient-end: 335 90% 62%; /* Pink gradient end */
+    --accent-gradient-end: 335 90% 62%; /* Vibrant Pink for light mode - end of gradient */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 90%; /* Light gray borders */
     --input: 0 0% 90%; /* Input background */
-    --ring: 253 90% 55%; /* Primary for focus rings in light mode */
+    --ring: 330 85% 60%; /* Accent Pink for focus rings in light mode */
 
     --radius: 0.5rem;
 
@@ -45,7 +45,7 @@
     --sidebar-accent: 330 85% 60%; /* Updated accent */
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 0 0% 88%;
-    --sidebar-ring: 253 90% 55%;
+    --sidebar-ring: 330 85% 55%; /* Accent Pink for sidebar focus rings */
 
     /* Chart Colors - Light Theme */
     --chart-1: 253 90% 65%; /* Primary */
@@ -75,16 +75,16 @@
     --muted: 220 10% 10%; /* Darker muted background elements */
     --muted-foreground: 0 0% 60%; /* Muted text, like placeholder */
 
-    --accent: 330 90% 65%; /* Vibrant Pink for dark mode */
+    --accent: 330 90% 65%; /* Vibrant Pink for dark mode - start of gradient */
     --accent-foreground: 0 0% 100%; /* White */
-    --accent-gradient-end: 335 95% 67%; /* Pink gradient end */
+    --accent-gradient-end: 335 95% 67%; /* Vibrant Pink for dark mode - end of gradient */
 
     --destructive: 0 70% 55%; /* A noticeable red */
     --destructive-foreground: 0 0% 98%;
 
     --border: 220 10% 20%; /* Subtle borders */
     --input: 220 10% 20%; /* Input background, matching border */
-    --ring: 253 100% 60%; /* Slightly desaturated primary for focus rings */
+    --ring: 330 90% 65%; /* Accent Pink for focus rings in dark mode */
 
     /* Sidebar Colors - Dark Theme */
     --sidebar-background: 225 9% 11%;
@@ -94,7 +94,7 @@
     --sidebar-accent: 330 90% 65%; /* Updated accent */
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 220 10% 25%;
-    --sidebar-ring: 253 100% 60%;
+    --sidebar-ring: 330 90% 60%; /* Accent Pink for sidebar focus rings */
 
     /* Chart Colors - Dark Theme */
     --chart-1: 253 100% 75%; /* Lighter Primary */
