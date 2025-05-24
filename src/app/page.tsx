@@ -145,7 +145,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
               onChange={handleInputChange}
               placeholder={currentPlaceholder}
               rows={5}
-              className="text-base p-4 shadow-lg focus:ring-2 focus:ring-[hsl(var(--ring))] rounded-lg"
+              className="text-base p-4 shadow-lg rounded-lg"
               aria-label="Enter your prompt"
             />
              <Button 
