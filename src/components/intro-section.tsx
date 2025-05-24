@@ -74,10 +74,10 @@ const allExamplePrompts: ExamplePrompt[] = [
     ]
   },
   {
-    original: "what's the best way to learn a new language?",
+    original: "Suggest some fun activities for a weekend family picnic",
     refined: [
-        { tag: "Immersive", prompt: "Describe an immersive approach to learning a new language, emphasizing daily practice, cultural engagement, and speaking with native speakers." },
-        { tag: "Tech-focused", prompt: "Suggest a language learning strategy leveraging apps, online communities, and AI tutors for rapid progress." },
+        { tag: "Creative", prompt: "Brainstorm 5 unique and engaging activities for a family picnic, including one that involves storytelling and another that uses nature elements." },
+        { tag: "Simple", prompt: "List 3 easy and fun games for a family picnic that require minimal setup." },
     ]
   }
 ];
@@ -307,5 +307,7 @@ export function IntroSection() {
     </div>
   );
 }
+
+    
 
     
