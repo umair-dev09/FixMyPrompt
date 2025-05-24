@@ -89,47 +89,6 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
     }
   };
 
-  const handleShare = async () => {
-    const shareData = {
-      title: `FixMyPrompt: ${prompt.tag}`,
-      text: prompt.prompt,
-      url: window.location.href, // Or a more specific URL if you have one for individual prompts
-    };
-
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-        toast({ title: 'Shared!', description: 'Prompt shared successfully.' });
-      } catch (error) {
-        console.error('Share API error:', error);
-        if (error instanceof Error && error.name === 'NotAllowedError') {
-          toast({
-            title: 'Sharing Failed',
-            description: 'Permission to share was denied. Prompt copied to clipboard instead!',
-            variant: 'destructive',
-          });
-          await handleCopy(); // Fallback to copy
-        } else if (error instanceof Error && error.name === 'AbortError') {
-          // User cancelled the share dialog - no toast needed or a very subtle one
-        } else {
-          toast({
-            title: 'Sharing Failed',
-            description: 'Could not share prompt. Copied to clipboard as a fallback.',
-            variant: 'destructive',
-          });
-          await handleCopy(); // Fallback to copy
-        }
-      }
-    } else {
-      // Fallback for browsers that don't support navigator.share
-      await handleCopy();
-      toast({
-        title: 'Copied to Clipboard',
-        description: "Your browser doesn't support direct sharing. The prompt has been copied to your clipboard.",
-      });
-    }
-  };
-
   const handleBookmarkToggle = () => {
     if (bookmarked) {
       removeBookmark(prompt.id);
@@ -182,7 +141,11 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
             <Button onClick={() => setIsShareDialogOpen(true)} variant="outline">
               <Share2 className="mr-2 h-4 w-4" /> Share
             </Button>
-            <Button onClick={handleBookmarkToggle} variant={bookmarked ? "default" : "outline"}>
+            <Button
+              onClick={handleBookmarkToggle}
+              variant={bookmarked ? "default" : "outline"}
+              className="min-w-36" // Ensure consistent width for text change
+            >
               <Bookmark className={`mr-2 h-4 w-4 ${bookmarked ? 'fill-current' : ''}`} />
               {bookmarked ? 'Bookmarked' : 'Bookmark'}
             </Button>
