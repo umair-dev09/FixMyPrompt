@@ -53,6 +53,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
 
   const [currentPlaceholder, setCurrentPlaceholder] = React.useState(placeholderExamples[0]);
   const placeholderIndexRef = React.useRef(0);
+  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
   // Dictation state
   const [isDictating, setIsDictating] = useState(false);
@@ -71,15 +72,14 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
     if (SpeechRecognitionAPI) {
       setIsSpeechApiAvailable(true);
       recognitionRef.current = new SpeechRecognitionAPI();
-      recognitionRef.current.continuous = false; // Process single utterances
-      recognitionRef.current.interimResults = false; // Only final results
-      // recognitionRef.current.lang = 'en-US'; // Optional: set language
+      recognitionRef.current.continuous = false; 
+      recognitionRef.current.interimResults = false; 
     } else {
       setIsSpeechApiAvailable(false);
     }
 
     return () => {
-      clearInterval(intervalId); // Cleanup interval on component unmount
+      clearInterval(intervalId); 
       if (recognitionRef.current) {
         recognitionRef.current.stop();
       }
@@ -147,6 +147,12 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
     setSelectedPromptForModal(prompt);
   };
 
+  const handleSetInputForRefinement = (promptText: string) => {
+    setUserInput(promptText);
+    textareaRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    textareaRef.current?.focus();
+  };
+
   const handleToggleDictation = () => {
     if (!recognitionRef.current) {
       toast({
@@ -168,11 +174,9 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
       };
 
       recognition.onresult = (event: SpeechRecognitionEvent) => {
-        // For continuous=false, the result is typically in the first item of the last result.
         const transcript = event.results[event.results.length - 1][0].transcript.trim();
         if (transcript) {
           setUserInput((prevInput) =>
-            // Add a space if prevInput is not empty and doesn't already end with a space
             prevInput + (prevInput.endsWith(' ') || prevInput === '' ? '' : ' ') + transcript
           );
         }
@@ -234,6 +238,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
         <section className="max-w-2xl mx-auto mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.1s' }}>
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             <Textarea
+              ref={textareaRef}
               value={userInput}
               onChange={handleInputChange}
               placeholder={currentPlaceholder}
@@ -261,7 +266,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
                 disabled={!isSpeechApiAvailable}
                 variant={isDictating ? "secondary" : "outline"}
                 size="lg"
-                className="px-4" // Adjust padding for icon button
+                className="px-4" 
                 aria-label={isDictating ? "Stop dictation" : "Start dictation"}
               >
                 {isDictating ? <MicOff className="h-5 w-5" /> : <Mic className="h-5 w-5" />}
@@ -289,7 +294,12 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
             <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">Your Refined Prompts:</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {refinedPrompts.map((prompt) => (
-                <RefinedPromptCard key={prompt.id} prompt={prompt} onUseThis={handleUseThisPrompt} />
+                <RefinedPromptCard 
+                  key={prompt.id} 
+                  prompt={prompt} 
+                  onUseThis={handleUseThisPrompt} 
+                  onRefineThis={handleSetInputForRefinement}
+                />
               ))}
             </div>
           </section>
@@ -327,3 +337,4 @@ declare global {
     readonly results: SpeechRecognitionResultList;
   }
 }
+

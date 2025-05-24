@@ -1,7 +1,7 @@
 
 'use client';
 
-import React, { useState } from 'react'; // Added useState
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -10,6 +10,7 @@ import type { RefinedPromptClient } from '@/types';
 interface RefinedPromptCardProps {
   prompt: RefinedPromptClient;
   onUseThis: (prompt: RefinedPromptClient) => void;
+  onRefineThis: (promptText: string) => void; // New prop
 }
 
 const tagExplanations: { [key: string]: string } = {
@@ -34,10 +35,9 @@ const tagExplanations: { [key: string]: string } = {
   Luxury: 'Emphasizes high-end quality and exclusivity.',
   Immersive: 'A version designed for deep engagement and active participation.',
   'Tech-focused': 'Leverages technology and digital tools for solutions.',
-  // Add more common tags and their explanations as needed
 };
 
-export function RefinedPromptCard({ prompt, onUseThis }: RefinedPromptCardProps) {
+export function RefinedPromptCard({ prompt, onUseThis, onRefineThis }: RefinedPromptCardProps) {
   const description = tagExplanations[prompt.tag] || `A prompt refined for a '${prompt.tag}' style.`;
   const [isTitleExpanded, setIsTitleExpanded] = useState(false);
 
@@ -45,7 +45,7 @@ export function RefinedPromptCard({ prompt, onUseThis }: RefinedPromptCardProps)
   const isTitleTruncated = prompt.prompt.length > titleMaxLen;
 
   const toggleTitleExpansion = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent card click or other parent events
+    e.stopPropagation();
     setIsTitleExpanded(!isTitleExpanded);
   };
 
@@ -88,13 +88,21 @@ export function RefinedPromptCard({ prompt, onUseThis }: RefinedPromptCardProps)
           {description}
         </CardDescription>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="flex flex-col gap-2">
         <Button
           onClick={() => onUseThis(prompt)}
           className="w-full bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] hover:brightness-110 active:brightness-95 text-primary-foreground transform hover:scale-[1.03] active:scale-[0.97] transition-all duration-150 ease-out rounded-lg"
           size="lg"
         >
           Use This Prompt
+        </Button>
+        <Button
+          onClick={() => onRefineThis(prompt.prompt)}
+          variant="outline"
+          className="w-full"
+          size="lg"
+        >
+          Refine this prompt
         </Button>
       </CardFooter>
     </Card>
