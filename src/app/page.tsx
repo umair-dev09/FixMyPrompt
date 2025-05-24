@@ -101,12 +101,12 @@ export default function HomePage() {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8 sm:py-12">
-        <section className="max-w-3xl mx-auto text-center mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tighter flex items-center justify-center">
-            <Wand2 className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 mr-3 text-[hsl(var(--primary-gradient-from))]" />
+        <section className="max-w-3xl mx-auto text-center mb-12 sm:mb-16 pt-12 sm:pt-16 lg:pt-20 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-8 tracking-tighter flex items-center justify-center">
+            <Wand2 className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 mr-2 sm:mr-3 lg:mr-4 text-[hsl(var(--primary-gradient-from))]" />
             Unlock AI's Full Potential
           </h1>
-          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-xl mx-auto">
+          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto">
             Transform your simple ideas into powerful, precise prompts. Get multiple AI-optimized variations in seconds.
           </p>
         </section>
@@ -118,7 +118,7 @@ export default function HomePage() {
               onChange={handleInputChange}
               placeholder="e.g., write a short story about a curious cat..."
               rows={5}
-              className="text-base p-4 shadow-lg focus:ring-2 focus:ring-ring rounded-lg"
+              className="text-base p-4 shadow-lg focus:ring-2 focus:ring-[hsl(var(--ring))] rounded-lg"
               aria-label="Enter your prompt"
             />
              <Button 
