@@ -12,7 +12,17 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Copy, Share2, Bookmark, ExternalLink, MessageSquareText, Brain, Bot } from 'lucide-react';
+import {
+  Copy,
+  Share2,
+  Bookmark,
+  ExternalLink,
+  MessageSquareText, // For ChatGPT
+  Brain,             // For Gemini
+  Bot,               // For Claude
+  Search,            // For Perplexity
+  Twitter,           // For Grok (X)
+} from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useBookmarks } from '@/contexts/bookmark-context';
 import type { RefinedPromptClient, AiPlatform } from '@/types';
@@ -22,7 +32,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ShareDialog } from './share-dialog'; // Import the new ShareDialog
+import { ShareDialog } from './share-dialog';
 
 interface PromptDialogProps {
   prompt: RefinedPromptClient;
@@ -31,9 +41,31 @@ interface PromptDialogProps {
 }
 
 const aiPlatforms: AiPlatform[] = [
-  { name: 'ChatGPT', url: (prompt) => `https://chat.openai.com/?prompt=${encodeURIComponent(prompt)}`, icon: MessageSquareText },
-  { name: 'Gemini', url: (prompt) => `https://gemini.google.com/app?prompt=${encodeURIComponent(prompt)}`, icon: Brain },
-  { name: 'Claude', url: (prompt) => `https://claude.ai/new?prompt=${encodeURIComponent(prompt)}`, icon: Bot },
+  {
+    name: 'ChatGPT',
+    url: (prompt) => `https://chat.openai.com/?prompt=${encodeURIComponent(prompt)}`,
+    icon: MessageSquareText
+  },
+  {
+    name: 'Gemini',
+    url: (prompt) => `https://gemini.google.com/app?prompt=${encodeURIComponent(prompt)}`,
+    icon: Brain
+  },
+  {
+    name: 'Claude',
+    url: (prompt) => `https://claude.ai/new?prompt=${encodeURIComponent(prompt)}`,
+    icon: Bot
+  },
+  {
+    name: 'Perplexity',
+    url: (prompt) => `https://www.perplexity.ai/search?q=${encodeURIComponent(prompt)}`,
+    icon: Search
+  },
+  {
+    name: 'Grok (on X)',
+    url: (prompt) => `https://x.com/search?q=${encodeURIComponent(prompt)}&src=typed_query`,
+    icon: Twitter
+  },
 ];
 
 
@@ -60,47 +92,13 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
   const handleBookmarkToggle = () => {
     if (bookmarked) {
       removeBookmark(prompt.id);
+      toast({ title: "Bookmark Removed", description: "Prompt removed from your bookmarks." });
     } else {
       addBookmark(prompt);
+      toast({ title: "Bookmarked!", description: "Prompt added to your bookmarks." });
     }
   };
   
-  const handleShare = async () => {
-    const shareData = {
-      title: `Check out this prompt: ${prompt.tag}`,
-      text: prompt.prompt,
-      url: window.location.href, // Or a more specific URL if available
-    };
-
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-        toast({ title: 'Shared!', description: 'Prompt shared successfully.' });
-      } catch (error) {
-        console.error('Share API error:', error);
-        if (error instanceof Error && error.name === 'NotAllowedError') {
-          toast({
-            title: 'Share Canceled or Denied',
-            description: 'Trying to copy to clipboard instead...',
-            variant: 'default',
-          });
-          await handleCopy();
-        } else {
-          toast({
-            title: 'Share Failed',
-            description: 'Could not share. Trying to copy to clipboard...',
-            variant: 'destructive',
-          });
-          await handleCopy();
-        }
-      }
-    } else {
-      // Fallback for browsers that don't support navigator.share
-      toast({ title: 'Share Not Supported', description: 'Copying prompt to clipboard instead.' });
-      await handleCopy();
-    }
-  };
-
 
   return (
     <>
