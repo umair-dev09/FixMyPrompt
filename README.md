@@ -1,5 +1,4 @@
-ixMyPrompt 🛠️
-FixMyPrompt is an AI-powered tool that helps you craft better prompts by providing three refined versions of your original input. Whether you're writing prompts for ChatGPT, Midjourney, or any other AI tool, FixMyPrompt improves clarity, intent, and effectiveness—instantly.
+🛠️ FixMyPrompt is an AI-powered tool that helps you craft better prompts by providing three refined versions of your original input. Whether you're writing prompts for ChatGPT, Midjourney, or any other AI tool, FixMyPrompt improves clarity, intent, and effectiveness—instantly.
 
 🔍 Overview
 Crafting effective prompts can be tricky. FixMyPrompt makes it easy by taking your raw prompt and returning three optimized versions, each with a unique focus:
