@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Prompt Alchemy',
-  description: 'Refine your prompts to perfection.',
+  title: 'FixMyPrompt',
+  description: 'Refine your prompts to perfection with FixMyPrompt.',
 };
 
 export default function RootLayout({

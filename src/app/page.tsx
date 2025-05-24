@@ -101,9 +101,9 @@ export default function HomePage() {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8 sm:py-12">
-        <section className="max-w-3xl mx-auto text-center mb-12 sm:mb-16 animate-fadeInUp">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tighter flex items-center justify-center">
-            <Wand2 className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 mr-3 text-[hsl(var(--primary-gradient-from))]" />
+        <section className="max-w-3xl mx-auto text-center mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tighter flex items-center justify-center">
+            <Wand2 className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 mr-3 text-[hsl(var(--primary-gradient-from))]" />
             Unlock AI's Full Potential
           </h1>
           <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-xl mx-auto">
@@ -111,7 +111,7 @@ export default function HomePage() {
           </p>
         </section>
 
-        <section className="max-w-2xl mx-auto mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
+        <section className="max-w-2xl mx-auto mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.1s' }}>
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             <Textarea
               value={userInput}
@@ -124,9 +124,8 @@ export default function HomePage() {
              <Button 
               type="submit" 
               disabled={isLoading || !userInput.trim()} 
-              className="w-full sm:w-auto text-base py-3 px-6 rounded-lg"
+              className="w-full sm:w-auto text-base py-3 px-6 rounded-lg bg-gradient-to-r from-[hsl(var(--primary-gradient-from))] via-[hsl(var(--primary-gradient-via))] to-[hsl(var(--primary-gradient-to))]"
               size="lg"
-              variant="default" 
             >
               {isLoading ? (
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />
@@ -139,20 +138,20 @@ export default function HomePage() {
         </section>
         
         {isLoading && (
-          <div className="text-center py-8 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+          <div className="text-center py-8 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.2s' }}>
             <Loader2 className="h-12 w-12 animate-spin text-[hsl(var(--accent-gradient-from))] mx-auto" />
             <p className="mt-4 text-muted-foreground">Brewing refined prompts...</p>
           </div>
         )}
 
         {error && !isLoading && (
-          <div className="text-center py-8 text-destructive animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+          <div className="text-center py-8 text-destructive animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.2s' }}>
             <p>Error: {error}</p>
           </div>
         )}
 
         {!isLoading && !error && refinedPrompts && refinedPrompts.length > 0 && (
-          <section className="mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+          <section className="mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.2s' }}>
             <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center tracking-tight">Your Refined Prompts:</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {refinedPrompts.map((prompt) => (
@@ -163,7 +162,7 @@ export default function HomePage() {
         )}
 
         {!isLoading && !error && (!refinedPrompts || refinedPrompts.length === 0) && (
-          <div className="animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+          <div className="animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.2s' }}>
             <IntroSection />
           </div>
         )}
@@ -178,8 +177,8 @@ export default function HomePage() {
           />
         )}
       </main>
-      <footer className="py-6 sm:py-8 text-center text-sm text-muted-foreground border-t border-border/50 animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
-        © {new Date().getFullYear()} Prompt Alchemy. Unleash your creativity.
+      <footer className="py-6 sm:py-8 text-center text-sm text-muted-foreground border-t border-border/50 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.3s' }}>
+        © {new Date().getFullYear()} FixMyPrompt. Unleash your creativity.
       </footer>
     </div>
   );

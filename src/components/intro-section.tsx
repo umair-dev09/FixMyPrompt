@@ -134,21 +134,21 @@ export function IntroSection() {
 
   return (
     <div className="space-y-12 sm:space-y-16 my-8 sm:my-12">
-      <section className="text-center animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
-        <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight">What is Prompt Alchemy?</h2>
+      <section className="text-center animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.1s' }}>
+        <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight">What is FixMyPrompt?</h2>
         <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
-          Prompt Alchemy helps you transform your simple ideas into powerful, refined prompts.
+          FixMyPrompt helps you transform your simple ideas into powerful, refined prompts.
           Get multiple variations tailored for different needs, ensuring you get the best results
           from your favorite AI tools.
         </p>
       </section>
 
-      <section className="animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+      <section className="animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.2s' }}>
         <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center tracking-tight">Example Transformations</h2>
         {currentExamples.length > 0 ? (
             <div key={animationKey} className="grid md:grid-cols-2 gap-6 sm:gap-8 animate-fadeInUp" style={{ animationDuration: '0.3s' }}>
             {currentExamples.map((example, index) => (
-                <Card key={`${example.original}-${index}`} className="shadow-lg rounded-xl flex flex-col">
+                <Card key={`${example.original}-${index}`} className="shadow-lg rounded-xl flex flex-col hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/50 dark:bg-card/40 backdrop-blur-lg hover:bg-card/60 dark:hover:bg-card/50 border border-border/10 supports-[backdrop-filter]:bg-card/50">
                 <CardHeader>
                     <CardTitle className="text-lg sm:text-xl font-semibold">Original: "{example.original}"</CardTitle>
                 </CardHeader>
@@ -168,7 +168,7 @@ export function IntroSection() {
         )}
       </section>
 
-      <section className="text-center animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
+      <section className="text-center animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.3s' }}>
         <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 tracking-tight">Works with popular AI models</h2>
         <div className="flex justify-center items-center space-x-4 sm:space-x-6 flex-wrap">
           {llmLogos.map(logo => (
