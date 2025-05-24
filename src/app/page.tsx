@@ -58,7 +58,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
   // Dictation state
   const [isDictating, setIsDictating] = useState(false);
   const [isSpeechApiAvailable, setIsSpeechApiAvailable] = useState(false);
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const recognitionRef = useRef<any>(null); // Use 'any' for now due to potential prefixing
 
 
   React.useEffect(() => {
@@ -68,7 +68,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
     }, 4000);
 
     // Speech Recognition API setup
-    const SpeechRecognitionAPI = window.SpeechRecognition || (window as any).webkitSpeechRecognition;
+    const SpeechRecognitionAPI = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (SpeechRecognitionAPI) {
       setIsSpeechApiAvailable(true);
       recognitionRef.current = new SpeechRecognitionAPI();
@@ -186,7 +186,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
         setIsDictating(true);
       };
 
-      recognition.onresult = (event: SpeechRecognitionEvent) => {
+      recognition.onresult = (event: any) => { // Use 'any' for event type
         const transcript = event.results[event.results.length - 1][0].transcript.trim();
         if (transcript) {
           setUserInput((prevInput) =>
@@ -195,7 +195,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
         }
       };
 
-      recognition.onerror = (event: SpeechRecognitionEvent & { error: string }) => {
+      recognition.onerror = (event: any) => { // Use 'any' for event type
         setIsDictating(false);
         let errorMsg = 'An error occurred during dictation.';
         if (event.error === 'no-speech') {
@@ -364,15 +364,4 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
     </div>
   );
 }
-declare global {
-  interface Window {
-    SpeechRecognition: typeof SpeechRecognition;
-    webkitSpeechRecognition: typeof SpeechRecognition;
-  }
-  interface SpeechRecognitionEvent extends Event {
-    readonly resultIndex: number;
-    readonly results: SpeechRecognitionResultList;
-  }
-}
-
     
