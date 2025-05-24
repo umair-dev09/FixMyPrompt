@@ -250,7 +250,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
               <Button
                 type="submit"
                 disabled={isLoading || !userInput.trim()}
-                className="flex-grow sm:flex-grow-0 text-base py-3 px-6 rounded-lg bg-gradient-to-r from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] hover:brightness-110 active:brightness-95 text-accent-foreground"
+                className="flex-grow sm:flex-grow-0 text-base py-3 px-6 rounded-lg"
                 size="lg"
               >
                 {isLoading ? (
@@ -330,7 +330,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
             <a href="https://facebook.com/your_page_here" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[hsl(var(--ag-from))] transition-colors">
               <Facebook className="h-5 w-5" />
             </a>
-            <a href="https://twitter.com/your_handle_here" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="hover:text-[hsl(var(--ag-from))] transition-colors">
+            <a href="https://x.com/your_handle_here" target="_blank" rel="noopener noreferrer" aria-label="X" className="hover:text-[hsl(var(--ag-from))] transition-colors">
               <Bird className="h-5 w-5" />
             </a>
           </div>

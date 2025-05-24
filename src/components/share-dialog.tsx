@@ -61,10 +61,10 @@ export function ShareDialog({ isOpen, onOpenChange, promptText, promptTag }: Sha
       className: "bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white",
     },
     {
-      name: 'Twitter',
+      name: 'X (formerly Twitter)',
       icon: Bird,
       action: (text) => {
-        handleGenericShare(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`);
+        handleGenericShare(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}`);
       },
       className: "bg-sky-500 hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700 text-white",
     },

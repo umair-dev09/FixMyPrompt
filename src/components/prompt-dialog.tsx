@@ -21,7 +21,7 @@ import {
   Brain,
   Bot,
   Search,
-  Bird, // Changed from X
+  Bird,
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useBookmarks } from '@/contexts/bookmark-context';
@@ -62,9 +62,9 @@ const aiPlatforms: AiPlatform[] = [
     icon: Bot
   },
   {
-    name: 'Twitter', // Changed from Grok (on X)
-    url: (prompt) => `https://twitter.com/intent/tweet?text=${encodeURIComponent(prompt)}`, // Changed URL
-    icon: Bird // Changed from X
+    name: 'Grok (on X)',
+    url: (prompt) => `https://x.com/search?q=${encodeURIComponent(prompt)}`,
+    icon: Bird
   },
 ];
 
