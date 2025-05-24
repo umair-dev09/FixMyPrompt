@@ -102,12 +102,12 @@ export default function HomePage() {
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8 sm:py-12">
         <section className="max-w-3xl mx-auto text-center mb-12 sm:mb-16 animate-fadeInUp">
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 tracking-tighter flex items-center justify-center">
-            <Wand2 className="w-10 h-10 sm:w-12 sm:h-12 mr-3 text-[hsl(var(--pg-from-l))]" /> {/* Updated icon color */}
-            Refine Your Prompts
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tighter flex items-center justify-center">
+            <Wand2 className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 mr-3 text-[hsl(var(--primary-gradient-from))]" />
+            Unlock AI's Full Potential
           </h1>
-          <p className="text-lg sm:text-xl text-muted-foreground">
-            Enter your initial prompt below. We'll magically generate three enhanced versions for you to use.
+          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-xl mx-auto">
+            Transform your simple ideas into powerful, precise prompts. Get multiple AI-optimized variations in seconds.
           </p>
         </section>
 
@@ -140,7 +140,7 @@ export default function HomePage() {
         
         {isLoading && (
           <div className="text-center py-8 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
-            <Loader2 className="h-12 w-12 animate-spin text-[hsl(var(--ag-from-l))] mx-auto" /> {/* Updated spinner color */}
+            <Loader2 className="h-12 w-12 animate-spin text-[hsl(var(--accent-gradient-from))] mx-auto" />
             <p className="mt-4 text-muted-foreground">Brewing refined prompts...</p>
           </div>
         )}
