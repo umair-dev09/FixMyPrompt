@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Target, Zap, Lightbulb, SlidersHorizontal, TrendingUp, Cpu, ToyBrick, Palette, Workflow, Sparkles, BarChartBig, UserRoundCog } from 'lucide-react';
+import { useTheme } from 'next-themes';
 
 interface RefinedExample {
   tag: string;
@@ -86,18 +87,18 @@ const EXAMPLES_TO_SHOW = 2;
 const ROTATION_INTERVAL = 7000; // 7 seconds
 
 const llmLogos = [
-  { name: "OpenAI GPT", src: "https://placehold.co/130x50.png", alt: "OpenAI Logo", hint: "AI language" },
-  { name: "Google Gemini", src: "https://placehold.co/130x50.png", alt: "Gemini Logo", hint: "Google AI" },
-  { name: "Anthropic Claude", src: "https://placehold.co/130x50.png", alt: "Claude Logo", hint: "Anthropic AI" },
-  { name: "Mistral AI", src: "https://placehold.co/130x50.png", alt: "Mistral AI Logo", hint: "Mistral language" },
-  { name: "Cohere", src: "https://placehold.co/130x50.png", alt: "Cohere Logo", hint: "Cohere enterprise" },
-  { name: "Perplexity AI", src: "https://placehold.co/130x50.png", alt: "Perplexity AI Logo", hint: "AI search" },
-  { name: "AI21 Labs", src: "https://placehold.co/130x50.png", alt: "AI21 Labs Logo", hint: "AI writing" },
-  { name: "Hugging Face", src: "https://placehold.co/130x50.png", alt: "Hugging Face Logo", hint: "AI community" },
-  { name: "Meta Llama", src: "https://placehold.co/130x50.png", alt: "Meta Llama Logo", hint: "Meta AI" },
-  { name: "Grok", src: "https://placehold.co/130x50.png", alt: "Grok Logo", hint: "X AI" },
-  { name: "Stability AI", src: "https://placehold.co/130x50.png", alt: "Stability AI Logo", hint: "AI image" },
-  { name: "Inflection AI", src: "https://placehold.co/130x50.png", alt: "Inflection AI Logo", hint: "personal AI" },
+  { name: "OpenAI GPT", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "OpenAI Logo", hint: "AI language" },
+  { name: "Google Gemini", srcLight: "/logos/gemini.svg", srcDark: "https://placehold.co/130x50.png", alt: "Gemini Logo", hint: "Google AI" },
+  { name: "Anthropic Claude", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Claude Logo", hint: "Anthropic AI" },
+  { name: "Mistral AI", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Mistral AI Logo", hint: "Mistral language" },
+  { name: "Cohere", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Cohere Logo", hint: "Cohere enterprise" },
+  { name: "Perplexity AI", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Perplexity AI Logo", hint: "AI search" },
+  { name: "AI21 Labs", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "AI21 Labs Logo", hint: "AI writing" },
+  { name: "Hugging Face", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Hugging Face Logo", hint: "AI community" },
+  { name: "Meta Llama", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Meta Llama Logo", hint: "Meta AI" },
+  { name: "Grok", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Grok Logo", hint: "X AI" },
+  { name: "Stability AI", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Stability AI Logo", hint: "AI image" },
+  { name: "Inflection AI", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Inflection AI Logo", hint: "personal AI" },
 ];
 
 
@@ -107,6 +108,12 @@ export function IntroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentExamples, setCurrentExamples] = useState<ExamplePrompt[]>([]);
   const [animationKey, setAnimationKey] = useState(0);
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     // Initial setup
@@ -183,17 +190,17 @@ export function IntroSection() {
 
       <section className="text-center animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.3s' }}>
         <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">Works with popular AI models</h2>
-        <div 
+        <div
           className="w-full inline-flex flex-nowrap overflow-hidden py-4 [mask-image:_linear-gradient(to_right,transparent_0,_black_30px,_black_calc(100%-30px),transparent_100%)] group"
         >
           <ul className="flex items-center justify-center md:justify-start animate-infinite-scroll group-hover:[animation-play-state:paused]">
             {extendedLogos.map((logo, index) => (
               <li key={`${logo.name}-1-${index}`} className="mx-4 sm:mx-6 flex-shrink-0" title={logo.name}>
-                <Image 
-                  src={logo.src} 
-                  alt={logo.alt} 
-                  width={130} 
-                  height={50} 
+                <Image
+                  src={mounted && theme === 'dark' ? logo.srcDark : logo.srcLight}
+                  alt={logo.alt}
+                  width={130}
+                  height={50}
                   className="rounded-md opacity-80 group-hover:opacity-100 transition-opacity duration-300 hover:!opacity-100 hover:scale-110"
                   data-ai-hint={logo.hint}
                 />
