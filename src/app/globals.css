@@ -40,7 +40,7 @@
     --destructive-light: 0 80% 60%; /* Standard Red */
     --destructive-foreground-light: 0 0% 100%;
     --border-light: 320 15% 88%; /* Lighter, desaturated purple based border */
-    --input-light: 0 0% 97%; /* Very light neutral for input background */
+    --input-light: 0 0% 100%; /* White for input background in light mode */
     --ring-light: 47 48% 54%; /* Golden Mustard for focus */
 
     /* Sidebar - Light Theme */
@@ -141,7 +141,7 @@
     --destructive-dark: 0 75% 65%; /* Standard Red (brighter) */
     --destructive-foreground-dark: 0 0% 100%;
     --border-dark: 320 10% 25%; /* Darker, desaturated purple based border */
-    --input-dark: 320 10% 16%; /* Dark Deep Purple based input background */
+    --input-dark: 320 10% 18%; /* Slightly lighter input background in dark mode */
     --ring-dark: 47 55% 60%; /* Golden Mustard (brighter for focus) */
 
     /* Sidebar - Dark Theme */
@@ -223,6 +223,7 @@
     
 
     
+
 
 
 

@@ -33,6 +33,16 @@ interface HomePageProps {
   searchParams?: { [key: string]: string | string[] | undefined };
 }
 
+const placeholderExamples = [
+  "e.g., write a short story about a curious cat...",
+  "e.g., explain quantum physics to a five-year-old...",
+  "e.g., draft a marketing email for a new SaaS product...",
+  "e.g., generate a Python script to scrape website data...",
+  "e.g., create a catchy slogan for an eco-friendly brand...",
+  "e.g., suggest three creative blog post ideas about sustainable travel...",
+  "e.g., describe a futuristic city powered by renewable energy...",
+];
+
 export default function HomePage({ params, searchParams }: HomePageProps) {
   const [userInput, setUserInput] = React.useState('');
   const [refinedPrompts, setRefinedPrompts] = React.useState<RefinedPromptClient[] | null>(null);
@@ -40,6 +50,19 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
   const [error, setError] = React.useState<string | null>(null);
   const [selectedPromptForModal, setSelectedPromptForModal] = React.useState<RefinedPromptClient | null>(null);
   const { toast } = useToast();
+
+  const [currentPlaceholder, setCurrentPlaceholder] = React.useState(placeholderExamples[0]);
+  const placeholderIndexRef = React.useRef(0);
+
+  React.useEffect(() => {
+    const intervalId = setInterval(() => {
+      placeholderIndexRef.current = (placeholderIndexRef.current + 1) % placeholderExamples.length;
+      setCurrentPlaceholder(placeholderExamples[placeholderIndexRef.current]);
+    }, 4000); // Change placeholder every 4 seconds
+
+    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+  }, []);
+
 
   const handleRefinePrompt = React.useCallback(async (promptText: string) => {
     if (!promptText.trim()) {
@@ -120,7 +143,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
             <Textarea
               value={userInput}
               onChange={handleInputChange}
-              placeholder="e.g., write a short story about a curious cat..."
+              placeholder={currentPlaceholder}
               rows={5}
               className="text-base p-4 shadow-lg focus:ring-2 focus:ring-[hsl(var(--ring))] rounded-lg"
               aria-label="Enter your prompt"
