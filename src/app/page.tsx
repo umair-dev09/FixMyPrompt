@@ -37,9 +37,9 @@ const placeholderExamples = [
   "e.g., write a short story about a curious cat...",
   "e.g., explain quantum physics to a five-year-old...",
   "e.g., draft a marketing email for a new SaaS product...",
-  "e.g., suggest healthy dinner recipes for the week...", // Changed
+  "e.g., suggest healthy dinner recipes for the week...",
   "e.g., create a catchy slogan for an eco-friendly brand...",
-  "e.g., write a short story about Diwali...", // Changed
+  "e.g., write a short story about Diwali...",
   "e.g., describe a futuristic city powered by renewable energy...",
 ];
 
@@ -100,13 +100,11 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
     }
   }, [toast]);
   
-  // Increased debounce time to 1500ms
   const debouncedRefinePrompt = React.useCallback(debounce(handleRefinePrompt, 1500), [handleRefinePrompt]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newText = event.target.value;
     setUserInput(newText);
-    // Increased minimum length to 20 characters for auto-trigger
     if (newText.trim().length > 20) { 
         debouncedRefinePrompt(newText);
     } else if (!newText.trim()) {
@@ -131,12 +129,12 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8 sm:py-12">
         <section className="max-w-3xl mx-auto text-center pt-20 sm:pt-28 lg:pt-32 mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-12 sm:mb-16 tracking-tighter text-center">
-            <WandSparkles className="inline-block align-baseline w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-[hsl(var(--pg-from))] mr-2" />
-            <span className="bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">
-              Unlock AI's Full Potential
-            </span>
-          </h1>
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-12 sm:mb-16 tracking-tighter text-center flex-wrap justify-center">
+          <WandSparkles className="inline-block align-baseline w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-[hsl(var(--pg-from))] mr-2" />
+          <span className="bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">
+            Unlock AI's Full Potential
+          </span>
+        </h1>
           <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
             Transform your simple ideas into powerful, precise prompts. Get multiple AI-optimized variations in seconds.
           </p>
@@ -183,7 +181,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
 
         {!isLoading && !error && refinedPrompts && refinedPrompts.length > 0 && (
           <section className="mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.2s' }}>
-            <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center tracking-tight text-[hsl(var(--pg-from))]">Your Refined Prompts:</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">Your Refined Prompts:</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {refinedPrompts.map((prompt) => (
                 <RefinedPromptCard key={prompt.id} prompt={prompt} onUseThis={handleUseThisPrompt} />
@@ -214,4 +212,3 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
     </div>
   );
 }
-
