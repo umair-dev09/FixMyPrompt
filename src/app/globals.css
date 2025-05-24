@@ -15,6 +15,7 @@
 
     --primary: 253 90% 60%; /* Vibrant purple for light mode */
     --primary-foreground: 0 0% 100%; /* White */
+    --primary-gradient-end: 260 95% 62%; /* Slightly different hue/lightness for gradient */
 
     --secondary: 0 0% 94%; /* Light gray for secondary backgrounds */
     --secondary-foreground: 220 10% 30%; /* Darker gray text */
@@ -24,6 +25,7 @@
 
     --accent: 180 65% 40%; /* Teal/cyan for light mode */
     --accent-foreground: 0 0% 100%; /* White */
+    --accent-gradient-end: 185 70% 42%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -64,6 +66,7 @@
 
     --primary: 253 100% 68%; /* Vibrant purple from cursor.com */
     --primary-foreground: 0 0% 100%; /* White */
+    --primary-gradient-end: 260 100% 70%;
 
     --secondary: 220 10% 15%; /* A bit lighter than card for secondary bg elements */
     --secondary-foreground: 0 0% 75%; /* Slightly dimmer text */
@@ -73,6 +76,7 @@
 
     --accent: 180 70% 50%; /* Contrasting teal/cyan */
     --accent-foreground: 0 0% 100%; /* White */
+    --accent-gradient-end: 185 75% 52%;
 
     --destructive: 0 70% 55%; /* A noticeable red */
     --destructive-foreground: 0 0% 98%;
@@ -107,5 +111,9 @@
   body {
     @apply bg-background text-foreground;
     /* Font is set by layout.tsx using Geist Sans */
+  }
+  /* Add opacity 0 for elements that will be animated in */
+  .animate-fadeInUp {
+    opacity: 0; 
   }
 }

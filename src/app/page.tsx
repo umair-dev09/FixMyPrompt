@@ -99,36 +99,37 @@ export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow container mx-auto px-4 py-8">
-        <section className="max-w-3xl mx-auto text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4 tracking-tight flex items-center justify-center">
-            <Wand2 className="w-10 h-10 mr-3 text-primary" />
+      <main className="flex-grow container mx-auto px-4 py-8 sm:py-12">
+        <section className="max-w-3xl mx-auto text-center mb-12 sm:mb-16 animate-fadeInUp">
+          <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 tracking-tighter flex items-center justify-center">
+            <Wand2 className="w-10 h-10 sm:w-12 sm:h-12 mr-3 text-primary" />
             Refine Your Prompts
           </h1>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg sm:text-xl text-muted-foreground">
             Enter your initial prompt below. We'll magically generate three enhanced versions for you to use.
           </p>
         </section>
 
-        <section className="max-w-2xl mx-auto mb-12">
-          <form onSubmit={handleSubmit} className="space-y-4">
+        <section className="max-w-2xl mx-auto mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             <Textarea
               value={userInput}
               onChange={handleInputChange}
               placeholder="e.g., write a short story about a curious cat..."
               rows={5}
-              className="text-base p-4 shadow-sm focus:ring-2 focus:ring-primary"
+              className="text-base p-4 shadow-lg focus:ring-2 focus:ring-primary rounded-lg"
               aria-label="Enter your prompt"
             />
              <Button 
               type="submit" 
               disabled={isLoading || !userInput.trim()} 
-              className="w-full sm:w-auto"
+              className="w-full sm:w-auto text-base py-3 px-6 rounded-lg"
+              size="lg"
             >
               {isLoading ? (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
               ) : (
-                <Wand2 className="mr-2 h-4 w-4" />
+                <Wand2 className="mr-2 h-5 w-5" />
               )}
               Refine Prompt
             </Button>
@@ -136,22 +137,22 @@ export default function HomePage() {
         </section>
         
         {isLoading && (
-          <div className="text-center py-8">
+          <div className="text-center py-8 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
             <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto" />
             <p className="mt-4 text-muted-foreground">Brewing refined prompts...</p>
           </div>
         )}
 
         {error && !isLoading && (
-          <div className="text-center py-8 text-destructive">
+          <div className="text-center py-8 text-destructive animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
             <p>Error: {error}</p>
           </div>
         )}
 
         {!isLoading && !error && refinedPrompts && refinedPrompts.length > 0 && (
-          <section className="mb-12">
-            <h2 className="text-2xl font-semibold mb-6 text-center">Your Refined Prompts:</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <section className="mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center tracking-tight">Your Refined Prompts:</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {refinedPrompts.map((prompt) => (
                 <RefinedPromptCard key={prompt.id} prompt={prompt} onUseThis={handleUseThisPrompt} />
               ))}
@@ -160,7 +161,9 @@ export default function HomePage() {
         )}
 
         {!isLoading && !error && (!refinedPrompts || refinedPrompts.length === 0) && (
-          <IntroSection />
+          <div className="animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+            <IntroSection />
+          </div>
         )}
 
         {selectedPromptForModal && (
@@ -173,7 +176,7 @@ export default function HomePage() {
           />
         )}
       </main>
-      <footer className="py-6 text-center text-sm text-muted-foreground border-t">
+      <footer className="py-6 sm:py-8 text-center text-sm text-muted-foreground border-t border-border/50 animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
         © {new Date().getFullYear()} Prompt Alchemy. Unleash your creativity.
       </footer>
     </div>

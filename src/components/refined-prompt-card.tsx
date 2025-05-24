@@ -12,18 +12,22 @@ interface RefinedPromptCardProps {
 
 export function RefinedPromptCard({ prompt, onUseThis }: RefinedPromptCardProps) {
   return (
-    <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
-      <CardHeader>
-        <Badge variant="secondary" className="w-fit mb-2">{prompt.tag}</Badge>
-        <CardTitle className="text-xl leading-tight">{prompt.prompt.substring(0, 150)}{prompt.prompt.length > 150 ? "..." : ""}</CardTitle>
+    <Card className="shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out flex flex-col h-full hover:scale-[1.03] rounded-xl">
+      <CardHeader className="pb-3">
+        <Badge variant="secondary" className="w-fit mb-2 text-xs">{prompt.tag}</Badge>
+        <CardTitle className="text-lg leading-snug font-semibold">{prompt.prompt.substring(0, 120)}{prompt.prompt.length > 120 ? "..." : ""}</CardTitle>
       </CardHeader>
-      <CardContent className="flex-grow">
-        <CardDescription className="text-sm line-clamp-4">
+      <CardContent className="flex-grow pt-0">
+        <CardDescription className="text-sm line-clamp-3 text-muted-foreground/90">
           {prompt.prompt}
         </CardDescription>
       </CardContent>
       <CardFooter>
-        <Button onClick={() => onUseThis(prompt)} className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+        <Button 
+          onClick={() => onUseThis(prompt)} 
+          className="w-full bg-gradient-to-r from-accent to-[hsl(var(--accent-gradient-end))] hover:brightness-105 active:brightness-95 text-accent-foreground transform hover:scale-[1.03] active:scale-[0.97] transition-all duration-150 ease-out rounded-lg"
+          size="lg"
+        >
           Use This Prompt
         </Button>
       </CardFooter>
