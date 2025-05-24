@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Button } from '@/components/ui/button';
@@ -12,7 +13,7 @@ interface RefinedPromptCardProps {
 
 export function RefinedPromptCard({ prompt, onUseThis }: RefinedPromptCardProps) {
   return (
-    <Card className="shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out flex flex-col h-full hover:scale-[1.03] rounded-xl">
+    <Card className="shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out flex flex-col h-full hover:scale-[1.03] rounded-xl bg-card/50 dark:bg-card/40 backdrop-blur-lg hover:bg-card/60 dark:hover:bg-card/50 border border-border/10 supports-[backdrop-filter]:bg-card/50">
       <CardHeader className="pb-3">
         <Badge variant="secondary" className="w-fit mb-2 text-xs">{prompt.tag}</Badge>
         <CardTitle className="text-lg leading-snug font-semibold">{prompt.prompt.substring(0, 120)}{prompt.prompt.length > 120 ? "..." : ""}</CardTitle>
@@ -23,8 +24,8 @@ export function RefinedPromptCard({ prompt, onUseThis }: RefinedPromptCardProps)
         </CardDescription>
       </CardContent>
       <CardFooter>
-        <Button 
-          onClick={() => onUseThis(prompt)} 
+        <Button
+          onClick={() => onUseThis(prompt)}
           className="w-full bg-gradient-to-r from-accent to-[hsl(var(--accent-gradient-end))] hover:brightness-105 active:brightness-95 text-accent-foreground transform hover:scale-[1.03] active:scale-[0.97] transition-all duration-150 ease-out rounded-lg"
           size="lg"
         >

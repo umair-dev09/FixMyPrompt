@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -6,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { PromptDialog } from '@/components/prompt-dialog';
 import type { RefinedPromptClient } from '@/types';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
+import { Card, CardHeader, CardFooter, CardTitle, CardDescription } from './ui/card'; // Removed CardContent as it wasn't used
 import { Badge } from './ui/badge';
 import { Trash2 } from 'lucide-react';
 
@@ -23,7 +24,7 @@ export function BookmarkList() {
       <ScrollArea className="h-[calc(100vh-80px)]">
         <div className="p-6 grid gap-4">
           {bookmarks.map((prompt) => (
-            <Card key={prompt.id} className="shadow-md">
+            <Card key={prompt.id} className="shadow-md bg-card/50 dark:bg-card/40 backdrop-blur-lg border border-border/10 supports-[backdrop-filter]:bg-card/50">
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div>

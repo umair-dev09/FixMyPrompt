@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -73,7 +74,7 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[600px]">
+      <DialogContent className="sm:max-w-[600px] bg-card/70 dark:bg-card/60 backdrop-blur-xl shadow-2xl border border-border/20 supports-[backdrop-filter]:bg-card/70">
         <DialogHeader>
           <DialogTitle className="flex items-center">
             Refined Prompt: <span className="ml-2 px-2 py-0.5 bg-secondary text-secondary-foreground rounded-sm text-sm font-medium">{prompt.tag}</span>

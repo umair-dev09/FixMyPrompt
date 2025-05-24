@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -23,9 +24,9 @@
     --muted: 0 0% 90%; /* Slightly darker light gray for muted backgrounds */
     --muted-foreground: 220 10% 45%; /* Medium gray text */
 
-    --accent: 180 65% 40%; /* Teal/cyan for light mode */
+    --accent: 330 85% 60%; /* Vibrant Pink for light mode */
     --accent-foreground: 0 0% 100%; /* White */
-    --accent-gradient-end: 185 70% 42%;
+    --accent-gradient-end: 335 90% 62%; /* Pink gradient end */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -41,16 +42,16 @@
     --sidebar-foreground: 220 10% 10%;
     --sidebar-primary: 253 90% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 180 65% 40%;
+    --sidebar-accent: 330 85% 60%; /* Updated accent */
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 0 0% 88%;
     --sidebar-ring: 253 90% 55%;
 
     /* Chart Colors - Light Theme */
     --chart-1: 253 90% 65%; /* Primary */
-    --chart-2: 180 65% 50%; /* Accent */
+    --chart-2: 330 85% 62%; /* New Accent (Pink) */
     --chart-3: 30 90% 60%;  /* Orange/Yellow */
-    --chart-4: 300 70% 60%; /* Pink/Magenta */
+    --chart-4: 300 70% 60%; /* Magenta */
     --chart-5: 120 50% 50%; /* Green */
   }
 
@@ -74,9 +75,9 @@
     --muted: 220 10% 10%; /* Darker muted background elements */
     --muted-foreground: 0 0% 60%; /* Muted text, like placeholder */
 
-    --accent: 180 70% 50%; /* Contrasting teal/cyan */
+    --accent: 330 90% 65%; /* Vibrant Pink for dark mode */
     --accent-foreground: 0 0% 100%; /* White */
-    --accent-gradient-end: 185 75% 52%;
+    --accent-gradient-end: 335 95% 67%; /* Pink gradient end */
 
     --destructive: 0 70% 55%; /* A noticeable red */
     --destructive-foreground: 0 0% 98%;
@@ -90,14 +91,14 @@
     --sidebar-foreground: 0 0% 91%;
     --sidebar-primary: 253 100% 68%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 180 70% 50%;
+    --sidebar-accent: 330 90% 65%; /* Updated accent */
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 220 10% 25%;
     --sidebar-ring: 253 100% 60%;
 
     /* Chart Colors - Dark Theme */
     --chart-1: 253 100% 75%; /* Lighter Primary */
-    --chart-2: 180 70% 60%;  /* Lighter Accent */
+    --chart-2: 330 90% 67%;  /* New Accent (Pink) */
     --chart-3: 30 100% 65%;  /* Orange/Yellow */
     --chart-4: 300 80% 70%;  /* Pink/Magenta */
     --chart-5: 120 60% 60%;  /* Green */
@@ -114,6 +115,6 @@
   }
   /* Add opacity 0 for elements that will be animated in */
   .animate-fadeInUp {
-    opacity: 0; 
+    opacity: 0;
   }
 }

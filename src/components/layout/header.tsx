@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -9,7 +10,7 @@ import { BookmarkList } from '@/components/bookmark-list';
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/30 bg-gradient-to-r from-background to-muted/20 dark:from-background dark:to-muted/20 backdrop-blur supports-[backdrop-filter]:bg-transparent">
+    <header className="sticky top-0 z-50 w-full border-b border-border/20 bg-background/60 dark:bg-background/50 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <Link href="/" className="flex items-center space-x-2 mr-auto">
           <BrainCircuit className="h-7 w-7 sm:h-8 sm:w-8 text-primary" />
@@ -22,7 +23,7 @@ export function Header() {
                 <Bookmark className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent className="w-[400px] sm:w-[540px] p-0">
+            <SheetContent className="w-[400px] sm:w-[540px] p-0 bg-background/80 dark:bg-background/70 backdrop-blur-lg border-l border-border/30 supports-[backdrop-filter]:bg-background/80">
               <SheetHeader className="p-6 pb-0">
                 <SheetTitle>Bookmarked Prompts</SheetTitle>
               </SheetHeader>
