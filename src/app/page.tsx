@@ -100,12 +100,14 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
     }
   }, [toast]);
   
-  const debouncedRefinePrompt = React.useCallback(debounce(handleRefinePrompt, 1000), [handleRefinePrompt]);
+  // Increased debounce time to 1500ms
+  const debouncedRefinePrompt = React.useCallback(debounce(handleRefinePrompt, 1500), [handleRefinePrompt]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newText = event.target.value;
     setUserInput(newText);
-    if (newText.trim().length > 10) { // Start refining if input is somewhat substantial
+    // Increased minimum length to 20 characters for auto-trigger
+    if (newText.trim().length > 20) { 
         debouncedRefinePrompt(newText);
     } else if (!newText.trim()) {
         setRefinedPrompts(null); // Clear results if input becomes empty
@@ -130,7 +132,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
       <main className="flex-grow container mx-auto px-4 py-8 sm:py-12">
         <section className="max-w-3xl mx-auto text-center pt-20 sm:pt-28 lg:pt-32 mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-12 sm:mb-16 tracking-tighter text-center">
-            <WandSparkles className="inline-block align-baseline w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-[hsl(var(--pg-from))] mr-2" />
+             <WandSparkles className="inline-block align-baseline w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-[hsl(var(--pg-from))] mr-2" />
             Unlock AI's Full Potential
           </h1>
           <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
