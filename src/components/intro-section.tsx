@@ -186,7 +186,7 @@ export function IntroSection() {
       </section>
 
       <section className="text-center animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.3s' }}>
-        <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">Works with popular AI models</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">Works with All popular AI models</h2>
         <div
           className="w-full inline-flex flex-nowrap overflow-hidden py-4 [mask-image:_linear-gradient(to_right,transparent_0,_black_30px,_black_calc(100%-30px),transparent_100%)] group"
         >
