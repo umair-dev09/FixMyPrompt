@@ -20,7 +20,7 @@ export function RefinedPromptCard({ prompt, onUseThis }: RefinedPromptCardProps)
       </CardHeader>
       <CardContent className="flex-grow pt-0">
         <CardDescription className="text-sm line-clamp-3 text-muted-foreground/90">
-          {prompt.prompt}
+          Original: {prompt.originalPrompt}
         </CardDescription>
       </CardContent>
       <CardFooter>
