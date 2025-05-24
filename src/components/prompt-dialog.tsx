@@ -21,7 +21,7 @@ import {
   Brain,
   Bot,
   Search,
-  X, // Changed from Twitter
+  Bird, // Changed from X
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useBookmarks } from '@/contexts/bookmark-context';
@@ -62,9 +62,9 @@ const aiPlatforms: AiPlatform[] = [
     icon: Bot
   },
   {
-    name: 'Grok (on X)',
-    url: (prompt) => `https://x.com/search?q=${encodeURIComponent(prompt)}&src=typed_query`,
-    icon: X // Changed from Twitter
+    name: 'Twitter', // Changed from Grok (on X)
+    url: (prompt) => `https://twitter.com/intent/tweet?text=${encodeURIComponent(prompt)}`, // Changed URL
+    icon: Bird // Changed from X
   },
 ];
 
@@ -93,7 +93,7 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
     const shareData = {
       title: `FixMyPrompt: ${prompt.tag} Prompt`,
       text: prompt.prompt,
-      url: window.location.href, // Or a more specific URL if available
+      url: window.location.href,
     };
     if (navigator.share) {
       try {
@@ -109,7 +109,6 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
           });
           await handleCopy();
         } else if (error instanceof Error && error.name === 'AbortError') {
-           // User cancelled the share operation, do nothing or show a mild toast
           toast({ title: 'Share Canceled', description: 'You canceled the share operation.', variant: 'default' });
         } else {
           toast({
@@ -121,8 +120,7 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
         }
       }
     } else {
-      // Fallback for browsers that don't support navigator.share
-      await handleCopy(); // handleCopy already shows a toast
+      await handleCopy();
       toast({ title: 'Share via Clipboard', description: 'Native share not supported. Prompt copied to clipboard.' });
     }
   };
