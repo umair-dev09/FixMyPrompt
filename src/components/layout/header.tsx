@@ -10,10 +10,10 @@ import { BookmarkList } from '@/components/bookmark-list';
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/20 bg-background/60 dark:bg-background/50 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/20 bg-gradient-to-r from-background via-background/90 to-background/80 dark:from-background dark:via-background/90 dark:to-background/80 bg-opacity-60 dark:bg-opacity-50 backdrop-blur-lg supports-[backdrop-filter]:bg-opacity-60">
       <div className="container flex h-16 items-center">
         <Link href="/" className="flex items-center space-x-2 mr-auto">
-          <BrainCircuit className="h-7 w-7 sm:h-8 sm:w-8 text-primary" />
+          <BrainCircuit className="h-7 w-7 sm:h-8 sm:w-8 text-[hsl(var(--pg-from-l))]" /> {/* Using a color from primary gradient */}
           <span className="font-bold text-xl sm:text-2xl tracking-tight">Prompt Alchemy</span>
         </Link>
         <nav className="flex items-center space-x-1 sm:space-x-2">

@@ -26,7 +26,7 @@ export function RefinedPromptCard({ prompt, onUseThis }: RefinedPromptCardProps)
       <CardFooter>
         <Button
           onClick={() => onUseThis(prompt)}
-          className="w-full bg-gradient-to-r from-accent to-[hsl(var(--accent-gradient-end))] hover:brightness-105 active:brightness-95 text-accent-foreground transform hover:scale-[1.03] active:scale-[0.97] transition-all duration-150 ease-out rounded-lg"
+          className="w-full bg-gradient-to-r from-[hsl(var(--primary-gradient-from))] via-[hsl(var(--primary-gradient-via))] to-[hsl(var(--primary-gradient-to))] hover:brightness-110 active:brightness-95 text-primary-foreground transform hover:scale-[1.03] active:scale-[0.97] transition-all duration-150 ease-out rounded-lg"
           size="lg"
         >
           Use This Prompt
