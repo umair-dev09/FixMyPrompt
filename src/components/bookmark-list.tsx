@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { useBookmarks } from '@/contexts/bookmark-context';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
