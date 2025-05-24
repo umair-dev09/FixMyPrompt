@@ -11,7 +11,7 @@ export default {
   theme: {
   	extend: {
       fontFamily: {
-        sans: ['Clash Display', 'sans-serif'], // Set Clash Display as the primary sans-serif font
+        sans: ['Poppins', 'sans-serif'], // Set Poppins as the primary sans-serif font
       },
   		colors: {
   			background: 'hsl(var(--background))',

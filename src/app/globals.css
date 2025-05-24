@@ -1,14 +1,15 @@
 
-/* Remove previous @font-face for Switzer or Inter if they exist */
-@font-face {
+/* Remove previous @font-face for Clash Display or other local fonts */
+/* @font-face {
   font-family: 'Clash Display';
   src: url('/fonts/ClashDisplay-Variable.woff2') format('woff2-variations');
-  font-weight: 200 700; /* Adjust if your variable font supports a different range, typically Clash Display is 200-700 */
+  font-weight: 200 700; 
   font-display: swap;
   font-style: normal;
-}
+} */
 
-/* Remove any @import for Google Fonts like Inter or Poppins or Switzer */
+/* Import Poppins from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -209,7 +210,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: theme('fontFamily.sans'); /* This will correctly pick up 'Clash Display' from Tailwind config */
+    font-family: theme('fontFamily.sans'); /* This will correctly pick up 'Poppins' from Tailwind config */
   }
   /* Add opacity 0 for elements that will be animated in */
   .animate-fadeInUp {
