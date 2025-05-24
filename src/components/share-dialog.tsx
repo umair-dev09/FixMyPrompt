@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { Copy, Mail, MessageCircle, Facebook, Linkedin, Bird } from 'lucide-react';
+import { Copy, Mail, MessageCircle, Facebook, Linkedin, Twitter } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 interface ShareDialogProps {
@@ -61,8 +61,8 @@ export function ShareDialog({ isOpen, onOpenChange, promptText, promptTag }: Sha
       className: "bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white",
     },
     {
-      name: 'X (formerly Twitter)',
-      icon: Bird,
+      name: 'X (Twitter)',
+      icon: Twitter,
       action: (text) => {
         handleGenericShare(`https://x.com/intent/tweet?text=${encodeURIComponent(text)}`);
       },

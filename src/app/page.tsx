@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Loader2, WandSparkles, Mic, MicOff, Instagram, Facebook, Bird } from 'lucide-react';
+import { Loader2, WandSparkles, Mic, MicOff, Instagram, Facebook, Twitter } from 'lucide-react';
 import { refinePrompt, type RefinePromptInput, type RefinePromptOutput } from '@/ai/flows/refine-prompt';
 import type { RefinedPromptClient } from '@/types';
 import { RefinedPromptCard } from '@/components/refined-prompt-card';
@@ -250,7 +250,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
               <Button
                 type="submit"
                 disabled={isLoading || !userInput.trim()}
-                className="flex-grow sm:flex-grow-0 text-base py-3 px-6 rounded-lg"
+                className="flex-grow sm:flex-grow-0 text-base py-3 px-6 rounded-lg bg-gradient-to-r from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground"
                 size="lg"
               >
                 {isLoading ? (
@@ -330,8 +330,8 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
             <a href="https://facebook.com/your_page_here" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[hsl(var(--ag-from))] transition-colors">
               <Facebook className="h-5 w-5" />
             </a>
-            <a href="https://x.com/your_handle_here" target="_blank" rel="noopener noreferrer" aria-label="X" className="hover:text-[hsl(var(--ag-from))] transition-colors">
-              <Bird className="h-5 w-5" />
+            <a href="https://x.com/your_handle_here" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="hover:text-[hsl(var(--ag-from))] transition-colors">
+              <Twitter className="h-5 w-5" />
             </a>
           </div>
           <div className="text-center sm:text-left mb-4 sm:mb-0 order-first sm:order-none">

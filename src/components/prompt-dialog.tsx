@@ -21,7 +21,7 @@ import {
   Brain,
   Bot,
   Search,
-  Bird,
+  Twitter,
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useBookmarks } from '@/contexts/bookmark-context';
@@ -64,7 +64,7 @@ const aiPlatforms: AiPlatform[] = [
   {
     name: 'Grok (on X)',
     url: (prompt) => `https://x.com/search?q=${encodeURIComponent(prompt)}`,
-    icon: Bird
+    icon: Twitter
   },
 ];
 
@@ -86,42 +86,6 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
     } catch (error) {
       console.error('Failed to copy prompt:', error);
       toast({ title: 'Copy Failed', description: 'Could not copy prompt to clipboard.', variant: 'destructive' });
-    }
-  };
-
-  const handleShare = async () => {
-    const shareData = {
-      title: `FixMyPrompt: ${prompt.tag} Prompt`,
-      text: prompt.prompt,
-      url: window.location.href,
-    };
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-        toast({ title: 'Shared!', description: 'Prompt shared successfully.' });
-      } catch (error) {
-        console.error('Share API error:', error);
-        if (error instanceof Error && error.name === 'NotAllowedError') {
-          toast({
-            title: 'Share Canceled or Denied',
-            description: 'Could not share. Prompt copied to clipboard instead.',
-            variant: 'default',
-          });
-          await handleCopy();
-        } else if (error instanceof Error && error.name === 'AbortError') {
-          toast({ title: 'Share Canceled', description: 'You canceled the share operation.', variant: 'default' });
-        } else {
-          toast({
-            title: 'Share Failed',
-            description: 'Could not share. Prompt copied to clipboard instead.',
-            variant: 'destructive',
-          });
-          await handleCopy();
-        }
-      }
-    } else {
-      await handleCopy();
-      toast({ title: 'Share via Clipboard', description: 'Native share not supported. Prompt copied to clipboard.' });
     }
   };
 
