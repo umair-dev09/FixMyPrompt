@@ -87,18 +87,15 @@ const EXAMPLES_TO_SHOW = 2;
 const ROTATION_INTERVAL = 7000; // 7 seconds
 
 const llmLogos = [
-  { name: "OpenAI GPT", srcLight: "/logos/openai.png", srcDark: "/logos/openai.png", alt: "OpenAI Logo", hint: "AI language" },
-  { name: "Google Gemini", srcLight: "/logos/gemini.svg", srcDark: "/logos/gemini.svg", alt: "Gemini Logo", hint: "Google AI" },
-  { name: "Anthropic Claude", srcLight: "/logos/claude.png", srcDark: "/logos/claude.png", alt: "Claude Logo", hint: "Anthropic AI" },
-  { name: "Mistral AI", srcLight: "/logos/mistral.png", srcDark: "/logos/mistral.png", alt: "Mistral AI Logo", hint: "Mistral language" },
-  { name: "Cohere", srcLight: "/logos/cohere.png", srcDark: "/logos/cohere.png", alt: "Cohere Logo", hint: "Cohere enterprise" },
-  { name: "Perplexity AI", srcLight: "/logos/perplexity.png", srcDark: "/logos/perplexity.png", alt: "Perplexity AI Logo", hint: "AI search" },
-  { name: "AI21 Labs", srcLight: "/logos/ai21.png", srcDark: "/logos/ai21.png", alt: "AI21 Labs Logo", hint: "AI writing" },
-  { name: "Hugging Face", srcLight: "/logos/huggingface.png", srcDark: "/logos/huggingface.png", alt: "Hugging Face Logo", hint: "AI community" },
-  { name: "Meta Llama", srcLight: "/logos/meta.png", srcDark: "/logos/meta.png", alt: "Meta Llama Logo", hint: "Meta AI" },
-  { name: "Grok", srcLight: "/logos/grok.png", srcDark: "/logos/grok.png", alt: "Grok Logo", hint: "X AI" },
-  { name: "Stability AI", srcLight: "/logos/stability.png", srcDark: "/logos/stability.png", alt: "Stability AI Logo", hint: "AI image" },
-  { name: "Inflection AI", srcLight: "/logos/inflection.png", srcDark: "/logos/inflection.png", alt: "Inflection AI Logo", hint: "personal AI" },
+  { name: "OpenAI GPT", srcLight: "/logos/chatgpt-light.webp", srcDark: "/logos/chatgpt-dark.webp", alt: "OpenAI Logo", hint: "AI language" },
+  { name: "Google Gemini", srcLight: "/logos/gemini-color.webp", srcDark: "/logos/gemini-color.webp", alt: "Gemini Logo", hint: "Google AI" },
+  { name: "Anthropic Claude", srcLight: "/logos/claude-color.webp", srcDark: "/logos/claude-color.webp", alt: "Claude Logo", hint: "Anthropic AI" },
+  { name: "MidJourney", srcLight: "/logos/midjourney-light.webp", srcDark: "/logos/midjourney-dark.webp", alt: "Midjourney AI Logo", hint: "Mistral language" },
+  { name: "Github Copilot", srcLight: "/logos/copilot-color.webp", srcDark: "/logos/copilot-color.webp", alt: "Copilot Logo", hint: "Cohere enterprise" },
+  { name: "Perplexity AI", srcLight: "/logos/perplexity-color.webp", srcDark: "/logos/perplexity-color.webp", alt: "Perplexity AI Logo", hint: "AI search" },
+  { name: "Meta AI", srcLight: "/logos/meta-color.webp", srcDark: "/logos/meta-color.webp", alt: "Meta Logo", hint: "AI writing" },
+  { name: "Grok AI", srcLight: "/logos/grok-light.webp", srcDark: "/logos/grok-dark.webp", alt: "Grok Logo", hint: "AI community" },
+  { name: "Cursor", srcLight: "/logos/cursor-light.webp", srcDark: "/logos/cursor-dark.webp", alt: "Cursor AI Logo", hint: "AI image" },
 ];
 
 
