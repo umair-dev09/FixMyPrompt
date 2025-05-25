@@ -87,15 +87,18 @@ const EXAMPLES_TO_SHOW = 2;
 const ROTATION_INTERVAL = 7000; // 7 seconds
 
 const llmLogos = [
-  { name: "OpenAI GPT", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "OpenAI Logo", hint: "AI language" },
-  { name: "Google Gemini", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Gemini Logo", hint: "Google AI" },
-  { name: "Anthropic Claude", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Claude Logo", hint: "Anthropic AI" },
-  { name: "MidJourney", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Midjourney AI Logo", hint: "Mistral language" },
-  { name: "Github Copilot", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Copilot Logo", hint: "Cohere enterprise" },
-  { name: "Perplexity AI", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Perplexity AI Logo", hint: "AI search" },
-  { name: "Meta AI", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Meta Logo", hint: "AI writing" },
-  { name: "Grok AI", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Grok Logo", hint: "AI community" },
-  { name: "Cursor", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Cursor AI Logo", hint: "AI image" },
+  { name: "OpenAI GPT", srcLight: "/logos/openai.png", srcDark: "/logos/openai.png", alt: "OpenAI Logo", hint: "AI language" },
+  { name: "Google Gemini", srcLight: "/logos/gemini.svg", srcDark: "/logos/gemini.svg", alt: "Gemini Logo", hint: "Google AI" },
+  { name: "Anthropic Claude", srcLight: "/logos/claude.png", srcDark: "/logos/claude.png", alt: "Claude Logo", hint: "Anthropic AI" },
+  { name: "Mistral AI", srcLight: "/logos/mistral.png", srcDark: "/logos/mistral.png", alt: "Mistral AI Logo", hint: "Mistral language" },
+  { name: "Cohere", srcLight: "/logos/cohere.png", srcDark: "/logos/cohere.png", alt: "Cohere Logo", hint: "Cohere enterprise" },
+  { name: "Perplexity AI", srcLight: "/logos/perplexity.png", srcDark: "/logos/perplexity.png", alt: "Perplexity AI Logo", hint: "AI search" },
+  { name: "AI21 Labs", srcLight: "/logos/ai21.png", srcDark: "/logos/ai21.png", alt: "AI21 Labs Logo", hint: "AI writing" },
+  { name: "Hugging Face", srcLight: "/logos/huggingface.png", srcDark: "/logos/huggingface.png", alt: "Hugging Face Logo", hint: "AI community" },
+  { name: "Meta Llama", srcLight: "/logos/meta.png", srcDark: "/logos/meta.png", alt: "Meta Llama Logo", hint: "Meta AI" },
+  { name: "Grok", srcLight: "/logos/grok.png", srcDark: "/logos/grok.png", alt: "Grok Logo", hint: "X AI" },
+  { name: "Stability AI", srcLight: "/logos/stability.png", srcDark: "/logos/stability.png", alt: "Stability AI Logo", hint: "AI image" },
+  { name: "Inflection AI", srcLight: "/logos/inflection.png", srcDark: "/logos/inflection.png", alt: "Inflection AI Logo", hint: "personal AI" },
 ];
 
 
@@ -151,16 +154,16 @@ export function IntroSection() {
 
   return (
     <div className="space-y-12 sm:space-y-16 my-8 sm:my-12">
-      <section className="text-center animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.1s' }}>
+      <section className="text-center animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
         <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">What is FixMyPrompt?</h2>
-        <p className="text-base sm:text-xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
+        <p className="text-base sm:text-lg text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
           FixMyPrompt helps you transform your simple ideas into powerful, refined prompts.
           Get multiple variations tailored for different needs, ensuring you get the best results
           from your favorite AI tools.
         </p>
       </section>
 
-      <section className="animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.2s' }}>
+      <section className="animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.1s' }}>
         <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">Example Transformations</h2>
         {currentExamples.length > 0 ? (
             <div key={animationKey} className="grid md:grid-cols-2 gap-6 sm:gap-8 animate-fadeInUp" style={{ animationDuration: '0.3s' }}>
@@ -172,7 +175,7 @@ export function IntroSection() {
                 <CardContent className="space-y-3 sm:space-y-4 flex-grow">
                     {example.refined.map((refined, rIndex) => (
                     <div key={rIndex} className="p-3 bg-muted/50 rounded-lg">
-                        <Badge variant="outline" className="mb-1.5 text-xs">{refined.tag}</Badge>
+                        <Badge variant="secondary" className="mb-1.5 text-xs">{refined.tag}</Badge>
                         <p className="text-sm text-foreground/90">{refined.prompt}</p>
                     </div>
                     ))}
@@ -185,7 +188,7 @@ export function IntroSection() {
         )}
       </section>
 
-      <section className="text-center animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.3s' }}>
+      <section className="text-center animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.2s' }}>
         <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">Works with All popular AI models</h2>
         <div
           className="w-full inline-flex flex-nowrap overflow-hidden py-4 [mask-image:_linear-gradient(to_right,transparent_0,_black_30px,_black_calc(100%-30px),transparent_100%)] group"
@@ -196,8 +199,8 @@ export function IntroSection() {
                 <Image
                   src={mounted && theme === 'dark' ? logo.srcDark : logo.srcLight}
                   alt={logo.alt}
-                  width={65} // Enforce consistent width
-                  height={65} // Enforce consistent height
+                  width={65}
+                  height={65}
                   className="rounded-md opacity-80 group-hover:opacity-100 transition-opacity duration-300 hover:!opacity-100 hover:scale-110 mx-5"
                   data-ai-hint={logo.hint}
                 />
@@ -207,11 +210,11 @@ export function IntroSection() {
         </div>
       </section>
 
-      <section className="text-center py-12 sm:py-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.4s' }}>
+      <section className="text-center py-12 sm:py-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.3s' }}>
         <h2 className="text-3xl sm:text-4xl font-bold mb-10 sm:mb-12 tracking-tight">
           Why a <span className="bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">Perfect Prompt</span> Matters
         </h2>
-        <p className="text-base sm:text-xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto mb-10 sm:mb-16">
+        <p className="text-base sm:text-lg text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto mb-10 sm:mb-16">
           In the world of AI, your prompt is everything. It's the bridge between your idea and the AI's output.
           Here’s why mastering your prompts unlocks true AI power:
         </p>
@@ -298,11 +301,11 @@ export function IntroSection() {
       </section>
 
       {/* New SEO-focused Section */}
-      <section className="text-center py-12 sm:py-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.5s' }}>
+      <section className="text-center py-12 sm:py-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.4s' }}>
         <h2 className="text-3xl sm:text-4xl font-bold mb-10 sm:mb-12 tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">
           Supercharge Your AI: Advanced Prompting Techniques
         </h2>
-        <p className="text-base sm:text-xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto mb-10 sm:mb-16">
+        <p className="text-base sm:text-lg text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto mb-10 sm:mb-16">
           Go beyond basic queries. Effective prompt engineering unlocks sophisticated AI capabilities, helping you achieve unparalleled results and efficiency.
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
@@ -401,6 +404,3 @@ export function IntroSection() {
   );
 }
 
-    
-
-    
