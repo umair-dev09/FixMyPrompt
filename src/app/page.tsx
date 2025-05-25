@@ -251,7 +251,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
             Unlock AI's Full Potential
             </span>
         </h1>
-          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
             Transform your simple ideas into powerful, precise prompts. Get multiple AI-optimized variations in seconds.
           </p>
         </section>
@@ -371,7 +371,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
           </div>
           <div>
             <a
-              href="mailto:umair@fixmyprompt.io?subject=Inquiry%20about%20FixMyPrompt&body=Hey%2C%20I%20want%20to%20talk%20about%20FixMyPrompt."
+              href="mailto:shaikhumair5002@gmail.com?subject=Inquiry%20about%20FixMyPrompt&body=Hey%2C%20I%20want%20to%20talk%20about%20FixMyPrompt."
               className="hover:text-[hsl(var(--ag-from))] transition-colors font-medium"
             >
               Contact Us
@@ -382,3 +382,5 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
     </div>
   );
 }
+
+    

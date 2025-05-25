@@ -87,15 +87,15 @@ const EXAMPLES_TO_SHOW = 2;
 const ROTATION_INTERVAL = 7000; // 7 seconds
 
 const llmLogos = [
-  { name: "OpenAI GPT", srcLight: "/logos/chatgpt-light.webp", srcDark: "/logos/chatgpt-dark.webp", alt: "OpenAI Logo", hint: "AI language" },
-  { name: "Google Gemini", srcLight: "/logos/gemini-color.webp", srcDark: "/logos/gemini-color.webp", alt: "Gemini Logo", hint: "Google AI" },
-  { name: "Anthropic Claude", srcLight: "/logos/claude-color.webp", srcDark: "/logos/claude-color.webp", alt: "Claude Logo", hint: "Anthropic AI" },
-  { name: "MidJourney", srcLight: "/logos/midjourney-light.webp", srcDark: "/logos/midjourney-dark.webp", alt: "Midjourney AI Logo", hint: "Mistral language" },
-  { name: "Github Copilot", srcLight: "/logos/copilot-color.webp", srcDark: "/logos/copilot-color.webp", alt: "Copilot Logo", hint: "Cohere enterprise" },
-  { name: "Perplexity AI", srcLight: "/logos/perplexity-color.webp", srcDark: "/logos/perplexity-color.webp", alt: "Perplexity AI Logo", hint: "AI search" },
-  { name: "Meta AI", srcLight: "/logos/meta-color.webp", srcDark: "/logos/meta-color.webp", alt: "Meta Logo", hint: "AI writing" },
-  { name: "Grok AI", srcLight: "/logos/grok-light.webp", srcDark: "/logos/grok-dark.webp", alt: "Grok Logo", hint: "AI community" },
-  { name: "Cursor", srcLight: "/logos/cursor-light.webp", srcDark: "/logos/cursor-dark.webp", alt: "Cursor AI Logo", hint: "AI image" },
+  { name: "OpenAI GPT", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "OpenAI Logo", hint: "AI language" },
+  { name: "Google Gemini", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Gemini Logo", hint: "Google AI" },
+  { name: "Anthropic Claude", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Claude Logo", hint: "Anthropic AI" },
+  { name: "MidJourney", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Midjourney AI Logo", hint: "Mistral language" },
+  { name: "Github Copilot", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Copilot Logo", hint: "Cohere enterprise" },
+  { name: "Perplexity AI", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Perplexity AI Logo", hint: "AI search" },
+  { name: "Meta AI", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Meta Logo", hint: "AI writing" },
+  { name: "Grok AI", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Grok Logo", hint: "AI community" },
+  { name: "Cursor", srcLight: "https://placehold.co/130x50.png", srcDark: "https://placehold.co/130x50.png", alt: "Cursor AI Logo", hint: "AI image" },
 ];
 
 
@@ -153,7 +153,7 @@ export function IntroSection() {
     <div className="space-y-12 sm:space-y-16 my-8 sm:my-12">
       <section className="text-center animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.1s' }}>
         <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">What is FixMyPrompt?</h2>
-        <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
+        <p className="text-base sm:text-xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
           FixMyPrompt helps you transform your simple ideas into powerful, refined prompts.
           Get multiple variations tailored for different needs, ensuring you get the best results
           from your favorite AI tools.
@@ -211,7 +211,7 @@ export function IntroSection() {
         <h2 className="text-3xl sm:text-4xl font-bold mb-10 sm:mb-12 tracking-tight">
           Why a <span className="bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">Perfect Prompt</span> Matters
         </h2>
-        <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto mb-10 sm:mb-16">
+        <p className="text-base sm:text-xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto mb-10 sm:mb-16">
           In the world of AI, your prompt is everything. It's the bridge between your idea and the AI's output.
           Here’s why mastering your prompts unlocks true AI power:
         </p>
@@ -302,7 +302,7 @@ export function IntroSection() {
         <h2 className="text-3xl sm:text-4xl font-bold mb-10 sm:mb-12 tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">
           Supercharge Your AI: Advanced Prompting Techniques
         </h2>
-        <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto mb-10 sm:mb-16">
+        <p className="text-base sm:text-xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto mb-10 sm:mb-16">
           Go beyond basic queries. Effective prompt engineering unlocks sophisticated AI capabilities, helping you achieve unparalleled results and efficiency.
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
@@ -400,5 +400,7 @@ export function IntroSection() {
     </div>
   );
 }
+
+    
 
     
