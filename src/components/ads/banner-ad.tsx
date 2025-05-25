@@ -1,7 +1,7 @@
 
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react'; // Added useRef
 
 interface BannerAdProps {
   adClient?: string; // e.g., "ca-pub-4803528052284969"
@@ -20,13 +20,23 @@ const BannerAd: React.FC<BannerAdProps> = ({
   className,
   style = { display: 'block' }
 }) => {
+  const insRef = useRef<HTMLModElement>(null); // Use HTMLModElement for <ins>
+
   useEffect(() => {
+    // Check if the ad slot has already been filled.
+    // AdSense typically adds a 'data-ad-status="filled"' attribute.
+    if (insRef.current && insRef.current.getAttribute('data-ad-status') === 'filled') {
+      // console.log(`Ad slot ${adSlot} already filled, skipping push.`);
+      return;
+    }
+
     try {
+      // Ensure adsbygoogle array is initialized on window
       ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
     } catch (e) {
-      console.error("AdSense error: ", e);
+      console.error(`AdSense error for slot ${adSlot}: `, e);
     }
-  }, [adSlot]); // Re-run if adSlot changes, though typically it won't
+  }, [adSlot]); // Re-run if adSlot changes
 
   // Ensure adClient and adSlot are provided
   if (!adClient) {
@@ -42,12 +52,14 @@ const BannerAd: React.FC<BannerAdProps> = ({
   return (
     <div className={className} style={{ textAlign: 'center', margin: '20px 0' }}>
       <ins
+        ref={insRef} // Attach the ref
         className="adsbygoogle"
         style={style}
         data-ad-client={adClient}
         data-ad-slot={adSlot}
         data-ad-format={adFormat}
         data-full-width-responsive={responsive}
+        key={adSlot} // Add key to help React identify the element
       ></ins>
     </div>
   );
