@@ -33,7 +33,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ShareDialog } from './share-dialog';
-import BannerAd from '@/components/ads/banner-ad'; // Import the BannerAd component
+import BannerAd from '@/components/ads/banner-ad';
 
 interface PromptDialogProps {
   prompt: RefinedPromptClient;
@@ -64,8 +64,8 @@ const aiPlatforms: AiPlatform[] = [
   },
   {
     name: 'Grok (on X)',
-    url: (prompt) => `https://x.com/search?q=${encodeURIComponent(prompt)}`,
-    icon: Twitter // Using Twitter icon for X
+    url: (prompt) => `https://x.com/search?q=${encodeURIComponent(prompt)}`, // Corrected to x.com
+    icon: Twitter 
   },
 ];
 
@@ -145,19 +145,19 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
             <Button
               onClick={handleBookmarkToggle}
               variant={bookmarked ? "default" : "outline"}
-              className="min-w-36" // Ensures consistent width
+              className="min-w-36" 
             >
               <Bookmark className={`mr-2 h-4 w-4 ${bookmarked ? 'fill-current' : ''}`} />
               {bookmarked ? 'Bookmarked' : 'Bookmark'}
             </Button>
           </DialogFooter>
-          {/* AdSense Banner Ad - REPLACE with your actual IDs */}
+          {/* AdSense Banner Ad */}
           <BannerAd
-            adClient="ca-pub-YOUR_ADSENSE_PUBLISHER_ID" // Replace with your AdSense Publisher ID
+            adClient="ca-pub-4803528052284969" 
             adSlot="YOUR_AD_SLOT_ID_DIALOG"       // Replace with your Ad Unit Slot ID
-            adFormat="auto" // Or a specific format like "300x250" if it fits better
+            adFormat="auto" 
             responsive="true"
-            className="mt-4" // Add some margin if needed
+            className="mt-4" 
           />
         </DialogContent>
       </Dialog>

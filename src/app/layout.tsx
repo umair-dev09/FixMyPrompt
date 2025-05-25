@@ -53,10 +53,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google AdSense Script - REPLACE ca-pub-YOUR_ADSENSE_PUBLISHER_ID with your actual ID */}
+        {/* Google AdSense Script */}
         <Script
           async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_PUBLISHER_ID`}
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4803528052284969`}
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />

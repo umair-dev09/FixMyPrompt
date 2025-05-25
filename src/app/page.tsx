@@ -12,7 +12,7 @@ import { PromptDialog } from '@/components/prompt-dialog';
 import { IntroSection } from '@/components/intro-section';
 import { Header } from '@/components/layout/header';
 import { useToast } from '@/hooks/use-toast';
-import BannerAd from '@/components/ads/banner-ad'; // Import the BannerAd component
+import BannerAd from '@/components/ads/banner-ad';
 
 // Debounce function
 const debounce = <F extends (...args: any[]) => any>(func: F, waitFor: number) => {
@@ -107,7 +107,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
           originalPrompt: promptText,
         }));
         setRefinedPrompts(promptsWithIds);
-        setError(null);
+        setError(null); // Clear any previous errors
       } else {
         setRefinedPrompts(null);
         const noPromptsMessage = "No refined prompts were generated. The AI might not have found improvements or the response was empty.";
@@ -138,7 +138,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newText = event.target.value;
     setUserInput(newText);
-    if (newText.trim().length > 20) {
+    if (newText.trim().length > 20) { // Increased from 10
         debouncedRefinePrompt(newText);
     } else if (!newText.trim()) {
         setRefinedPrompts(null);
@@ -322,9 +322,9 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
                 />
               ))}
             </div>
-            {/* AdSense Banner Ad - REPLACE with your actual IDs */}
+            {/* AdSense Banner Ad */}
             <BannerAd
-              adClient="ca-pub-YOUR_ADSENSE_PUBLISHER_ID" // Replace with your AdSense Publisher ID
+              adClient="ca-pub-4803528052284969" 
               adSlot="YOUR_AD_SLOT_ID_PAGE_BOTTOM"      // Replace with your Ad Unit Slot ID
               adFormat="auto"
               responsive="true"
