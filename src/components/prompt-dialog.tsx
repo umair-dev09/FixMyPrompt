@@ -42,7 +42,7 @@ interface PromptDialogProps {
 }
 
 const aiPlatforms: AiPlatform[] = [
-  {
+   {
     name: 'ChatGPT',
     url: (prompt) => `https://chat.openai.com/?prompt=${encodeURIComponent(prompt)}`,
     icon: MessageSquareText
@@ -64,11 +64,12 @@ const aiPlatforms: AiPlatform[] = [
   },
   {
     name: 'Grok (on X)',
-    url: (prompt) => `https://x.com/search?q=${encodeURIComponent(prompt)}`, // Corrected to x.com
-    icon: Twitter 
+    url: (prompt) => `https://x.com/search?q=${encodeURIComponent(prompt)}`,
+    icon: Twitter
   },
 ];
 
+const adsensePublisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
 
 export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps) {
   const { toast } = useToast();
@@ -128,7 +129,7 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
                   <DropdownMenuItem
                     key={platform.name}
                     onClick={async () => {
-                      await handleCopy(); // Copy prompt first
+                      await handleCopy(); 
                       window.open(platform.url(prompt.prompt), '_blank');
                     }}
                   >
@@ -152,13 +153,15 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
             </Button>
           </DialogFooter>
           {/* AdSense Banner Ad */}
-          <BannerAd
-            adClient="ca-pub-4803528052284969" 
-            adSlot="YOUR_AD_SLOT_ID_DIALOG"       // Replace with your Ad Unit Slot ID
-            adFormat="auto" 
-            responsive="true"
-            className="mt-4" 
-          />
+          {adsensePublisherId && (
+            <BannerAd
+              adClient={adsensePublisherId}
+              adSlot="YOUR_AD_SLOT_ID_DIALOG"       // Replace with your Ad Unit Slot ID
+              adFormat="auto" 
+              responsive="true"
+              className="mt-4" 
+            />
+          )}
         </DialogContent>
       </Dialog>
 

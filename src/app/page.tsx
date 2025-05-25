@@ -44,6 +44,8 @@ const placeholderExamples = [
   "e.g., describe a futuristic city powered by renewable energy...",
 ];
 
+const adsensePublisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
+
 export default function HomePage({ params, searchParams }: HomePageProps) {
   const [userInput, setUserInput] = React.useState('');
   const [refinedPrompts, setRefinedPrompts] = React.useState<RefinedPromptClient[] | null>(null);
@@ -138,7 +140,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newText = event.target.value;
     setUserInput(newText);
-    if (newText.trim().length > 20) { // Increased from 10
+    if (newText.trim().length > 20) { 
         debouncedRefinePrompt(newText);
     } else if (!newText.trim()) {
         setRefinedPrompts(null);
@@ -323,13 +325,15 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
               ))}
             </div>
             {/* AdSense Banner Ad */}
-            <BannerAd
-              adClient="ca-pub-4803528052284969" 
-              adSlot="YOUR_AD_SLOT_ID_PAGE_BOTTOM"      // Replace with your Ad Unit Slot ID
-              adFormat="auto"
-              responsive="true"
-              className="mt-8"
-            />
+            {adsensePublisherId && (
+              <BannerAd
+                adClient={adsensePublisherId}
+                adSlot="YOUR_AD_SLOT_ID_PAGE_BOTTOM"      // Replace with your Ad Unit Slot ID
+                adFormat="auto"
+                responsive="true"
+                className="mt-8"
+              />
+            )}
           </section>
         )}
 
