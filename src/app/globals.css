@@ -1,13 +1,4 @@
 
-/* Remove previous @font-face for Clash Display or other local fonts */
-/* @font-face {
-  font-family: 'Clash Display';
-  src: url('/fonts/ClashDisplay-Variable.woff2') format('woff2-variations');
-  font-weight: 200 700; 
-  font-display: swap;
-  font-style: normal;
-} */
-
 /* Import Poppins from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
@@ -17,55 +8,55 @@
 
 @layer base {
   :root {
-    /* Light Theme based on user palette */
-    --background-light: 0 0% 98%; /* Very light neutral gray */
-    --foreground-light: 320 30% 25%; /* Dark, desaturated Deep Purple for text */
+    /* Light Theme - Whiter Background */
+    --background-light: 0 0% 100%; /* Pure white */
+    --foreground-light: 0 0% 15%; /* Dark neutral gray for text */
     --card-light: 0 0% 100%; /* White */
     --card-foreground-light: var(--foreground-light);
     --popover-light: 0 0% 100%;
     --popover-foreground-light: var(--foreground-light);
 
-    /* Primary Gradient: Deep Purple -> Soft Pink -> Warm Orange */
-    --pg-from: 320 53% 30%;   /* Deep Purple (adjusted for gradient start) */
-    --pg-via: 330 55% 67%;    /* Soft Pink (adjusted for gradient) */
-    --pg-to: 32 61% 52%;      /* Warm Orange */
-    --pg-foreground: 0 0% 100%; /* White text on primary gradient */
+    /* Primary Gradient: Deep Purple -> Soft Pink -> Warm Orange (Unchanged) */
+    --pg-from: 320 53% 30%;
+    --pg-via: 330 55% 67%;
+    --pg-to: 32 61% 52%;
+    --pg-foreground: 0 0% 100%;
 
-    /* Secondary Theme (Golden Mustard-Based) */
+    /* Secondary Theme (Golden Mustard-Based) - Adjusted for new bg */
     --secondary-light: 47 60% 94%; /* Very Light Golden Mustard */
     --secondary-foreground-light: 47 40% 30%; /* Dark Golden Mustard for text */
     
-    /* Muted Theme (Desaturated Purple/Pink-Based) */
+    /* Muted Theme (Desaturated Purple/Pink-Based) - Adjusted for new bg */
     --muted-light: 320 30% 97%; /* Very light, subtly tinted purple/pink */
-    --muted-foreground-light: 320 15% 50%; /* Mid-tone desaturated purple/pink for text */
+    --muted-foreground-light: 320 15% 45%; /* Mid-tone desaturated purple/pink for text (darker) */
 
-    /* Accent Gradient: Golden Mustard -> Moss Green */
-    --ag-from: 47 48% 54%;    /* Golden Mustard */
-    --ag-to: 87 37% 41%;      /* Moss Green */
-    --ag-foreground: 0 0% 100%; /* White text on accent gradient */
+    /* Accent Gradient: Golden Mustard -> Moss Green (Unchanged) */
+    --ag-from: 47 48% 54%;
+    --ag-to: 87 37% 41%;
+    --ag-foreground: 0 0% 100%;
     
     --destructive-light: 0 80% 60%; /* Standard Red */
     --destructive-foreground-light: 0 0% 100%;
-    --border-light: 320 15% 88%; /* Lighter, desaturated purple based border */
-    --input-light: 0 0% 100%; /* White for input background in light mode */
-    --ring-light: 47 48% 54%; /* Golden Mustard for focus */
+    --border-light: 0 0% 88%; /* Neutral light gray border */
+    --input-light: 0 0% 97%; /* Slightly off-white for input background */
+    --ring-light: 47 48% 54%; /* Golden Mustard for focus (Unchanged) */
 
     /* Sidebar - Light Theme */
-    --sidebar-background-light: 0 0% 97%;
+    --sidebar-background-light: 0 0% 98%; /* Slightly off-white, distinct from main white BG */
     --sidebar-foreground-light: var(--foreground-light);
     --sidebar-primary-light: var(--pg-from); 
     --sidebar-primary-foreground-light: var(--pg-foreground);
     --sidebar-accent-light: var(--ag-from);
     --sidebar-accent-foreground-light: var(--ag-foreground);
-    --sidebar-border-light: 320 10% 85%;
+    --sidebar-border-light: 0 0% 85%; /* Neutral light gray border for sidebar */
     --sidebar-ring-light: var(--ring-light);
 
-    /* Chart Colors - Light Theme */
-    --chart-1-light: 320 53% 30%; /* Deep Purple */
-    --chart-2-light: 330 55% 67%; /* Soft Pink */
-    --chart-3-light: 32 61% 52%;  /* Warm Orange */
-    --chart-4-light: 47 48% 54%;  /* Golden Mustard */
-    --chart-5-light: 87 37% 41%;  /* Moss Green */
+    /* Chart Colors - Light Theme (Unchanged) */
+    --chart-1-light: 320 53% 30%; 
+    --chart-2-light: 330 55% 67%; 
+    --chart-3-light: 32 61% 52%;  
+    --chart-4-light: 47 48% 54%;  
+    --chart-5-light: 87 37% 41%;  
 
 
     /* Apply Light Theme by default */
@@ -76,19 +67,14 @@
     --popover: var(--popover-light);
     --popover-foreground: var(--popover-foreground-light);
     
-    /* --primary-gradient-from -> --pg-from for brevity */
-    /* --primary-gradient-via -> --pg-via */
-    /* --primary-gradient-to -> --pg-to */
-    /* --primary-foreground -> --pg-foreground */
+    /* Primary gradient vars are pg-from, pg-via, pg-to, pg-foreground */
 
     --secondary: var(--secondary-light);
     --secondary-foreground: var(--secondary-foreground-light);
     --muted: var(--muted-light);
     --muted-foreground: var(--muted-foreground-light);
 
-    /* --accent-gradient-from -> --ag-from */
-    /* --accent-gradient-to -> --ag-to */
-    /* --accent-foreground -> --ag-foreground */
+    /* Accent gradient vars are ag-from, ag-to, ag-foreground */
     
     --destructive: var(--destructive-light);
     --destructive-foreground: var(--destructive-foreground-light);
@@ -115,50 +101,50 @@
   }
 
   .dark {
-    /* Dark Theme based on user palette */
-    --background-dark: 320 15% 10%; /* Very dark desaturated Deep Purple */
-    --foreground-dark: 330 20% 88%; /* Light, slightly pinkish gray for text */
-    --card-dark: 320 12% 14%; /* Darker Deep Purple for cards */
+    /* Dark Theme - Blacker Background */
+    --background-dark: 220 20% 5%; /* Very dark, slightly cool black */
+    --foreground-dark: 0 0% 93%; /* Light neutral gray for text */
+    --card-dark: 220 15% 9%; /* Very dark, slightly lighter than bg */
     --card-foreground-dark: var(--foreground-dark);
-    --popover-dark: 320 12% 14%;
+    --popover-dark: var(--card-dark);
     --popover-foreground-dark: var(--foreground-dark);
 
-    /* Primary Gradient: Deep Purple -> Soft Pink -> Warm Orange (brighter for dark mode) */
-    --pg-from: 320 53% 35%;    /* Deep Purple (brighter) */
-    --pg-via: 330 60% 70%;     /* Soft Pink (brighter) */
-    --pg-to: 32 65% 60%;       /* Warm Orange (brighter) */
-    --pg-foreground: 0 0% 100%;  /* White text */
+    /* Primary Gradient: Deep Purple -> Soft Pink -> Warm Orange (Unchanged for dark mode from previous state) */
+    --pg-from: 320 53% 35%;
+    --pg-via: 330 60% 70%;
+    --pg-to: 32 65% 60%;
+    --pg-foreground: 0 0% 100%;
 
-    /* Secondary Theme (Golden Mustard-Based) */
-    --secondary-dark: 47 40% 18%; /* Dark Golden Mustard */
-    --secondary-foreground-dark: 47 50% 75%; /* Lighter Golden Mustard for text */
+    /* Secondary Theme (Golden Mustard-Based) - Adjusted for new bg */
+    --secondary-dark: 47 40% 16%; /* Dark Golden Mustard (slightly darker) */
+    --secondary-foreground-dark: 47 55% 80%; /* Lighter Golden Mustard for text (slightly lighter) */
     
-    /* Muted Theme (Desaturated Purple/Pink-Based) */
-    --muted-dark: 320 10% 20%; /* Dark, desaturated purple base */
-    --muted-foreground-dark: 320 10% 70%; /* Light, desaturated purple/pink for text */
+    /* Muted Theme (Desaturated Purple/Pink-Based) - Adjusted for new bg */
+    --muted-dark: 220 10% 15%; /* Dark, neutral desaturated base */
+    --muted-foreground-dark: 0 0% 70%; /* Light, neutral desaturated for text */
 
-    /* Accent Gradient: Golden Mustard -> Moss Green (brighter for dark mode) */
-    --ag-from: 47 55% 60%;     /* Golden Mustard (brighter) */
-    --ag-to: 87 45% 50%;       /* Moss Green (brighter) */
-    --ag-foreground: 320 15% 10%; /* Dark text on accent gradient */
+    /* Accent Gradient: Golden Mustard -> Moss Green (Unchanged for dark mode from previous state) */
+    --ag-from: 47 55% 60%;
+    --ag-to: 87 45% 50%;
+    --ag-foreground: 220 15% 10%; /* Dark text on accent gradient */
     
     --destructive-dark: 0 75% 65%; /* Standard Red (brighter) */
     --destructive-foreground-dark: 0 0% 100%;
-    --border-dark: 320 10% 25%; /* Darker, desaturated purple based border */
-    --input-dark: 320 10% 18%; /* Slightly lighter input background in dark mode */
-    --ring-dark: 47 55% 60%; /* Golden Mustard (brighter for focus) */
+    --border-dark: 0 0% 20%; /* Neutral dark gray border */
+    --input-dark: 220 15% 12%; /* Dark input, distinguishable from card & bg */
+    --ring-dark: 47 55% 60%; /* Golden Mustard (brighter for focus - Unchanged) */
 
     /* Sidebar - Dark Theme */
-    --sidebar-background-dark: 320 10% 12%;
+    --sidebar-background-dark: 220 18% 7%; /* Very dark, slightly lighter than main bg */
     --sidebar-foreground-dark: var(--foreground-dark);
     --sidebar-primary-dark: var(--pg-from);
     --sidebar-primary-foreground-dark: var(--pg-foreground);
     --sidebar-accent-dark: var(--ag-from);
     --sidebar-accent-foreground-dark: var(--ag-foreground);
-    --sidebar-border-dark: 320 8% 22%;
+    --sidebar-border-dark: 0 0% 18%; /* Neutral dark gray border for sidebar */
     --sidebar-ring-dark: var(--ring-dark);
 
-    /* Chart Colors - Dark Theme */
+    /* Chart Colors - Dark Theme (Unchanged) */
     --chart-1-dark: 320 53% 40%; 
     --chart-2-dark: 330 60% 75%;
     --chart-3-dark: 32 65% 60%;
@@ -210,15 +196,13 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: theme('fontFamily.sans'); /* This will correctly pick up 'Poppins' from Tailwind config */
+    font-family: theme('fontFamily.sans');
   }
-  /* Add opacity 0 for elements that will be animated in */
   .animate-fadeInUp {
     opacity: 0;
   }
 }
 
-/* Additional styling for marquee */
 @layer utilities {
   .paused {
     animation-play-state: paused;
