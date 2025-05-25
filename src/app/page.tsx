@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Loader2, WandSparkles, Mic, MicOff, Instagram, Facebook, Twitter } from 'lucide-react';
+import { Loader2, WandSparkles, Mic, MicOff } from 'lucide-react';
 import { refinePrompt, type RefinePromptInput, type RefinePromptOutput } from '@/ai/flows/refine-prompt';
 import type { RefinedPromptClient } from '@/types';
 import { RefinedPromptCard } from '@/components/refined-prompt-card';
@@ -12,6 +12,7 @@ import { PromptDialog } from '@/components/prompt-dialog';
 import { IntroSection } from '@/components/intro-section';
 import { Header } from '@/components/layout/header';
 import { useToast } from '@/hooks/use-toast';
+import BannerAd from '@/components/ads/banner-ad'; // Import the BannerAd component
 
 // Debounce function
 const debounce = <F extends (...args: any[]) => any>(func: F, waitFor: number) => {
@@ -58,7 +59,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
   // Dictation state
   const [isDictating, setIsDictating] = useState(false);
   const [isSpeechApiAvailable, setIsSpeechApiAvailable] = useState(false);
-  const recognitionRef = useRef<any>(null); // Use 'any' for now due to potential prefixing
+  const recognitionRef = useRef<any>(null);
 
 
   React.useEffect(() => {
@@ -106,10 +107,16 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
           originalPrompt: promptText,
         }));
         setRefinedPrompts(promptsWithIds);
-        setError(null); // Clear previous errors on success
+        setError(null);
       } else {
-        setRefinedPrompts(null); // Clear previous results if response is invalid
-        throw new Error("No refined prompts were generated or the response structure was invalid.");
+        setRefinedPrompts(null);
+        const noPromptsMessage = "No refined prompts were generated. The AI might not have found improvements or the response was empty.";
+        setError(noPromptsMessage);
+        toast({
+          title: "Refinement Issue",
+          description: noPromptsMessage,
+          variant: "destructive",
+        });
       }
     } catch (err) {
       console.error("Error refining prompt:", err);
@@ -120,7 +127,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
         description: errorMessage,
         variant: "destructive",
       });
-      setRefinedPrompts(null); // Ensure prompts are cleared on any error
+      setRefinedPrompts(null);
     } finally {
       setIsLoading(false);
     }
@@ -148,12 +155,11 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault(); // Prevent newline in textarea
+      event.preventDefault();
       if (userInput.trim()) {
-        handleSubmit(); // Trigger form submission / prompt refinement
+        handleSubmit();
       }
     }
-    // Shift + Enter will behave as default (insert newline)
   };
 
   const handleUseThisPrompt = (prompt: RefinedPromptClient) => {
@@ -186,7 +192,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
         setIsDictating(true);
       };
 
-      recognition.onresult = (event: any) => { // Use 'any' for event type
+      recognition.onresult = (event: any) => {
         const transcript = event.results[event.results.length - 1][0].transcript.trim();
         if (transcript) {
           setUserInput((prevInput) =>
@@ -195,7 +201,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
         }
       };
 
-      recognition.onerror = (event: any) => { // Use 'any' for event type
+      recognition.onerror = (event: any) => {
         setIsDictating(false);
         let errorMsg = 'An error occurred during dictation.';
         if (event.error === 'no-speech') {
@@ -264,7 +270,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
               <Button
                 type="submit"
                 disabled={isLoading || !userInput.trim()}
-                className="flex-grow sm:flex-grow-0 text-base py-3 px-6 rounded-lg"
+                className="flex-grow sm:flex-grow-0 text-base py-3 px-6 rounded-lg bg-gradient-to-r from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] hover:brightness-110 active:brightness-95 text-accent-foreground transform hover:scale-[1.03] active:scale-[0.97]"
                 size="lg"
               >
                 {isLoading ? (
@@ -316,6 +322,14 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
                 />
               ))}
             </div>
+            {/* AdSense Banner Ad - REPLACE with your actual IDs */}
+            <BannerAd
+              adClient="ca-pub-YOUR_ADSENSE_PUBLISHER_ID" // Replace with your AdSense Publisher ID
+              adSlot="YOUR_AD_SLOT_ID_PAGE_BOTTOM"      // Replace with your Ad Unit Slot ID
+              adFormat="auto"
+              responsive="true"
+              className="mt-8"
+            />
           </section>
         )}
 
@@ -339,13 +353,13 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-sm text-muted-foreground">
           <div className="flex space-x-4 mb-4 sm:mb-0">
             <a href="https://instagram.com/your_handle_here" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[hsl(var(--ag-from))] transition-colors">
-              <Instagram className="h-5 w-5" />
+               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
             </a>
             <a href="https://facebook.com/your_page_here" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[hsl(var(--ag-from))] transition-colors">
-              <Facebook className="h-5 w-5" />
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
             </a>
             <a href="https://x.com/your_handle_here" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="hover:text-[hsl(var(--ag-from))] transition-colors">
-              <Twitter className="h-5 w-5" />
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
             </a>
           </div>
           <div className="text-center sm:text-left mb-4 sm:mb-0 order-first sm:order-none">
@@ -353,7 +367,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
           </div>
           <div>
             <a
-              href="mailto:umair@fixmyprompt.io?subject=Inquiry%20about%20FixMyPrompt&body=Hey%2C%20I%20want%20to%20talk%20about%20FixMyPrompt."
+              href="mailto:shaikhumair5002@gmail.com?subject=Inquiry%20about%20FixMyPrompt&body=Hey%2C%20I%20want%20to%20talk%20about%20FixMyPrompt."
               className="hover:text-[hsl(var(--ag-from))] transition-colors font-medium"
             >
               Contact Us
@@ -364,4 +378,3 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
     </div>
   );
 }
-    

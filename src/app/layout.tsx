@@ -1,30 +1,32 @@
 
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import './globals.css';
 import { Providers } from './providers';
 import { Toaster } from '@/components/ui/toaster';
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'; // Fallback for local dev
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:9002';
 
 export const metadata: Metadata = {
   title: 'FixMyPrompt | AI-Powered Prompt Refinement Tool',
   description: 'Elevate your AI interactions with FixMyPrompt. Transform simple ideas into powerful, precise prompts for ChatGPT, Gemini, and more. Get multiple AI-optimized variations in seconds.',
-  keywords: ['AI prompt generator', 'prompt engineering', 'refine prompts', 'AI writing assistant', 'ChatGPT prompts', 'Gemini prompts', 'LLM prompts', 'FixMyPrompt'],
+  keywords: ['AI prompt generator', 'prompt engineering', 'refine prompts', 'AI writing assistant', 'ChatGPT prompts', 'Gemini prompts', 'LLM prompts', 'FixMyPrompt', 'prompt optimizer', 'AI tool'],
   robots: 'index, follow',
-  themeColor: [ // Adapted from your globals.css primary colors
-    { media: '(prefers-color-scheme: light)', color: 'hsl(320, 53%, 30%)' }, // Deep Purple (Darker for Light Theme UI)
-    { media: '(prefers-color-scheme: dark)', color: 'hsl(320, 53%, 35%)' },  // Deep Purple (Brighter for Dark Theme UI)
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'hsl(320, 53%, 30%)' },
+    { media: '(prefers-color-scheme: dark)', color: 'hsl(320, 53%, 35%)' },
   ],
-  manifest: '/manifest.json', // Assuming you might add a manifest later
+  manifest: '/manifest.json',
   openGraph: {
     title: 'FixMyPrompt | AI-Powered Prompt Refinement Tool',
-    description: 'Transform your ideas into powerful, precise AI prompts with FixMyPrompt.',
+    description: 'Transform your ideas into powerful, precise AI prompts with FixMyPrompt. Your expert prompt engineering assistant.',
     url: siteUrl,
     siteName: 'FixMyPrompt',
     images: [
       {
-        url: `${siteUrl}/images/og-banner.png`,
+        url: `${siteUrl}/images/og-banner.png`, // Replace with your actual image URL
         width: 1200,
         height: 630,
         alt: 'FixMyPrompt - AI Prompt Refinement Banner',
@@ -39,10 +41,8 @@ export const metadata: Metadata = {
     description: 'Elevate your AI interactions with FixMyPrompt. Get optimized prompts in seconds.',
     // site: '@yourtwitterhandle', // Add your Twitter handle if you have one
     // creator: '@yourtwitterhandle',
-    images: [`${siteUrl}/images/og-banner.png`],
+    images: [`${siteUrl}/images/og-banner.png`], // Replace with your actual image URL
   },
-  // For more specific App Router metadata options:
-  // https://nextjs.org/docs/app/api-reference/functions/generate-metadata
 };
 
 export default function RootLayout({
@@ -52,8 +52,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* The body will now use Poppins font via globals.css and Tailwind config */}
-      <body className="antialiased">
+      <head>
+        {/* Google AdSense Script - REPLACE ca-pub-YOUR_ADSENSE_PUBLISHER_ID with your actual ID */}
+        <Script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_PUBLISHER_ID`}
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      </head>
+      <body className="antialiased font-poppins">
         <Providers>
           {children}
           <Toaster />
