@@ -328,7 +328,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
             {adsensePublisherId && (
               <BannerAd
                 adClient={adsensePublisherId}
-                adSlot="YOUR_AD_SLOT_ID_PAGE_BOTTOM"      // Replace with your Ad Unit Slot ID
+                adSlot="7144282791"      // Replace with your Ad Unit Slot ID
                 adFormat="auto"
                 responsive="true"
                 className="mt-8"
@@ -371,7 +371,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
           </div>
           <div>
             <a
-              href="mailto:shaikhumair5002@gmail.com?subject=Inquiry%20about%20FixMyPrompt&body=Hey%2C%20I%20want%20to%20talk%20about%20FixMyPrompt."
+              href="mailto:umair@fixmyprompt.io?subject=Inquiry%20about%20FixMyPrompt&body=Hey%2C%20I%20want%20to%20talk%20about%20FixMyPrompt."
               className="hover:text-[hsl(var(--ag-from))] transition-colors font-medium"
             >
               Contact Us

@@ -156,7 +156,7 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
           {adsensePublisherId && (
             <BannerAd
               adClient={adsensePublisherId}
-              adSlot="YOUR_AD_SLOT_ID_DIALOG"       // Replace with your Ad Unit Slot ID
+              adSlot="7144282791"       // Replace with your Ad Unit Slot ID
               adFormat="auto" 
               responsive="true"
               className="mt-4" 
