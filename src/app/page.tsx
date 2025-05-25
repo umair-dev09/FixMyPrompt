@@ -325,7 +325,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
               ))}
             </div>
             {/* AdSense Banner Ad */}
-            {adsensePublisherId && (
+            {/* {adsensePublisherId && (
               <BannerAd
                 adClient={adsensePublisherId}
                 adSlot="7144282791"      // Replace with your Ad Unit Slot ID
@@ -333,7 +333,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
                 responsive="true"
                 className="mt-8"
               />
-            )}
+            )} */}
           </section>
         )}
 

@@ -153,7 +153,7 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
             </Button>
           </DialogFooter>
           {/* AdSense Banner Ad */}
-          {adsensePublisherId && (
+          {/* {adsensePublisherId && (
             <BannerAd
               adClient={adsensePublisherId}
               adSlot="7144282791"       // Replace with your Ad Unit Slot ID
@@ -161,7 +161,7 @@ export function PromptDialog({ prompt, isOpen, onOpenChange }: PromptDialogProps
               responsive="true"
               className="mt-4" 
             />
-          )}
+          )} */}
         </DialogContent>
       </Dialog>
 
