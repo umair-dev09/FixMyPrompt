@@ -11,9 +11,9 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:9002';
 const adsensePublisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
 
 export const metadata: Metadata = {
-  title: 'FixMyPrompt | AI-Powered Prompt Refinement Tool',
-  description: 'Elevate your AI interactions with FixMyPrompt. Transform simple ideas into powerful, precise prompts for ChatGPT, Gemini, and more. Get multiple AI-optimized variations in seconds.',
-  keywords: ['AI prompt generator', 'prompt engineering', 'refine prompts', 'AI writing assistant', 'ChatGPT prompts', 'Gemini prompts', 'LLM prompts', 'FixMyPrompt', 'prompt optimizer', 'AI tool'],
+  title: 'FixMyPrompt | AI-Powered Prompt Refinement & Scoring Tool',
+  description: 'Elevate your AI interactions with FixMyPrompt. Transform simple ideas into powerful, precise prompts with built-in quality scoring for ChatGPT, Gemini, and more. Get multiple AI-optimized variations in seconds.',
+  keywords: ['AI prompt generator', 'prompt engineering', 'refine prompts', 'AI writing assistant', 'prompt quality score', 'prompt analytics', 'ChatGPT prompts', 'Gemini prompts', 'LLM prompts', 'FixMyPrompt', 'prompt optimizer', 'AI tool'],
   robots: 'index, follow',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: 'hsl(320, 53%, 30%)' },
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   ],
   manifest: '/manifest.json',
   openGraph: {
-    title: 'FixMyPrompt | AI-Powered Prompt Refinement Tool',
-    description: 'Transform your ideas into powerful, precise AI prompts with FixMyPrompt. Your expert prompt engineering assistant.',
+    title: 'FixMyPrompt | AI-Powered Prompt Refinement & Scoring Tool',
+    description: 'Transform your ideas into powerful, precise AI prompts with built-in quality scoring. Your expert prompt engineering assistant.',
     url: siteUrl,
     siteName: 'FixMyPrompt',
     images: [
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'FixMyPrompt | AI-Powered Prompt Refinement Tool',
-    description: 'Elevate your AI interactions with FixMyPrompt. Get optimized prompts in seconds.',
+    title: 'FixMyPrompt | AI-Powered Prompt Refinement & Scoring Tool',
+    description: 'Elevate your AI interactions with FixMyPrompt. Get optimized prompts with quality scoring in seconds.',
     // site: '@yourtwitterhandle', // Add your Twitter handle if you have one
     // creator: '@yourtwitterhandle',
     images: [`${siteUrl}/images/og-banner.png`], // Replace with your actual image URL

@@ -151,12 +151,11 @@ export function IntroSection() {
 
   return (
     <div className="space-y-12 sm:space-y-16 my-8 sm:my-12">
-      <section className="text-center animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>
-        <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">What is FixMyPrompt?</h2>
+      <section className="text-center animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0s' }}>        <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">What is FixMyPrompt?</h2>
         <p className="text-base sm:text-lg text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
           FixMyPrompt helps you transform your simple ideas into powerful, refined prompts.
-          Get multiple variations tailored for different needs, ensuring you get the best results
-          from your favorite AI tools.
+          Get multiple variations tailored for different needs, with built-in prompt quality scoring
+          to help you craft more effective prompts for your favorite AI tools.
         </p>
       </section>
 
@@ -304,9 +303,23 @@ export function IntroSection() {
         </h2>
         <p className="text-base sm:text-lg text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto mb-10 sm:mb-16">
           Go beyond basic queries. Effective prompt engineering unlocks sophisticated AI capabilities, helping you achieve unparalleled results and efficiency.
-        </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
-          {/* Card 1: Tailor for Specific AI Models */}
+        </p>        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
+          {/* Card 1: Prompt Quality Scoring - NEW */}
+          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
+            <CardHeader className="p-0 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
+                  <BarChartBig className="h-6 w-6" />
+                </div>
+                <CardTitle className="text-xl sm:text-2xl font-semibold">Prompt Quality Scoring</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-0 text-sm text-muted-foreground/90">
+              Evaluate your prompts with our advanced scoring system that analyzes clarity, specificity, length, and actionability to help you craft more effective AI interactions.
+            </CardContent>
+          </Card>
+
+          {/* Card 2: Tailor for Specific AI Models */}
           <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
             <CardHeader className="p-0 mb-4">
               <div className="flex items-center gap-3">
@@ -349,9 +362,7 @@ export function IntroSection() {
             <CardContent className="p-0 text-sm text-muted-foreground/90">
               Instruct AI to perform multi-step tasks, from summarizing documents and extracting key data to generating code, streamlining your productivity on complex projects.
             </CardContent>
-          </Card>
-
-          {/* Card 4: Amplify Creative Brainstorming */}
+          </Card>          {/* Card 4: Amplify Creative Brainstorming */}
           <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
             <CardHeader className="p-0 mb-4">
               <div className="flex items-center gap-3">
@@ -363,21 +374,6 @@ export function IntroSection() {
             </CardHeader>
             <CardContent className="p-0 text-sm text-muted-foreground/90">
               Turn AI into your ultimate ideation partner. Generate diverse concepts for marketing, content creation, or problem-solving, and break through creative barriers.
-            </CardContent>
-          </Card>
-
-          {/* Card 5: Drive Data Analysis & Insights */}
-          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
-            <CardHeader className="p-0 mb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
-                  <BarChartBig className="h-6 w-6" />
-                </div>
-                <CardTitle className="text-xl sm:text-2xl font-semibold">Drive Data Analysis</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="p-0 text-sm text-muted-foreground/90">
-              Guide AI to analyze datasets, identify emerging trends, and generate clear summaries from complex information, transforming raw data into actionable intelligence.
             </CardContent>
           </Card>
 

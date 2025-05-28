@@ -251,9 +251,8 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
             <span className="bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">
             Unlock AI's Full Potential
             </span>
-        </h1>
-          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
-            Transform your simple ideas into powerful, precise prompts. Get multiple AI-optimized variations in seconds.
+        </h1>          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto">
+            Transform your simple ideas into powerful, precise prompts with real-time quality scoring. Get multiple AI-optimized variations in seconds.
           </p>
         </section>        <section className="max-w-2xl mx-auto mb-12 sm:mb-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.1s' }}>          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             <div className="relative">
