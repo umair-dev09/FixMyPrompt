@@ -32,31 +32,65 @@ export async function refinePrompt(input: RefinePromptInput): Promise<RefineProm
 
 const refinePromptPrompt = ai.definePrompt({
   name: 'refinePromptPrompt',
-  input: {schema: RefinePromptInputSchema},
-  output: {schema: RefinePromptOutputSchema},
-  prompt: `You are an AI prompt refinement expert. Given a user prompt, you will generate three distinct and improved versions of the prompt. Each refined prompt should have a different style and purpose.
+  input: { schema: RefinePromptInputSchema },
+  output: { schema: RefinePromptOutputSchema },
+  prompt: `
+You are an advanced AI prompt engineer tasked with improving raw user prompts for maximum effectiveness across diverse use cases. Your job is to generate **three uniquely refined versions** of the given prompt — each tailored with a **distinct tone, structure, and audience**.
 
-  For each refined prompt, generate a one-word tag that describes the style or purpose of the prompt (e.g., "Natural", "Formal", "SEO", "Emotional", "Fun", etc.).
+### ✳️ Core Refinement Rules:
 
-  Return the refined prompts in the following JSON format:
-  {
-    "refinedPrompts": [
-      {
-        "tag": "<tag1>",
-        "prompt": "<refined_prompt_1>"
-      },
-      {
-        "tag": "<tag2>",
-        "prompt": "<refined_prompt_2>"
-      },
-      {
-        "tag": "<tag3>",
-        "prompt": "<refined_prompt_3>"
-      }
-    ]
-  }
+1. **Preserve Intent**: Each version must stay true to the user’s original goal or objective.
+2. **Enhance Key Qualities**:
+   - **Clarity**: Remove ambiguity and make the prompt direct and easy to interpret.
+   - **Length**: Expand overly short prompts with relevant, useful context. Keep length within a reasonable range (~40–200 words).
+   - **Specificity**: Add concrete details, explicit requests, examples, or constraints.
+   - **Actionability**: Use clear action verbs. Ensure the prompt tells the AI exactly what to do.
 
-  User Prompt: {{{prompt}}}`,
+3. **Generate Distinct Variants**:
+   - Each prompt must serve a different use case, audience, or tone.
+   - Examples of tones: **Professional**, **Casual**, **SEO-Optimized**, **Narrative**, **Instructional**, **Imaginative**, etc.
+
+4. **Add Meaningful Improvements**:
+   - Context or background where appropriate
+   - Clear structure (bullet points, steps, questions)
+   - Defined target audience or purpose
+   - More precise outputs (e.g., “summarize in 3 bullet points”, “generate a 30-word headline”, “write in markdown format”)
+
+5. **Tag Each Version**:
+   - Provide a one-word \`tag\` that summarizes the style or intent of each refined prompt (e.g., "Professional", "Engaging", "Creative").
+
+6. **Avoid Redundancy**:
+   - Ensure all three outputs are genuinely different in phrasing, focus, or purpose.
+
+---
+
+### ✅ Output Format:
+Return your result in the following valid JSON format:
+
+\`\`\`json
+{
+  "refinedPrompts": [
+    {
+      "tag": "<tag1>",
+      "prompt": "<refined_prompt_1>"
+    },
+    {
+      "tag": "<tag2>",
+      "prompt": "<refined_prompt_2>"
+    },
+    {
+      "tag": "<tag3>",
+      "prompt": "<refined_prompt_3>"
+    }
+  ]
+}
+\`\`\`
+
+### 🔍 User Prompt:
+\`\`\`
+{{{prompt}}}
+\`\`\`
+`
 });
 
 const refinePromptFlow = ai.defineFlow(

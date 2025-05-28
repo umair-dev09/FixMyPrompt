@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import type { RefinedPromptClient } from '@/types';
+import { RefinedPromptScore } from '@/components/refined-prompt-score';
 
 interface RefinedPromptCardProps {
   prompt: RefinedPromptClient;
@@ -50,9 +51,11 @@ export function RefinedPromptCard({ prompt, onUseThis, onRefineThis }: RefinedPr
   };
 
   return (
-    <Card className="shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out flex flex-col h-full hover:scale-[1.03] rounded-xl bg-card/50 dark:bg-card/40 backdrop-blur-lg hover:bg-card/60 dark:hover:bg-card/50 border border-border/10 supports-[backdrop-filter]:bg-card/50">
-      <CardHeader className="pb-3">
-        <Badge variant="secondary" className="w-fit mb-2 text-xs">{prompt.tag}</Badge>
+    <Card className="shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out flex flex-col h-full hover:scale-[1.03] rounded-xl bg-card/50 dark:bg-card/40 backdrop-blur-lg hover:bg-card/60 dark:hover:bg-card/50 border border-border/10 supports-[backdrop-filter]:bg-card/50">      <CardHeader className="pb-3">
+        <div className="flex items-center justify-between mb-2">
+          <Badge variant="secondary" className="w-fit text-xs">{prompt.tag}</Badge>
+          <RefinedPromptScore promptText={prompt.prompt} />
+        </div>
         <CardTitle className="text-lg leading-snug font-semibold">
           {isTitleTruncated && !isTitleExpanded
             ? (

@@ -7,11 +7,10 @@ export default {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
+  ],  theme: {
   	extend: {
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'], // Set Poppins as the primary sans-serif font
+        sans: ['Inter', 'system-ui', 'sans-serif'], // Set Inter as the primary sans-serif font
       },
   		colors: {
   			background: 'hsl(var(--background))',
@@ -86,20 +85,23 @@ export default {
   				to: {
   					height: '0'
   				}
-  			},
-        'fadeInUp': {
+  			},        'fadeInUp': {
           '0%': { opacity: '0', transform: 'translateY(15px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'fadeIn': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
         'infinite-scroll': {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(-100%)' }, 
         },
-  		},
-  		animation: {
+  		},  		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
         'fadeInUp': 'fadeInUp 0.5s ease-out forwards',
+        'fadeIn': 'fadeIn 0.3s ease-out forwards',
         'infinite-scroll': 'infinite-scroll 40s linear infinite',
   		},
       animationDelay: { // Adding animationDelay utilities
