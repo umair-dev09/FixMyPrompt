@@ -376,7 +376,7 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
           </div>
           <div>
             <a
-              href="mailto:umair@promptfix.io?subject=Inquiry%20about%20FixMyPrompt&body=Hey%2C%20I%20want%20to%20talk%20about%20FixMyPrompt."
+              href="mailto:fixmyprompt@gmail.com?subject=Inquiry%20about%20FixMyPrompt&body=Hey%2C%20I%20want%20to%20talk%20about%20FixMyPrompt."
               className="hover:text-[hsl(var(--ag-from))] transition-colors font-medium"
             >
               Contact Us
