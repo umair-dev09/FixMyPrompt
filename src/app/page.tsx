@@ -14,6 +14,8 @@ import { Header } from '@/components/layout/header';
 import { useToast } from '@/hooks/use-toast';
 import BannerAd from '@/components/ads/banner-ad';
 import { PromptScoreDisplay } from '@/components/prompt-score-display';
+import { FloatingFeedback } from '@/components/floating-feedback';
+import { SessionFeedback } from '@/components/session-feedback';
 
 // Debounce function
 const debounce = <F extends (...args: any[]) => any>(func: F, waitFor: number) => {
@@ -64,6 +66,56 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
   const [isSpeechApiAvailable, setIsSpeechApiAvailable] = useState(false);
   const recognitionRef = useRef<any>(null);
 
+  // Session tracking and feedback
+  const [sessionData, setSessionData] = useState({
+    promptsRefined: 0,
+    sessionStart: Date.now(),
+    mostUsedFeatures: [] as string[],
+  });
+  const [showSessionFeedback, setShowSessionFeedback] = useState(false);
+
+  // Track session activity
+  const updateSessionData = useCallback(() => {
+    setSessionData(prev => ({
+      ...prev,
+      promptsRefined: prev.promptsRefined + 1,
+    }));
+  }, []);
+
+  // Feedback handlers
+  const handleGeneralFeedback = useCallback((feedback: any) => {
+    console.log('General feedback received:', feedback);
+    toast({
+      title: "Thank you for your feedback!",
+      description: "We appreciate your input and will use it to improve FixMyPrompt.",
+    });
+  }, [toast]);
+
+  const handleSessionFeedback = useCallback((feedback: any) => {
+    console.log('Session feedback received:', feedback);
+    toast({
+      title: "Thank you for your session feedback!",
+      description: "Your input helps us make FixMyPrompt better.",
+    });
+  }, [toast]);
+
+  // Check for session feedback trigger
+  useEffect(() => {
+    const checkSessionFeedback = () => {
+      const timeSpent = Math.floor((Date.now() - sessionData.sessionStart) / 60000); // minutes
+      
+      // Show session feedback after 3+ prompts refined OR 5+ minutes spent
+      if ((sessionData.promptsRefined >= 3 || timeSpent >= 5) && !showSessionFeedback) {
+        // Small delay to not interrupt user flow
+        setTimeout(() => {
+          setShowSessionFeedback(true);
+        }, 2000);
+      }
+    };
+
+    checkSessionFeedback();
+  }, [sessionData, showSessionFeedback]);
+
 
   React.useEffect(() => {
     const intervalId = setInterval(() => {
@@ -111,6 +163,9 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
         }));
         setRefinedPrompts(promptsWithIds);
         setError(null); // Clear any previous errors
+        
+        // Track successful refinement
+        updateSessionData();
       } else {
         setRefinedPrompts(null);
         const noPromptsMessage = "No refined prompts were generated. The AI might not have found improvements or the response was empty.";
@@ -358,29 +413,100 @@ export default function HomePage({ params, searchParams }: HomePageProps) {
           />
         )}
       </main>
-      <footer className="py-6 sm:py-8 border-t border-border/50 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.3s' }}>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-sm text-muted-foreground">
-          <div className="flex space-x-4 mb-4 sm:mb-0">
-            {/* <a href="https://instagram.com/your_handle_here" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[hsl(var(--ag-from))] transition-colors"> */}
-               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-            {/* </a> */}
-            {/* <a href="https://facebook.com/your_page_here" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[hsl(var(--ag-from))] transition-colors"> */}
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-            {/* </a> */}
-            {/* <a href="https://x.com/your_handle_here" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="hover:text-[hsl(var(--ag-from))] transition-colors"> */}
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
-            {/* </a> */}
+      
+      {/* Floating Feedback Widget */}
+      <FloatingFeedback onFeedbackSubmit={handleGeneralFeedback} />
+      
+      {/* Session Feedback Modal */}
+      <SessionFeedback
+        isOpen={showSessionFeedback}
+        onClose={() => setShowSessionFeedback(false)}
+        sessionData={{
+          promptsRefined: sessionData.promptsRefined,
+          timeSpent: Math.floor((Date.now() - sessionData.sessionStart) / 60000),
+          mostUsedFeatures: sessionData.mostUsedFeatures,
+        }}
+        onFeedbackSubmit={handleSessionFeedback}
+      />
+      
+      <footer className="mt-auto border-t border-border/30 bg-background/80 backdrop-blur-sm animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.3s' }}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+          
+          {/* Main Footer Content */}
+          <div className="py-8 sm:py-10">
+            <div className="flex flex-col items-center text-center space-y-6">
+              
+              {/* Brand Section */}
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold bg-gradient-to-r from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] bg-clip-text text-transparent">
+                  FixMyPrompt
+                </h3>
+                <p className="text-sm text-muted-foreground max-w-md">
+                  Empowering creativity through intelligent AI prompt engineering
+                </p>
+              </div>
+
+              {/* Navigation Links */}
+              <nav className="flex flex-wrap justify-center items-center gap-6 sm:gap-8">
+                <a
+                  href="/privacy"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                >
+                  Privacy Policy
+                </a>
+                <a
+                  href="/terms"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                >
+                  Terms & Conditions
+                </a>
+                <a
+                  href="mailto:fixmyprompt@gmail.com?subject=Inquiry%20about%20FixMyPrompt&body=Hey%2C%20I%20want%20to%20talk%20about%20FixMyPrompt."
+                  className="text-sm text-muted-foreground hover:text-[hsl(var(--ag-from))] transition-colors duration-200 font-medium"
+                >
+                  Contact Us
+                </a>
+              </nav>
+
+              {/* Social Media Icons */}
+              <div className="flex items-center justify-center space-x-4">
+                {/* <a href="https://instagram.com/fixmyprompt" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-muted-foreground hover:text-[hsl(var(--ag-from))] transition-colors duration-200"> */}
+                  <div className="text-muted-foreground hover:text-[hsl(var(--ag-from))] transition-colors duration-200 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                    </svg>
+                  </div>
+                {/* </a> */}
+                {/* <a href="https://facebook.com/fixmyprompt" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-muted-foreground hover:text-[hsl(var(--ag-from))] transition-colors duration-200"> */}
+                  <div className="text-muted-foreground hover:text-[hsl(var(--ag-from))] transition-colors duration-200 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                    </svg>
+                  </div>
+                {/* </a> */}
+                {/* <a href="https://twitter.com/fixmyprompt" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="text-muted-foreground hover:text-[hsl(var(--ag-from))] transition-colors duration-200"> */}
+                  <div className="text-muted-foreground hover:text-[hsl(var(--ag-from))] transition-colors duration-200 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+                    </svg>
+                  </div>
+                {/* </a> */}
+              </div>
+            </div>
           </div>
-          <div className="text-center sm:text-left mb-4 sm:mb-0 order-first sm:order-none">
-             © {new Date().getFullYear()} FixMyPrompt. Unleash your creativity.
-          </div>
-          <div>
-            <a
-              href="mailto:fixmyprompt@gmail.com?subject=Inquiry%20about%20FixMyPrompt&body=Hey%2C%20I%20want%20to%20talk%20about%20FixMyPrompt."
-              className="hover:text-[hsl(var(--ag-from))] transition-colors font-medium"
-            >
-              Contact Us
-            </a>
+
+          {/* Bottom Section */}
+          <div className="border-t border-border/20 py-4">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-muted-foreground/80">
+              <p>
+                © {new Date().getFullYear()} FixMyPrompt. All rights reserved.
+              </p>
+              <p className="hidden sm:block">
+                Professional AI tools for everyone
+              </p>
+            </div>
           </div>
         </div>
       </footer>

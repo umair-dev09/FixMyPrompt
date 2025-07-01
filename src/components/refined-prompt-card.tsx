@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from '@/components/ui/badge';
 import type { RefinedPromptClient } from '@/types';
 import { RefinedPromptScore } from '@/components/refined-prompt-score';
+import { QuickFeedback } from '@/components/quick-feedback';
 
 interface RefinedPromptCardProps {
   prompt: RefinedPromptClient;
@@ -48,6 +49,11 @@ export function RefinedPromptCard({ prompt, onUseThis, onRefineThis }: RefinedPr
   const toggleTitleExpansion = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsTitleExpanded(!isTitleExpanded);
+  };
+
+  const handleFeedbackSubmit = (feedback: any) => {
+    console.log('Feedback submitted for prompt:', prompt.tag, feedback);
+    // Here you could also send to your backend if needed
   };
 
   return (
@@ -107,6 +113,13 @@ export function RefinedPromptCard({ prompt, onUseThis, onRefineThis }: RefinedPr
         >
           Refine this prompt
         </Button>
+        
+        {/* Feedback Component */}
+        <QuickFeedback
+          promptId={`${prompt.tag}-${Date.now()}`}
+          promptText={prompt.prompt}
+          onFeedbackSubmit={handleFeedbackSubmit}
+        />
       </CardFooter>
     </Card>
   );
