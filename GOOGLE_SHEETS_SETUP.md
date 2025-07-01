@@ -64,8 +64,16 @@ Create columns with these headers:
 ```javascript
 function doPost(e) {
   try {
-    // Parse the JSON data
-    const data = JSON.parse(e.postData.contents);
+    // Handle both webhook calls and manual testing
+    let data;
+    if (e && e.postData && e.postData.contents) {
+      // This is a real webhook call
+      data = JSON.parse(e.postData.contents);
+    } else {
+      // This is likely a manual test or invalid call
+      throw new Error('Invalid request: No postData found. Use testAllFeedbackTypes() for testing.');
+    }
+    
     const type = data.type;
     const feedbackData = data.data || data;
     
@@ -79,6 +87,9 @@ function doPost(e) {
     switch(type) {
       case 'prompt_feedback':
         sheet = ss.getSheetByName('Prompt Feedback');
+        if (!sheet) {
+          throw new Error('Sheet "Prompt Feedback" not found. Please create it first.');
+        }
         values = [
           feedbackData.timestamp || new Date().toISOString(),
           feedbackData.promptId || '',
@@ -94,6 +105,9 @@ function doPost(e) {
         
       case 'general_feedback':
         sheet = ss.getSheetByName('General Feedback');
+        if (!sheet) {
+          throw new Error('Sheet "General Feedback" not found. Please create it first.');
+        }
         values = [
           feedbackData.timestamp || new Date().toISOString(),
           feedbackData.type || '',
@@ -106,6 +120,9 @@ function doPost(e) {
         
       case 'session_feedback':
         sheet = ss.getSheetByName('Session Feedback');
+        if (!sheet) {
+          throw new Error('Sheet "Session Feedback" not found. Please create it first.');
+        }
         values = [
           feedbackData.timestamp || new Date().toISOString(),
           feedbackData.overallRating || 0,
@@ -123,7 +140,7 @@ function doPost(e) {
         
       default:
         return ContentService
-          .createTextOutput(JSON.stringify({error: 'Invalid feedback type'}))
+          .createTextOutput(JSON.stringify({error: 'Invalid feedback type: ' + type}))
           .setMimeType(ContentService.MimeType.JSON);
     }
     
@@ -135,8 +152,10 @@ function doPost(e) {
         sendAlertEmail(type, feedbackData);
       }
       
+      console.log('Feedback recorded successfully:', type, values);
+      
       return ContentService
-        .createTextOutput(JSON.stringify({success: true, message: 'Feedback recorded'}))
+        .createTextOutput(JSON.stringify({success: true, message: 'Feedback recorded successfully'}))
         .setMimeType(ContentService.MimeType.JSON);
     } else {
       throw new Error('Sheet not found or invalid data');
@@ -145,7 +164,7 @@ function doPost(e) {
   } catch (error) {
     console.error('Error processing feedback:', error);
     return ContentService
-      .createTextOutput(JSON.stringify({error: error.toString()}))
+      .createTextOutput(JSON.stringify({error: error.toString(), timestamp: new Date().toISOString()}))
       .setMimeType(ContentService.MimeType.JSON);
   }
 }
@@ -181,51 +200,63 @@ function sendAlertEmail(type, data) {
     }
     
     GmailApp.sendEmail(email, subject, body);
+    console.log('Alert email sent for:', type);
   } catch (error) {
     console.error('Failed to send alert email:', error);
   }
 }
 
-// Optional: Add a comprehensive test function
+// CORRECTED: Test function that properly simulates webhook calls
 function testAllFeedbackTypes() {
+  console.log('=== Testing All Feedback Types ===');
+  
   // Test prompt feedback
+  console.log('\n1. Testing Prompt Feedback...');
   const promptTest = {
     postData: {
       contents: JSON.stringify({
         type: 'prompt_feedback',
         data: {
           timestamp: new Date().toISOString(),
-          promptId: 'test-123',
+          promptId: 'test-prompt-123',
           rating: 5,
           sentiment: 'positive',
           quickFeedback: ['helpful', 'clear'],
-          detailedFeedback: 'This is a test feedback',
-          userAgent: 'Test Browser',
-          url: 'https://test.com',
-          promptText: 'Test prompt text...'
+          detailedFeedback: 'This is a test feedback for prompt refinement',
+          userAgent: 'Test Browser 1.0',
+          url: 'https://fixmyprompt.io/test',
+          promptText: 'Test prompt text for demonstration purposes...'
         }
       })
     }
   };
   
+  const promptResult = doPost(promptTest);
+  console.log('Prompt feedback result:', promptResult.getContent());
+  
   // Test general feedback
+  console.log('\n2. Testing General Feedback...');
   const generalTest = {
     postData: {
       contents: JSON.stringify({
         type: 'general_feedback',
         data: {
           timestamp: new Date().toISOString(),
-          type: 'bug',
-          message: 'Test bug report',
-          email: 'test@test.com',
-          userAgent: 'Test Browser',
-          url: 'https://test.com'
+          type: 'question',
+          message: 'This is a test question about FixMyPrompt functionality',
+          email: 'test@example.com',
+          userAgent: 'Test Browser 1.0',
+          url: 'https://fixmyprompt.io/test'
         }
       })
     }
   };
   
+  const generalResult = doPost(generalTest);
+  console.log('General feedback result:', generalResult.getContent());
+  
   // Test session feedback
+  console.log('\n3. Testing Session Feedback...');
   const sessionTest = {
     postData: {
       contents: JSON.stringify({
@@ -235,23 +266,96 @@ function testAllFeedbackTypes() {
           overallRating: 4,
           savedTime: true,
           wouldRecommend: true,
-          featuresWanted: ['feature1', 'feature2'],
-          experience: 'Great experience',
-          improvements: 'Could be faster',
+          featuresWanted: ['📝 Prompt Templates', '💾 Save History'],
+          experience: 'Great experience overall, very helpful for improving prompts',
+          improvements: 'Could be faster and have more AI model options',
           sessionData: {
             promptsRefined: 3,
             timeSpent: 15
           },
-          userAgent: 'Test Browser',
+          userAgent: 'Test Browser 1.0',
+          url: 'https://fixmyprompt.io/test'
+        }
+      })
+    }
+  };
+  
+  const sessionResult = doPost(sessionTest);
+  console.log('Session feedback result:', sessionResult.getContent());
+  
+  console.log('\n=== Test Complete ===');
+  console.log('Check your Google Sheets to see if the data was added correctly.');
+}
+
+// Simple test for individual feedback types
+function testPromptFeedback() {
+  const test = {
+    postData: {
+      contents: JSON.stringify({
+        type: 'prompt_feedback',
+        data: {
+          timestamp: new Date().toISOString(),
+          promptId: 'test-123',
+          rating: 5,
+          sentiment: 'positive',
+          quickFeedback: ['helpful'],
+          detailedFeedback: 'Test feedback',
+          userAgent: 'Test',
+          url: 'https://test.com',
+          promptText: 'Test prompt'
+        }
+      })
+    }
+  };
+  
+  return doPost(test);
+}
+
+function testGeneralFeedback() {
+  const test = {
+    postData: {
+      contents: JSON.stringify({
+        type: 'general_feedback',
+        data: {
+          timestamp: new Date().toISOString(),
+          type: 'question',
+          message: 'Test question',
+          email: 'test@test.com',
+          userAgent: 'Test',
           url: 'https://test.com'
         }
       })
     }
   };
   
-  console.log('Testing prompt feedback:', doPost(promptTest).getContent());
-  console.log('Testing general feedback:', doPost(generalTest).getContent());
-  console.log('Testing session feedback:', doPost(sessionTest).getContent());
+  return doPost(test);
+}
+
+function testSessionFeedback() {
+  const test = {
+    postData: {
+      contents: JSON.stringify({
+        type: 'session_feedback',
+        data: {
+          timestamp: new Date().toISOString(),
+          overallRating: 4,
+          savedTime: true,
+          wouldRecommend: true,
+          featuresWanted: ['feature1'],
+          experience: 'Good',
+          improvements: 'Could be better',
+          sessionData: {
+            promptsRefined: 2,
+            timeSpent: 10
+          },
+          userAgent: 'Test',
+          url: 'https://test.com'
+        }
+      })
+    }
+  };
+  
+  return doPost(test);
 }
 ```
 
