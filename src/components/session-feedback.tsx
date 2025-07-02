@@ -66,6 +66,7 @@ export function SessionFeedback({ isOpen, onClose, sessionData, onFeedbackSubmit
       improvements: improvements.trim(),
     };
 
+    // Call the parent's feedback handler
     onFeedbackSubmit(feedbackData);
 
     // Store in localStorage for backup
@@ -231,13 +232,24 @@ export function SessionFeedback({ isOpen, onClose, sessionData, onFeedbackSubmit
               </div>
 
               {/* Navigation */}
-              <div className="flex space-x-3">
+              <div className="flex space-x-2">
+                <Button
+                  variant="ghost"
+                  onClick={onClose}
+                  className="text-xs px-3 py-2 text-muted-foreground hover:text-foreground"
+                >
+                  Maybe Later
+                </Button>
                 <Button
                   variant="outline"
-                  onClick={onClose}
+                  onClick={() => {
+                    // Mark as dismissed for longer period
+                    localStorage.setItem('fixmyprompt_feedback_dismissed', (Date.now() + 7 * 24 * 60 * 60 * 1000).toString()); // 7 days
+                    onClose();
+                  }}
                   className="flex-1 hover:bg-muted dark:hover:bg-muted/40"
                 >
-                  Skip
+                  Skip for Now
                 </Button>
                 <Button
                   onClick={() => setCurrentStep(2)}

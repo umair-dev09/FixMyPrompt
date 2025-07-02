@@ -62,7 +62,7 @@ export function RefinedPromptCard({ prompt, onUseThis, onRefineThis }: RefinedPr
           <Badge variant="secondary" className="w-fit text-xs">{prompt.tag}</Badge>
           <RefinedPromptScore promptText={prompt.prompt} />
         </div>
-        <CardTitle className="text-lg leading-snug font-semibold">
+        <CardTitle className="text-base leading-snug font-medium">
           {isTitleTruncated && !isTitleExpanded
             ? (
               <>
