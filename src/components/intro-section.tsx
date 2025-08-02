@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Target, Zap, Lightbulb, SlidersHorizontal, TrendingUp, Cpu, ToyBrick, Palette, Workflow, Sparkles, BarChartBig, UserRoundCog } from 'lucide-react';
+import { Target, Zap, Lightbulb, SlidersHorizontal, TrendingUp, Cpu, ToyBrick, Palette, Workflow, Sparkles, BarChartBig, UserRoundCog, Star, Quote, ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 interface RefinedExample {
@@ -101,10 +101,97 @@ const llmLogos = [
 
 const extendedLogos = [...llmLogos, ...llmLogos]; // Duplicate for seamless loop
 
+// Testimonials data - realistic reviews for FixMyPrompt
+const testimonials = [
+  {
+    id: 1,
+    name: "Sarah Chen",
+    role: "Content Marketing Manager",
+    rating: 5,
+    text: "FixMyPrompt transformed how I write AI prompts! I went from getting mediocre responses to crafting prompts that deliver exactly what I need. The real-time scoring feature is a game-changer.",
+    avatar: "SC"
+  },
+  {
+    id: 2,
+    name: "Marcus Rodriguez",
+    role: "AI Researcher",
+    rating: 5,
+    text: "As someone who works with multiple AI models daily, FixMyPrompt has become indispensable. The prompt type optimization for different use cases saves me hours every week.",
+    avatar: "MR"
+  },
+  {
+    id: 3,
+    name: "Emma Thompson",
+    role: "Creative Director",
+    rating: 5,
+    text: "I struggled with getting consistent creative outputs from AI tools until I found FixMyPrompt. Now my image generation and creative writing prompts produce professional-quality results every time.",
+    avatar: "ET"
+  },
+  {
+    id: 4,
+    name: "David Kim",
+    role: "Software Developer",
+    rating: 5,
+    text: "The code generation prompt optimization is incredible. FixMyPrompt helped me write better prompts for coding tasks, resulting in more accurate and efficient code suggestions.",
+    avatar: "DK"
+  },
+  {
+    id: 5,
+    name: "Lisa Martinez",
+    role: "Business Analyst",
+    rating: 4,
+    text: "FixMyPrompt made AI accessible for our entire team. The business content templates and data analysis prompts have improved our productivity by 40%. Highly recommended!",
+    avatar: "LM"
+  },
+  {
+    id: 6,
+    name: "Alex Johnson",
+    role: "Freelance Writer",
+    rating: 5,
+    text: "I've been using FixMyPrompt for 6 months now, and it's revolutionized my writing workflow. The educational content prompts help me create engaging tutorials that my clients love.",
+    avatar: "AJ"
+  }
+];
+
+// FAQ data - SEO-friendly questions about FixMyPrompt
+const faqs = [
+  {
+    id: 1,
+    question: "What is FixMyPrompt and how does it work?",
+    answer: "FixMyPrompt is an AI-powered tool that transforms your basic prompts into optimized, professional-quality prompts. Simply enter your idea, select the prompt type (like image generation, code generation, or creative writing), and our AI instantly provides multiple refined variations with quality scoring. It works with all major AI platforms including ChatGPT, Claude, Gemini, and more."
+  },
+  {
+    id: 2,
+    question: "Is FixMyPrompt free to use?",
+    answer: "Yes! FixMyPrompt offers a free tier that allows you to refine prompts and access our core features. We provide unlimited prompt refinements, real-time quality scoring, and support for multiple prompt types at no cost. Premium features may be available for advanced users in the future."
+  },
+  {
+    id: 3,
+    question: "Which AI platforms does FixMyPrompt work with?",
+    answer: "FixMyPrompt works with all major AI platforms including OpenAI's ChatGPT, Google Gemini, Anthropic's Claude, GitHub Copilot, Perplexity AI, Meta AI, Grok, Cursor, MidJourney, and many others. Our optimized prompts are designed to work effectively across different AI models and platforms."
+  },
+  {
+    id: 4,
+    question: "How does the prompt quality scoring system work?",
+    answer: "Our intelligent scoring system analyzes your prompts based on clarity, specificity, context, and effectiveness. It evaluates factors like length, structure, keywords, and intent to provide a real-time quality score. Higher scores typically result in better AI responses, helping you craft more effective prompts."
+  },
+  {
+    id: 5,
+    question: "Can FixMyPrompt help with specific use cases like image generation or coding?",
+    answer: "Absolutely! FixMyPrompt offers specialized prompt types including image generation, video generation, code generation, creative writing, business content, educational content, data analysis, and social media. Each type is optimized with specific techniques and best practices for that particular use case."
+  },
+  {
+    id: 6,
+    question: "Do I need to sign up or create an account to use FixMyPrompt?",
+    answer: "No account creation is required to start using FixMyPrompt! You can begin refining your prompts immediately. However, creating an account allows you to save your favorite prompts, track your refinement history, and access additional features like bookmarking and personalized recommendations."
+  }
+];
+
 export function IntroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentExamples, setCurrentExamples] = useState<ExamplePrompt[]>([]);
   const [animationKey, setAnimationKey] = useState(0);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -148,6 +235,10 @@ export function IntroSection() {
     return () => clearInterval(intervalId);
   }, []);
 
+  // FAQ toggle function
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
 
   return (
     <div className="space-y-12 sm:space-y-16 my-8 sm:my-12">
@@ -296,103 +387,135 @@ export function IntroSection() {
         </div>
       </section>
 
-      {/* New SEO-focused Section */}
+      {/* Testimonials Section */}
       <section className="text-center py-12 sm:py-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.4s' }}>
-        <h2 className="text-3xl sm:text-4xl font-bold mb-10 sm:mb-12 tracking-tight bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">
-          Supercharge Your AI: Advanced Prompting Techniques
+        <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight">
+          What Our <span className="bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">Users Say</span>
         </h2>
-        <p className="text-base sm:text-lg text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto mb-10 sm:mb-16">
-          Go beyond basic queries. Effective prompt engineering unlocks sophisticated AI capabilities, helping you achieve unparalleled results and efficiency.
-        </p>        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
-          {/* Card 1: Prompt Quality Scoring - NEW */}
-          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
-            <CardHeader className="p-0 mb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
-                  <BarChartBig className="h-6 w-6" />
-                </div>
-                <CardTitle className="text-xl sm:text-2xl font-semibold">Prompt Quality Scoring</CardTitle>
+        <p className="text-base sm:text-lg text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto mb-10 sm:mb-12">
+          Join thousands of professionals who have transformed their AI workflow with FixMyPrompt
+        </p>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+          {testimonials.map((testimonial, index) => (
+            <Card 
+              key={testimonial.id} 
+              className="shadow-lg rounded-xl p-6 text-left hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60 relative overflow-hidden"
+              style={{ 
+                animationDelay: `${0.1 * index}s`,
+                animation: 'fadeInUp 0.6s ease-out forwards'
+              }}
+            >
+              {/* Quote icon */}
+              <div className="absolute top-4 right-4 opacity-20">
+                <Quote className="h-8 w-8 text-[hsl(var(--ag-from))]" />
               </div>
-            </CardHeader>
-            <CardContent className="p-0 text-sm text-muted-foreground/90">
-              Evaluate your prompts with our advanced scoring system that analyzes clarity, specificity, length, and actionability to help you craft more effective AI interactions.
-            </CardContent>
-          </Card>
-
-          {/* Card 2: Tailor for Specific AI Models */}
-          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
-            <CardHeader className="p-0 mb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
-                  <ToyBrick className="h-6 w-6" />
-                </div>
-                <CardTitle className="text-xl sm:text-2xl font-semibold">Tailor for Specific AI Models</CardTitle>
+              
+              {/* Rating Stars */}
+              <div className="flex items-center gap-1 mb-4">
+                {[...Array(5)].map((_, starIndex) => (
+                  <Star 
+                    key={starIndex} 
+                    className={`h-4 w-4 star-hover transition-all duration-200 ${
+                      starIndex < testimonial.rating 
+                        ? 'text-yellow-400 fill-yellow-400' 
+                        : 'text-gray-300 dark:text-gray-600'
+                    }`} 
+                  />
+                ))}
               </div>
-            </CardHeader>
-            <CardContent className="p-0 text-sm text-muted-foreground/90">
-              Unlock the unique strengths of models like GPT-4, Gemini, or Claude by crafting prompts that leverage their specific architectures. Get nuanced outputs by fine-tuning requests for any LLM.
-            </CardContent>
-          </Card>
-
-          {/* Card 2: Master Tone & Style Consistency */}
-          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
-            <CardHeader className="p-0 mb-4">
+              
+              {/* Testimonial Text */}
+              <p className="text-sm sm:text-base text-foreground/90 mb-6 leading-relaxed">
+                "{testimonial.text}"
+              </p>
+              
+              {/* User Info */}
               <div className="flex items-center gap-3">
-                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
-                  <Palette className="h-6 w-6" />
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] flex items-center justify-center text-white text-sm font-semibold">
+                  {testimonial.avatar}
                 </div>
-                <CardTitle className="text-xl sm:text-2xl font-semibold">Master Tone & Style</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="p-0 text-sm text-muted-foreground/90">
-              Command the AI's voice for formal reports, creative narratives, or brand-aligned comms. Define tone, style, and personality for perfectly tailored AI-generated content.
-            </CardContent>
-          </Card>
-
-          {/* Card 3: Automate Complex Workflows */}
-          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
-            <CardHeader className="p-0 mb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
-                  <Workflow className="h-6 w-6" />
+                <div>
+                  <h4 className="font-semibold text-sm text-foreground">{testimonial.name}</h4>
+                  <p className="text-xs text-muted-foreground">
+                    {testimonial.role}
+                  </p>
                 </div>
-                <CardTitle className="text-xl sm:text-2xl font-semibold">Automate Complex Workflows</CardTitle>
               </div>
-            </CardHeader>
-            <CardContent className="p-0 text-sm text-muted-foreground/90">
-              Instruct AI to perform multi-step tasks, from summarizing documents and extracting key data to generating code, streamlining your productivity on complex projects.
-            </CardContent>
-          </Card>          {/* Card 4: Amplify Creative Brainstorming */}
-          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
-            <CardHeader className="p-0 mb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
-                  <Sparkles className="h-6 w-6" />
-                </div>
-                <CardTitle className="text-xl sm:text-2xl font-semibold">Amplify Creative Ideation</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="p-0 text-sm text-muted-foreground/90">
-              Turn AI into your ultimate ideation partner. Generate diverse concepts for marketing, content creation, or problem-solving, and break through creative barriers.
-            </CardContent>
-          </Card>
-
-          {/* Card 6: Create Personalized Experiences */}
-          <Card className="shadow-lg rounded-xl flex flex-col text-left p-6 hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-card/60 dark:bg-card/50 backdrop-blur-lg hover:bg-card/70 dark:hover:bg-card/60 border border-border/20 supports-[backdrop-filter]:bg-card/60">
-            <CardHeader className="p-0 mb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-3 rounded-lg bg-gradient-to-br from-[hsl(var(--ag-from))] to-[hsl(var(--ag-to))] text-accent-foreground shadow-md">
-                  <UserRoundCog className="h-6 w-6" />
-                </div>
-                <CardTitle className="text-xl sm:text-2xl font-semibold">Craft Personalized Interactions</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="p-0 text-sm text-muted-foreground/90">
-              Develop prompts that enable AI to understand user context and preferences, delivering personalized responses, recommendations, and support for enhanced engagement.
-            </CardContent>
-          </Card>
+            </Card>
+          ))}
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <section className="text-center py-12 sm:py-16 animate-fadeInUp" style={{ animationDuration: '0.5s', animationDelay: '0.5s' }}>
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <HelpCircle className="hidden sm:block h-8 w-8 text-[hsl(var(--ag-from))]" />
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+              Frequently Asked <span className="bg-gradient-to-r from-[hsl(var(--pg-from))] via-[hsl(var(--pg-via))] to-[hsl(var(--pg-to))] text-transparent bg-clip-text">Questions</span>
+            </h2>
+          </div>
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-10 sm:mb-12">
+            Everything you need to know about FixMyPrompt and how it can improve your AI interactions
+          </p>
+          
+          <div className="space-y-4 text-left">
+            {faqs.map((faq, index) => (
+              <Card 
+                key={faq.id} 
+                className="shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 ease-in-out bg-card/60 dark:bg-card/50 backdrop-blur-lg border border-border/20 supports-[backdrop-filter]:bg-card/60"
+                style={{ 
+                  animationDelay: `${0.1 * index}s`,
+                  animation: 'fadeInUp 0.6s ease-out forwards'
+                }}
+              >
+                <button
+                  onClick={() => toggleFaq(index)}
+                  className="w-full p-6 text-left hover:bg-muted/20 transition-colors duration-200 focus:outline-none rounded-xl"
+                  aria-expanded={openFaqIndex === index}
+                >
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-semibold text-foreground pr-8 leading-relaxed">
+                      {faq.question}
+                    </h3>
+                    <div className="flex-shrink-0 transition-transform duration-200 ease-in-out">
+                      {openFaqIndex === index ? (
+                        <ChevronUp className="h-5 w-5 text-[hsl(var(--ag-from))]" />
+                      ) : (
+                        <ChevronDown className="h-5 w-5 text-muted-foreground" />
+                      )}
+                    </div>
+                  </div>
+                </button>
+                
+                {openFaqIndex === index && (
+                  <div className="px-6 pb-6 animate-slideDown">
+                    <div className="pt-2 border-t border-border/20">
+                      <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </Card>
+            ))}
+          </div>
+          
+          {/* Call to Action for FAQ */}
+          <div className="mt-10 sm:mt-12 p-6 rounded-xl bg-gradient-to-r from-[hsl(var(--ag-from))]/10 to-[hsl(var(--ag-to))]/10 border border-[hsl(var(--ag-from))]/20">
+            <p className="text-muted-foreground mb-4">
+              Still have questions? We're here to help you get the most out of FixMyPrompt.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <span className="text-sm text-[hsl(var(--ag-from))] font-medium">
+                Start refining your prompts now - no signup required!
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

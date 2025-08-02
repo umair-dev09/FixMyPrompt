@@ -68,7 +68,7 @@ const aiPlatforms: AiPlatform[] = [
   },
   {
     name: 'Grok (on X)',
-    url: (prompt) => `https://x.com/search?q=${encodeURIComponent(prompt)}`,
+    url: (prompt) => `https://x.com/i/grok?prompt=${encodeURIComponent(prompt)}`,
     icon: Twitter
   },
 ];
